@@ -424,15 +424,65 @@ dialog.foto .tutupx{position:absolute;top:-14px;right:-8px;box-shadow:0 3px 0 va
 a.kecil{display:inline-grid;place-items:center;text-decoration:none;color:var(--tinta);text-align:center}
 .cv a{color:inherit;font-weight:700;text-decoration:underline;text-decoration-color:var(--tajuk1);text-underline-offset:3px}
 .cv a.kecil{text-decoration:none}
+.lencana{display:inline-block;margin-left:6px;min-width:20px;padding:0 6px;border-radius:99px;background:var(--aksen);color:var(--aksen-tinta);font-size:.75rem;line-height:20px;text-align:center}
+/* ---------- Voting ---------- */
+.votingIsi{display:grid;gap:16px;width:100%}
+.vkartu{display:grid;gap:12px;background:var(--kertas);border:2px solid var(--garis);border-radius:20px;padding:14px;box-shadow:0 4px 0 var(--garis)}
+.vkartu h3{font-size:1.15rem;line-height:1.3}
+.vmeta{margin:0;font-size:.82rem;color:var(--tinta2)}
+.visi{display:grid;gap:10px;background:var(--panel);border-radius:14px;padding:12px}
+.visi label{font-weight:700;font-size:.85rem;display:grid;gap:4px}
+.visi input{width:100%;border:1.5px solid var(--garis);border-radius:10px;padding:9px 10px;background:var(--kertas);min-height:44px}
+.vopsi{display:grid;gap:8px}
+.vopsi button{text-align:left;border:2px solid var(--garis);background:var(--kertas);border-radius:14px;padding:10px 14px;font-weight:700;cursor:pointer;min-height:46px}
+.vopsi button[aria-pressed="true"]{border-color:var(--tajuk1);background:color-mix(in srgb,var(--tajuk1) 16%,var(--kertas));box-shadow:inset 0 0 0 1.5px var(--tajuk1)}
+.vhasil{display:grid;gap:8px;margin:0;padding:0;list-style:none}
+.vhasil li{display:grid;gap:3px}
+.vhasil .vnama{display:flex;justify-content:space-between;gap:10px;font-size:.9rem}
+.vhasil .vnama b{overflow-wrap:anywhere}
+.vhasil .vnama span{color:var(--tinta2);white-space:nowrap;font-size:.82rem}
+.vbatang{height:14px;border-radius:99px;background:var(--panel);border:1.5px solid var(--garis);overflow:hidden}
+.vbatang i{display:block;height:100%;border-radius:99px;background:var(--tajuk1);transition:width calc(.9s*var(--t)) ease-out}
+.vhasil li.unggul .vbatang i{background:var(--aksen)}
+.vsaring{display:flex;flex-wrap:wrap;gap:8px;align-items:center;font-size:.82rem;color:var(--tinta2)}
+.vkaki{display:flex;flex-wrap:wrap;gap:8px 12px;align-items:center;font-size:.86rem}
+.vkartu .tautan{border:0;background:none;padding:4px 0;color:var(--tinta2);text-decoration:underline;cursor:pointer;font-size:.82rem}
+.vpemilih{margin:0;font-size:.8rem;color:var(--tinta2);overflow-wrap:anywhere}
+.vtutup{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.vtutup input{flex:1 1 120px;border:1.5px solid var(--garis);border-radius:10px;padding:8px 10px;background:var(--panel);min-height:40px}
+.vkartu.goyang{animation:goyang calc(.5s*var(--t)) ease-in-out infinite}
+.buatV{width:100%;border-top:2px dashed var(--garis);padding-top:12px}
+.buatV summary{cursor:pointer;font-weight:700}
+.buatV form{display:grid;gap:12px;margin-top:12px}
+.vPilihan{display:grid;gap:6px}
+.buatV .kecil{justify-self:start}
+/* ---------- Braille berlevel ---------- */
+.pilih.lvl{flex-wrap:wrap;border-radius:18px;width:auto}
+.pilih.lvl button{min-width:42px}
+.pilih.lvl button:disabled{opacity:.35;cursor:default}
+.pilih.lvl button.lulus:not([aria-pressed="true"]){color:var(--tajuk2)}
+:root[data-waktu="malam"] .pilih.lvl button.lulus:not([aria-pressed="true"]){color:var(--tajuk1)}
+.rJawab{display:grid;gap:10px;justify-items:start;width:100%}
+.rMinta{font-family:var(--display);font-size:2.4rem;line-height:1;text-transform:uppercase;background:var(--kertas);border:2px solid var(--garis);border-radius:14px;padding:10px 20px}
+.titikPad{display:inline-grid;grid-template-columns:repeat(2,54px);grid-auto-rows:54px;gap:10px;padding:14px;border-radius:18px;background:var(--kertas);border:2px solid var(--garis)}
+.titikPad button{border-radius:50%;border:2.5px solid var(--garis);background:var(--panel);font-weight:700;color:var(--tinta2);cursor:pointer}
+.titikPad button[aria-pressed="true"]{background:var(--tinta);border-color:var(--tinta);color:var(--kertas)}
+.rKetik{display:flex;flex-wrap:wrap;gap:8px;width:100%}
+.rKetik input{flex:1 1 160px;min-width:0;border:2px solid var(--garis);border-radius:14px;padding:10px 12px;background:var(--kertas);min-height:48px;font-size:1.1rem;letter-spacing:.06em}
+.sel.selTanda{border-style:dashed}
+.daunNilai{display:inline-flex;gap:4px;vertical-align:middle;margin-left:6px}
+.daunNilai i{width:14px;height:14px;border-radius:50% 0 50% 50%;rotate:45deg;background:var(--garis)}
+.daunNilai i.ada{background:var(--tajuk1)}
 .hanyaCetak{display:none}
 @media (max-width:620px){
   .kepala{padding-top:18px;gap:8px}
   .kepala p{font-size:1rem}
-  .kepala .aksi{display:grid;grid-template-columns:1fr 1fr;gap:10px;width:100%}
+  .kepala .aksi{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;width:100%}
   .kepala .aksi .utama{grid-column:1/-1}
+  .kepala .aksi #btnVoting{display:flex;justify-content:center;align-items:center;flex-wrap:nowrap}
   .kendali{gap:12px}
   .mainIsi>.pilih button{padding:7px 9px;font-size:.8rem}
-  .kepala .aksi .hantu,.kepala .aksi .kecil{display:grid;place-items:center;text-align:center;min-height:44px;padding:6px 10px;border:2px solid var(--garis);border-radius:99px;background:var(--panel);font-size:.9rem;font-weight:700}
+  .kepala .aksi .hantu,.kepala .aksi .kecil{display:grid;place-items:center;text-align:center;min-height:44px;padding:6px 4px;border:2px solid var(--garis);border-radius:99px;background:var(--panel);font-size:.9rem;font-weight:700}
   .panggung{height:470px}
   .cara{display:block;margin:18px 16px 0;padding:4px 14px;background:var(--panel);border:2px solid var(--garis);border-radius:24px;box-shadow:0 5px 0 var(--garis)}
   .cara div{border:0;box-shadow:none;background:none;border-radius:0;padding:9px 0}
@@ -483,8 +533,9 @@ a.kecil{display:inline-grid;place-items:center;text-decoration:none;color:var(--
   <p>Untuk <a href="#tentang" style="color:inherit"><b>Atsir Al Atsari, S.Pd.</b></a> Setiap pesan dari mahasiswa menumbuhkan satu ranting di pohon mata kuliahnya.</p>
   <div class="aksi">
     <button class="utama" id="btnTulis" type="button">Tulis pesan</button>
-    <a class="hantu" href="#daftar">Intip semua pesan</a>
+    <a class="hantu" href="#daftar">Baca pesan</a>
     <button class="kecil" id="btnMain" type="button">Pojok main</button>
+    <button class="kecil" id="btnVoting" type="button">Voting<span class="lencana" id="votingN" hidden></span></button>
   </div>
 </header>
 
@@ -647,16 +698,37 @@ a.kecil{display:inline-grid;place-items:center;text-decoration:none;color:var(--
     <p class="gimKabar" id="bKabar" role="status"></p>
   </div>
   <div class="gim" data-panel="braille" hidden>
-    <p class="gimAturan">Pak Pos Jalak membawa surat bertuliskan huruf Braille. Tiap huruf memakai enam titik: titik 1, 2, 3 di kiri dan titik 4, 5, 6 di kanan. Huruf apa yang tertulis?</p>
-    <p class="gimLabel"><b>Polanya:</b> a sampai j hanya memakai titik 1, 2, 4, 5. Huruf k sampai t sama dengan a sampai j ditambah titik 3. Huruf u, v, x, y, z sama dengan a sampai e ditambah titik 3 dan 6.</p>
+    <div class="grup"><span id="lblLevel">Level</span><div class="pilih lvl" role="group" aria-labelledby="lblLevel" id="rLevel"></div></div>
+    <p class="gimAturan" id="rAturan"></p>
     <p class="gimLabel" id="rBabak"></p>
     <div class="selBaris" id="rSel"></div>
-    <div class="hurufPilih" id="rPilih"></div>
-    <details class="tabelB"><summary>Lihat tabel huruf Braille</summary><div id="rTabel"></div></details>
-    <div class="aksi"><button class="kecil" id="rUlang" type="button">Mulai dari babak 1</button></div>
+    <div class="rJawab" id="rJawab"></div>
+    <details class="tabelB"><summary>Lihat tabel huruf dan angka Braille</summary>
+      <p class="gimLabel"><b>Polanya:</b> a sampai j hanya memakai titik 1, 2, 4, 5. Huruf k sampai t sama dengan a sampai j ditambah titik 3. Huruf u, v, x, y, z sama dengan a sampai e ditambah titik 3 dan 6. Angka memakai tanda angka di depan, lalu a sampai j dibaca 1 sampai 9 dan 0.</p>
+      <div id="rTabel"></div></details>
+    <div class="aksi"><button class="kecil" id="rUlang" type="button">Ulangi level ini</button><button class="utama" id="rNaik" type="button" hidden>Level berikutnya</button></div>
     <p class="gimKabar" id="rKabar" role="status"></p>
   </div>
   <button class="utama" id="mainLanjut" type="button" hidden>Lanjut ke game berikutnya</button>
+ </div>
+</dialog>
+<dialog id="dlgVoting" class="mainDlg" aria-labelledby="votingJudul">
+ <div class="mainIsi">
+  <div class="dlg-kepala"><div><p class="langkahke">Kotak suara · Ganjil 2026/2027</p><h2 id="votingJudul">Voting</h2></div><button class="tutupx" id="votingTutup" type="button" aria-label="Tutup">×</button></div>
+  <p class="gimAturan">Tulis namamu, pilih kelasmu, lalu pilih jawabanmu. Satu nama dihitung satu suara, dan pilihanmu masih bisa diubah. Hasilnya langsung terlihat per kelas.</p>
+  <div class="votingIsi" id="votingIsi"></div>
+  <p class="gimKabar" id="votingKabar" role="status"></p>
+  <details class="buatV" id="buatV"><summary>Buat voting baru</summary>
+   <form id="formVoting" novalidate>
+    <div class="baris"><label for="vTanya">Pertanyaan</label><input type="text" id="vTanya" maxlength="120" autocomplete="off" placeholder="Misalnya: Pertemuan minggu depan mau online atau offline?"></div>
+    <div class="baris"><label>Pilihan jawaban <small>(dua sampai lima)</small></label><div class="vPilihan" id="vPilihan"></div><button class="kecil" id="vTambah" type="button">Tambah pilihan</button></div>
+    <div class="baris"><label for="vUntuk">Tentang</label><select id="vUntuk"></select></div>
+    <div class="baris"><label for="vPembuat">Namamu</label><input type="text" id="vPembuat" maxlength="24" autocomplete="off"></div>
+    <div class="baris"><label for="vKode">Kode pembuat</label><input type="text" id="vKode" maxlength="12" autocomplete="off" autocapitalize="characters"><small>Kode diberikan oleh pemilik taman.</small></div>
+    <p class="salah" id="vSalah" hidden></p>
+    <button class="utama" id="vBuat" type="submit">Buat voting</button>
+   </form>
+  </details>
  </div>
 </dialog>
 <dialog id="dlgProfil" class="mainDlg" aria-labelledby="profilJudul">
@@ -1824,41 +1896,108 @@ function barJawab(h){
   },tenang?0:400+1300*tempo);
 }
 $("bUlang").addEventListener("click",barMulai);
-/* Game 4: Surat Braille (membaca sandi enam titik) */
+/* Game 4: Surat Braille, enam level: membaca huruf, menulis huruf, membaca dan menerjemahkan kata, angka */
 var BRL={a:[1],b:[1,2],c:[1,4],d:[1,4,5],e:[1,5],f:[1,2,4],g:[1,2,4,5],h:[1,2,5],i:[2,4],j:[2,4,5],k:[1,3],l:[1,2,3],m:[1,3,4],n:[1,3,4,5],o:[1,3,5],p:[1,2,3,4],q:[1,2,3,4,5],r:[1,2,3,5],s:[2,3,4],t:[2,3,4,5],u:[1,3,6],v:[1,2,3,6],w:[2,4,5,6],x:[1,3,4,6],y:[1,3,4,5,6],z:[1,3,5,6]};
-var KATA4=["ayam","daun","buah","akar","biji","pagi","sore","oyen"],KATA5=["taman","tunas","bunga","siram","pohon","jalak","gajah","embun"];
-var RB={babak:0,salah:0,jawab:"",pilih:[],sibuk:false},RB_MAKS=10;
-function selBraille(hf,kecil){
-  var s=document.createElement("span"),t=BRL[hf];s.className="sel"+(kecil?" kecilS":"");
+var TANDA_ANGKA=[3,4,5,6],ANGKA_HURUF="jabcdefghi"; // 0 ditulis seperti j, 1 seperti a, dan seterusnya
+var KATA4=["ayam","daun","buah","akar","biji","pagi","sore","oyen","guru","ilmu","baca","raba"],KATA5=["taman","tunas","bunga","siram","pohon","jalak","gajah","embun","pesan","kesan","tulis","titik"];
+var LVL=[
+ {nama:"Huruf a sampai j",n:5,jenis:"pilihHuruf",kol:"abcdefghij",teks:"Tiap huruf Braille memakai enam titik: titik 1, 2, 3 di kiri dan titik 4, 5, 6 di kanan. Huruf a sampai j hanya memakai titik 1, 2, 4, 5. Huruf apa ini?"},
+ {nama:"Huruf k sampai z",n:6,jenis:"pilihHuruf",kol:"klmnopqrstuvwxyz",teks:"Huruf k sampai t sama dengan a sampai j ditambah titik 3. Huruf u, v, x, y, z sama dengan a sampai e ditambah titik 3 dan 6. Huruf apa ini?"},
+ {nama:"Menulis huruf",n:5,jenis:"tulisHuruf",kol:"abcdefghijklmnopqrstuvwxyz",teks:"Sekarang kebalikannya. Ketuk titik-titik yang tepat untuk menulis huruf yang diminta, lalu periksa."},
+ {nama:"Membaca kata",n:4,jenis:"pilihKata",teks:"Satu sel untuk satu huruf, dibaca dari kiri ke kanan. Kata apa yang tertulis?"},
+ {nama:"Menerjemahkan kata",n:4,jenis:"ketikKata",teks:"Terjemahkan tulisan Braille ini ke huruf biasa, lalu ketik jawabannya. Tidak ada pilihan kali ini."},
+ {nama:"Angka",n:4,jenis:"ketikAngka",teks:"Angka ditulis dengan tanda angka (titik 3, 4, 5, 6) di depan. Setelah tanda itu, a sampai i dibaca 1 sampai 9, dan j dibaca 0. Angka berapa ini?"}
+];
+var RB={level:0,babak:0,salah:0,soal:null,sibuk:false,terbuka:1,daun:{},pakai:[],titik:[],usai:false};
+(function(){var s=null;try{s=JSON.parse(bacaAtur("braille"))}catch(e){}if(s&&s.terbuka){RB.terbuka=Math.min(LVL.length,Math.max(1,s.terbuka|0));RB.daun=s.daun||{}}})();
+function selTitik(t,kecil,label,tanda){
+  var s=document.createElement("span");s.className="sel"+(kecil?" kecilS":"")+(tanda?" selTanda":"");
   [1,4,2,5,3,6].forEach(function(n){var d=document.createElement("i");if(t.indexOf(n)>=0)d.className="ttk";s.appendChild(d)});
-  s.setAttribute("role","img");s.setAttribute("aria-label","Sel Braille, titik "+t.join(", "));return s;
+  s.setAttribute("role","img");s.setAttribute("aria-label",(label||"Sel Braille")+", titik "+t.join(", "));return s;
 }
-(function(){var w=$("rTabel");Object.keys(BRL).forEach(function(hf){var s=document.createElement("span");s.appendChild(selBraille(hf,true));s.appendChild(document.createTextNode(hf));w.appendChild(s)})})();
-function brMulai(){RB.babak=0;RB.salah=0;$("mainLanjut").hidden=true;$("rKabar").textContent="Pak Pos Jalak: “Surat pertama, satu huruf saja dulu.”";brBabak()}
+function selBraille(hf,kecil){return selTitik(BRL[hf],kecil)}
+(function(){var w=$("rTabel"),s;Object.keys(BRL).forEach(function(hf){s=document.createElement("span");s.appendChild(selBraille(hf,true));s.appendChild(document.createTextNode(hf));w.appendChild(s)});
+  s=document.createElement("span");s.appendChild(selTitik(TANDA_ANGKA,true,"Tanda angka",true));s.appendChild(document.createTextNode("#"));w.appendChild(s)})();
+function daunNilai(n){var w=document.createElement("span");w.className="daunNilai";w.setAttribute("role","img");w.setAttribute("aria-label",n+" dari 3 daun");for(var i=0;i<3;i++){var d=document.createElement("i");if(i<n)d.className="ada";w.appendChild(d)}return w}
+function brLevelGambar(){
+  var w=$("rLevel");w.innerHTML="";
+  LVL.forEach(function(l,i){var b=document.createElement("button");b.type="button";b.textContent=i+1;b.setAttribute("aria-pressed",String(i===RB.level));
+    b.setAttribute("aria-label","Level "+(i+1)+": "+l.nama+(i>=RB.terbuka?", masih terkunci":RB.daun[i]?", selesai dengan "+RB.daun[i]+" daun":""));
+    b.disabled=i>=RB.terbuka;if(RB.daun[i])b.className="lulus";
+    b.addEventListener("click",function(){brMulai(i)});w.appendChild(b)});
+}
+function brMulai(level){
+  if(typeof level==="number")RB.level=level;
+  RB.babak=0;RB.salah=0;RB.pakai=[];RB.usai=false;$("mainLanjut").hidden=true;$("rNaik").hidden=true;
+  $("rAturan").textContent=LVL[RB.level].teks;
+  $("rKabar").textContent="Pak Pos Jalak: “Level "+(RB.level+1)+", "+LVL[RB.level].nama.toLowerCase()+". Pelan-pelan saja.”";
+  brLevelGambar();brBabak();
+}
+function ambilBaru(kol){var sisa=kol.filter(function(x){return RB.pakai.indexOf(x)<0});if(!sisa.length){RB.pakai=[];sisa=kol}var x=sisa[Math.floor(Math.random()*sisa.length)];RB.pakai.push(x);return x}
 function brBabak(){
-  var b=RB.babak,kol,lain;
-  if(b<7){kol=(b<4?"abcdefghij":"klmnopqrstuvwxyz").split("");RB.jawab=kol[Math.floor(Math.random()*kol.length)];lain=acakSusun(kol.filter(function(x){return x!==RB.jawab})).slice(0,3)}
-  else{kol=b<8?KATA4:KATA5;RB.jawab=kol[Math.floor(Math.random()*kol.length)];lain=acakSusun(kol.filter(function(x){return x!==RB.jawab})).slice(0,3)}
-  RB.pilih=acakSusun(lain.concat([RB.jawab]));RB.sibuk=false;brGambar();
+  var l=LVL[RB.level],b=RB.babak,kol,jw,s={jenis:l.jenis};
+  if(l.jenis==="pilihHuruf"||l.jenis==="tulisHuruf"){kol=l.kol.split("");jw=ambilBaru(kol);s.jawab=jw;s.pilih=acakSusun(acakSusun(kol.filter(function(x){return x!==jw})).slice(0,3).concat([jw]))}
+  else if(l.jenis==="pilihKata"||l.jenis==="ketikKata"){kol=b<2?KATA4:KATA5;jw=ambilBaru(kol);s.jawab=jw;s.pilih=acakSusun(acakSusun(kol.filter(function(x){return x!==jw})).slice(0,3).concat([jw]))}
+  else{jw=ambilBaru(b<1?["7","4","9","5"]:b<2?["12","30","45","68"]:b<3?["105","365","240","718"]:["2026","1945","2027","1908"]);s.jawab=jw}
+  RB.soal=s;RB.titik=[];RB.sibuk=false;brGambar();
 }
 function brGambar(){
-  var w=$("rSel"),p=$("rPilih");w.innerHTML="";p.innerHTML="";w.className="selBaris";
-  $("rBabak").textContent="Surat "+Math.min(RB.babak+1,RB_MAKS)+" dari "+RB_MAKS+(RB.babak>=7?" · sekarang satu kata utuh":RB.babak>=4?" · huruf k sampai z":" · huruf a sampai j");
-  RB.jawab.split("").forEach(function(hf){w.appendChild(selBraille(hf,false))});
-  RB.pilih.forEach(function(x){var t=document.createElement("button");t.type="button";t.textContent=x;t.disabled=RB.sibuk;t.addEventListener("click",function(){brJawab(x)});p.appendChild(t)});
+  var w=$("rSel"),j=$("rJawab"),s=RB.soal,l=LVL[RB.level];w.innerHTML="";j.innerHTML="";w.className="selBaris";
+  $("rBabak").textContent="Level "+(RB.level+1)+" · "+l.nama+" · soal "+Math.min(RB.babak+1,l.n)+" dari "+l.n;
+  if(RB.usai)return;
+  if(s.jenis==="tulisHuruf"){
+    var m=document.createElement("div");m.className="rMinta";m.textContent=s.jawab;m.setAttribute("aria-label","Tulis huruf "+s.jawab);j.appendChild(m);
+    var pp=document.createElement("div");pp.className="titikPad";pp.setAttribute("role","group");pp.setAttribute("aria-label","Papan enam titik");
+    [1,4,2,5,3,6].forEach(function(n){var t=document.createElement("button");t.type="button";t.textContent=n;t.setAttribute("aria-label","Titik "+n);t.setAttribute("aria-pressed",String(RB.titik.indexOf(n)>=0));t.disabled=RB.sibuk;
+      t.addEventListener("click",function(){var k=RB.titik.indexOf(n);if(k>=0)RB.titik.splice(k,1);else RB.titik.push(n);t.setAttribute("aria-pressed",String(k<0))});pp.appendChild(t)});
+    j.appendChild(pp);
+    var pr=document.createElement("button");pr.type="button";pr.className="utama";pr.textContent="Periksa";pr.disabled=RB.sibuk;
+    pr.addEventListener("click",function(){brJawab(RB.titik.slice().sort().join("")===BRL[s.jawab].slice().sort().join(""))});j.appendChild(pr);
+    return;
+  }
+  if(s.jenis==="ketikAngka"){w.appendChild(selTitik(TANDA_ANGKA,false,"Tanda angka",true));s.jawab.split("").forEach(function(d){w.appendChild(selBraille(ANGKA_HURUF.charAt(+d),false))})}
+  else s.jawab.split("").forEach(function(hf){w.appendChild(selBraille(hf,false))});
+  if(s.jenis==="pilihHuruf"||s.jenis==="pilihKata"){
+    var hp=document.createElement("div");hp.className="hurufPilih";
+    s.pilih.forEach(function(x){var t=document.createElement("button");t.type="button";t.textContent=x;t.disabled=RB.sibuk;t.addEventListener("click",function(){brJawab(x===s.jawab)});hp.appendChild(t)});j.appendChild(hp);
+  } else {
+    var f=document.createElement("form"),inp=document.createElement("input"),kb=document.createElement("button");f.className="rKetik";
+    inp.type="text";inp.autocomplete="off";inp.setAttribute("autocapitalize","none");inp.spellcheck=false;inp.maxLength=12;inp.disabled=RB.sibuk;
+    if(s.jenis==="ketikAngka"){inp.inputMode="numeric";inp.setAttribute("aria-label","Angka yang tertulis");inp.placeholder="Ketik angkanya"}else{inp.setAttribute("aria-label","Terjemahan kata");inp.placeholder="Ketik katanya"}
+    if(s.ketik)inp.value=s.ketik;
+    kb.type="submit";kb.className="utama";kb.textContent="Periksa";kb.disabled=RB.sibuk;
+    f.appendChild(inp);f.appendChild(kb);
+    f.addEventListener("submit",function(e){e.preventDefault();var v=inp.value.toLowerCase().replace(/\s+/g,"");if(!v){$("rKabar").textContent="Ketik dulu jawabanmu.";return}s.ketik=inp.value;brJawab(v===s.jawab)});
+    j.appendChild(f);
+  }
 }
-function brJawab(x){
-  if(RB.sibuk)return;RB.sibuk=true;brGambar();$("rSel").classList.add("goyang");
-  $("rKabar").textContent="Pak Pos Jalak meraba titik-titiknya…";
+function brJawab(benar){
+  if(RB.sibuk||RB.usai)return;RB.sibuk=true;brGambar();$("rSel").classList.add("goyang");
+  $("rKabar").textContent="Pak Pos Jalak meraba titik-titiknya…"; // jeda ketegangan sebelum hasil
   setTimeout(function(){
-    if(x!==RB.jawab){RB.salah++;RB.sibuk=false;brGambar();$("rKabar").textContent="Belum pas. Hitung lagi titiknya: kiri 1, 2, 3 dan kanan 4, 5, 6.";return}
-    $("rSel").classList.remove("goyang");RB.babak++;
-    if(RB.babak>=RB_MAKS){$("rKabar").textContent="Semua surat terbaca! "+(RB.salah?"Salah baca "+RB.salah+" kali. Coba lagi tanpa melihat tabel?":"Tanpa salah sekali pun. Jarimu, eh, matamu teliti!");mainMenang();return}
-    $("rKabar").textContent="Tepat, itu “"+RB.jawab.toUpperCase()+"”. Surat berikutnya datang.";bunyi("kilau");
-    setTimeout(brBabak,tenang?900:900+1300*tempo);
+    var s=RB.soal,l=LVL[RB.level];
+    if(!benar){
+      RB.salah++;s.coba=(s.coba||0)+1;RB.sibuk=false;brGambar();
+      $("rKabar").textContent=s.jenis==="tulisHuruf"?"Belum pas. Huruf "+s.jawab.toUpperCase()+" memakai "+BRL[s.jawab].length+" titik. Buka tabel bila perlu."
+        :s.jenis==="ketikKata"&&s.coba>=2?"Belum pas. Huruf pertamanya “"+s.jawab.charAt(0).toUpperCase()+"”. Baca sel demi sel."
+        :s.jenis==="ketikAngka"?"Belum pas. Sel pertama itu tanda angka, bukan angka. Sisanya dibaca seperti a sampai j."
+        :"Belum pas. Hitung lagi titiknya: kiri 1, 2, 3 dan kanan 4, 5, 6.";
+      return;
+    }
+    RB.babak++;bunyi("kilau");
+    if(RB.babak<l.n){$("rKabar").textContent="Tepat, itu “"+s.jawab.toUpperCase()+"”. Surat berikutnya datang.";setTimeout(brBabak,tenang?900:900+1300*tempo);return}
+    // level selesai
+    var daun=RB.salah===0?3:RB.salah<=2?2:1;RB.usai=true;
+    RB.daun[RB.level]=Math.max(RB.daun[RB.level]||0,daun);RB.terbuka=Math.min(LVL.length,Math.max(RB.terbuka,RB.level+2));
+    simpanAtur("braille",JSON.stringify({terbuka:RB.terbuka,daun:RB.daun}));
+    brLevelGambar();brGambar();
+    var k=$("rKabar");k.textContent="Level "+(RB.level+1)+" selesai"+(RB.salah?" dengan "+RB.salah+" kali salah.":" tanpa salah!")+" Nilaimu:";k.appendChild(daunNilai(daun));
+    if(RB.level<LVL.length-1){$("rNaik").hidden=false;$("rNaik").textContent="Level "+(RB.level+2)+": "+LVL[RB.level+1].nama;hujanDaun();bunyi("denting")}
+    else{k.appendChild(document.createTextNode(" Semua level Braille tuntas. Hebat!"));mainMenang()}
   },tenang?0:400+1300*tempo);
 }
-$("rUlang").addEventListener("click",brMulai);
+$("rUlang").addEventListener("click",function(){brMulai()});
+$("rNaik").addEventListener("click",function(){brMulai(Math.min(LVL.length-1,RB.level+1))});
 var MULAI={semak:gimMulai,seberang:sebMulai,baris:barMulai,braille:brMulai};
 [].forEach.call(document.querySelectorAll("[data-main]"),function(b){b.addEventListener("click",function(){mainPilih(b.getAttribute("data-main"))})});
 $("mainLanjut").addEventListener("click",function(){var nx=MAIN[(MAIN.indexOf(mainKini)+1)%MAIN.length];mainPilih(nx);MULAI[nx]()});
@@ -1867,6 +2006,128 @@ $("mainTutup").addEventListener("click",function(){$("dlgMain").close()});
 $("dlgMain").addEventListener("click",function(e){if(e.target===$("dlgMain"))$("dlgMain").close()});
 sebMulai();barMulai();brMulai();
 $("btnProfil").addEventListener("click",function(){$("dlgProfil").showModal()});
+
+/* ---------- Voting kelas: satu nama satu suara, hasil per kelas A sampai D ---------- */
+var VOTING=[],KELAS_V=["A","B","C","D"],votingSiap=false,votingT=0,SUARAKU={},ALAT="";
+(function(){try{SUARAKU=JSON.parse(bacaAtur("suara"))||{}}catch(e){SUARAKU={}}
+  ALAT=bacaAtur("alat")||"";if(ALAT.length<8){ALAT="a"+Date.now().toString(36)+Math.random().toString(36).slice(2,10);simpanAtur("alat",ALAT)}})();
+if(!HIDUP)VOTING=[{id:"contoh",tanya:"Pertemuan minggu depan mau kuliah online atau offline?",pilihan:["Online","Offline","Ikut suara terbanyak"],untuk:"st",pembuat:"Atsir",hasil:{A:[0,0,0],B:[6,11,3],C:[9,5,2],D:[0,0,0]}}];
+function posSkrip(isi){
+  return fetch(URL_SKRIP,{method:"POST",headers:{"Content-Type":"text/plain;charset=utf-8"},body:JSON.stringify(isi)}).then(function(r){return r.json()})
+    .catch(function(){return {ok:false,sebab:"Tidak tersambung. Periksa internetmu, lalu coba lagi."}});
+}
+function ambilVoting(){
+  if(!HIDUP){votingSiap=true;gambarVoting();return Promise.resolve()}
+  return fetch(URL_SKRIP+"?aksi=voting&semester="+encodeURIComponent(SEMESTER_ID)).then(function(r){return r.json()}).then(function(h){
+    var lama={};VOTING.forEach(function(v){lama[v.id]=v});
+    VOTING=(h&&Array.isArray(h.voting)?h.voting:[]).map(function(v){var l=lama[v.id];if(l){v._nama=l._nama;v._kelas=l._kelas;v._pilih=l._pilih;v._saring=l._saring;v._ubah=l._ubah;v._tutup=l._tutup}return v});
+    votingSiap=!!(h&&Array.isArray(h.voting));gambarVoting();
+  }).catch(function(){gambarVoting()});
+}
+function jumlahV(v,kelas){return v.pilihan.map(function(_,i){return (kelas==="semua"?KELAS_V:[kelas]).reduce(function(j,k){return j+((v.hasil[k]||[])[i]||0)},0)})}
+function gambarVoting(){
+  var w=$("votingIsi"),n=$("votingN");
+  n.hidden=!VOTING.length;n.textContent=VOTING.length;
+  if(!$("dlgVoting").open)return;
+  var fokus=document.activeElement,fid=fokus&&fokus.getAttribute&&fokus.getAttribute("data-f"),fawal=fokus&&fokus.selectionStart;
+  w.innerHTML="";
+  function el(t,c,x){var e=document.createElement(t);if(c)e.className=c;if(x!=null)e.textContent=x;return e}
+  if(!VOTING.length){w.appendChild(el("p","gundul",HIDUP&&!votingSiap?"Voting belum bisa dimuat. Coba lagi sebentar lagi.":"Belum ada voting yang dibuka. Kalau kamu punya kode pembuat, buat voting baru di bawah."));return}
+  VOTING.forEach(function(v){
+    var ku=SUARAKU[v.id],isi=!ku||v._ubah,c=el("section","vkartu"),saring=v._saring||"semua",jml=jumlahV(v,saring),total=jml.reduce(function(a,b){return a+b},0),semua=jumlahV(v,"semua").reduce(function(a,b){return a+b},0),maks=Math.max.apply(null,jml.concat([1]));
+    c.id="v-"+v.id;c.appendChild(el("h3",null,v.tanya));
+    var m=mk(v.untuk);c.appendChild(el("p","vmeta","Dibuat oleh "+v.pembuat+" · "+(m?"untuk "+m.pendek:"umum")+" · "+semua+" suara masuk"));
+    if(isi){
+      var f=el("div","visi"),lb=el("label",null,"Namamu"),inp=el("input");inp.type="text";inp.maxLength=30;inp.autocomplete="off";inp.setAttribute("data-f","n-"+v.id);inp.placeholder="Nama panggilan atau nama lengkap";
+      inp.value=v._nama!=null?v._nama:(ku?ku.nama:(bacaAtur("namav")||""));if(ku){inp.readOnly=true;inp.setAttribute("aria-describedby","")}
+      inp.addEventListener("input",function(){v._nama=inp.value;kirimBtn.disabled=!siapKirim()});lb.appendChild(inp);f.appendChild(lb);
+      var gk=el("div","vsaring");gk.appendChild(el("span",null,"Kelasmu"));var pk=el("div","pilih");pk.setAttribute("role","group");pk.setAttribute("aria-label","Kelasmu");
+      var kelasKini=v._kelas||(ku&&ku.kelas)||"";
+      KELAS_V.forEach(function(k){var b=el("button",null,k);b.type="button";b.setAttribute("aria-pressed",String(kelasKini===k));b.disabled=!!ku;b.addEventListener("click",function(){v._kelas=k;gambarVoting()});pk.appendChild(b)});
+      gk.appendChild(pk);f.appendChild(gk);
+      var po=el("div","vopsi");po.setAttribute("role","group");po.setAttribute("aria-label","Pilihan jawaban");
+      v.pilihan.forEach(function(p,i){var b=el("button",null,p);b.type="button";b.setAttribute("aria-pressed",String(v._pilih===i));b.addEventListener("click",function(){v._pilih=i;gambarVoting()});po.appendChild(b)});
+      f.appendChild(po);
+      var kirimBtn=el("button","utama",ku?"Simpan perubahan":"Masukkan suara");kirimBtn.type="button";
+      function siapKirim(){return String(inp.value).replace(/[^a-zA-Z0-9]/g,"").length>=2&&!!(v._kelas||(ku&&ku.kelas))&&typeof v._pilih==="number"&&!v._sibuk}
+      kirimBtn.disabled=!siapKirim();kirimBtn.addEventListener("click",function(){kirimSuara(v,inp.value.trim(),v._kelas||ku.kelas,v._pilih)});
+      var bar=el("div","vkaki");bar.appendChild(kirimBtn);
+      if(ku){var bt=el("button","tautan","Batal");bt.type="button";bt.addEventListener("click",function(){v._ubah=false;v._pilih=null;gambarVoting()});bar.appendChild(bt)}
+      f.appendChild(bar);c.appendChild(f);
+    } else {
+      var info=el("div","vkaki");info.appendChild(el("span",null,"Suaramu: "));info.lastChild.appendChild(el("b",null,v.pilihan[ku.pilih]||"?"));info.lastChild.appendChild(document.createTextNode(" · "+ku.nama+", kelas "+ku.kelas));
+      var ub=el("button","kecil","Ubah pilihan");ub.type="button";ub.addEventListener("click",function(){v._ubah=true;v._pilih=ku.pilih;gambarVoting()});info.appendChild(ub);
+      var tm=el("button","tautan","Isi untuk teman di HP ini");tm.type="button";tm.addEventListener("click",function(){delete SUARAKU[v.id];simpanAtur("suara",JSON.stringify(SUARAKU));v._nama="";v._kelas="";v._pilih=null;v._ubah=false;gambarVoting()});info.appendChild(tm);
+      c.appendChild(info);
+    }
+    var sr=el("div","vsaring");sr.appendChild(el("span",null,"Lihat hasil"));var ps=el("div","pilih");ps.setAttribute("role","group");ps.setAttribute("aria-label","Saring hasil per kelas");
+    ["semua"].concat(KELAS_V).forEach(function(k){var b=el("button",null,k==="semua"?"Semua":k);b.type="button";b.setAttribute("aria-pressed",String(saring===k));b.addEventListener("click",function(){v._saring=k;gambarVoting()});ps.appendChild(b)});
+    sr.appendChild(ps);c.appendChild(sr);
+    var ul=el("ul","vhasil");ul.setAttribute("aria-label","Hasil "+(saring==="semua"?"semua kelas":"kelas "+saring));
+    v.pilihan.forEach(function(p,i){var li=el("li",jml[i]===maks&&jml[i]>0&&jml.filter(function(x){return x===maks}).length===1?"unggul":null),nm=el("div","vnama"),bt=el("div","vbatang"),bi=el("i");
+      nm.appendChild(el("b",null,p));nm.appendChild(el("span",null,jml[i]+" suara"+(total?" · "+Math.round(jml[i]/total*100)+"%":"")));bi.style.width=(total?jml[i]/maks*100:0)+"%";bt.appendChild(bi);li.appendChild(nm);li.appendChild(bt);ul.appendChild(li)});
+    c.appendChild(ul);
+    if(!total)c.appendChild(el("p","vmeta",saring==="semua"?"Belum ada suara yang masuk.":"Belum ada suara dari kelas "+saring+"."));
+    if(v.pemilih){var np=(saring==="semua"?KELAS_V:[saring]).map(function(k){return (v.pemilih[k]||[]).length?k+": "+v.pemilih[k].join(", "):""}).filter(function(x){return x}).join(" · ");if(np)c.appendChild(el("p","vpemilih","Sudah memilih — "+np))}
+    var tt=el("div","vtutup");
+    if(v._tutup){var ki=el("input");ki.type="text";ki.maxLength=12;ki.placeholder="Kode pembuat";ki.autocomplete="off";ki.setAttribute("aria-label","Kode pembuat");ki.setAttribute("data-f","k-"+v.id);ki.value=v._kode||"";ki.addEventListener("input",function(){v._kode=ki.value});
+      var ky=el("button","kecil","Tutup dan hapus");ky.type="button";ky.addEventListener("click",function(){tutupVoting(v,ki.value.trim())});var kb=el("button","tautan","Batal");kb.type="button";kb.addEventListener("click",function(){v._tutup=false;gambarVoting()});
+      tt.appendChild(ki);tt.appendChild(ky);tt.appendChild(kb)}
+    else{var tb=el("button","tautan","Tutup dan hapus voting ini dari web (perlu kode pembuat)");tb.type="button";tb.addEventListener("click",function(){v._tutup=true;gambarVoting()});tt.className="vkaki";tt.appendChild(tb)}
+    c.appendChild(tt);w.appendChild(c);
+  });
+  if(fid){var kembali=w.querySelector('[data-f="'+fid+'"]');if(kembali){kembali.focus();try{kembali.setSelectionRange(fawal,fawal)}catch(e){}}}
+}
+function kirimSuara(v,nama,kelas,pilih){
+  if(v._sibuk)return;v._sibuk=true;var kartu=$("v-"+v.id);if(kartu&&!tenang)kartu.classList.add("goyang");
+  $("votingKabar").textContent="Mbah Gading: “Suaramu kumasukkan ke kotak, ya…”"; // jeda ketegangan sebelum hasil
+  var jeda=new Promise(function(r){setTimeout(r,tenang?0:500+1500*tempo)});
+  var kirimnya=HIDUP?posSkrip({aksi:"suara",semester:SEMESTER_ID,id:v.id,kelas:kelas,pilih:pilih,nama:nama,alat:ALAT}):Promise.resolve({ok:true});
+  Promise.all([kirimnya,jeda]).then(function(a){
+    var h=a[0];v._sibuk=false;
+    if(!h||!h.ok){$("votingKabar").textContent=(h&&h.sebab)||"Suara belum tersimpan. Coba lagi.";gambarVoting();return}
+    if(!HIDUP){var lama=SUARAKU[v.id];if(lama)v.hasil[lama.kelas][lama.pilih]=Math.max(0,v.hasil[lama.kelas][lama.pilih]-1);v.hasil[kelas][pilih]++}
+    SUARAKU[v.id]={nama:nama,kelas:kelas,pilih:pilih};simpanAtur("suara",JSON.stringify(SUARAKU));simpanAtur("namav",nama);
+    v._ubah=false;v._pilih=null;v._saring="semua";bunyi("denting");
+    $("votingKabar").textContent=h.mengganti?"Pilihan atas nama "+nama+" sudah diganti. Tetap dihitung satu suara.":"Suaramu masuk. Terima kasih, "+nama+"!";
+    if(HIDUP)ambilVoting();else gambarVoting();
+  });
+}
+function tutupVoting(v,kode){
+  if(!kode){$("votingKabar").textContent="Isi kode pembuatnya dulu.";return}
+  if(!HIDUP){VOTING=VOTING.filter(function(x){return x!==v});$("votingKabar").textContent="Voting ditutup. Di versi jadi, kodenya diperiksa dulu.";gambarVoting();return}
+  $("votingKabar").textContent="Menutup voting…";
+  posSkrip({aksi:"tutup",id:v.id,kode:kode}).then(function(h){
+    if(!h||!h.ok){$("votingKabar").textContent=(h&&h.sebab)||"Voting belum bisa ditutup.";return}
+    $("votingKabar").textContent="Voting ditutup dan tidak tampil lagi. Hasil akhirnya tetap tersimpan di Sheet.";ambilVoting();
+  });
+}
+/* formulir buat voting */
+function tambahPilihanV(isi){var w=$("vPilihan"),n=w.children.length;if(n>=5)return;var i=document.createElement("input");i.type="text";i.maxLength=40;i.autocomplete="off";i.placeholder="Pilihan "+(n+1);i.setAttribute("aria-label","Pilihan "+(n+1));i.value=isi||"";w.appendChild(i);$("vTambah").hidden=w.children.length>=5}
+tambahPilihanV("Online");tambahPilihanV("Offline");
+$("vTambah").addEventListener("click",function(){tambahPilihanV("");$("vPilihan").lastChild.focus()});
+(function(){var s=$("vUntuk"),o=document.createElement("option");o.value="semua";o.textContent="Umum, tidak terikat mata kuliah";s.appendChild(o);urut(MK).forEach(function(p){if(p.id==="ln")return;o=document.createElement("option");o.value=p.id;o.textContent=p.nama;s.appendChild(o)})})();
+$("formVoting").addEventListener("submit",function(e){
+  e.preventDefault();
+  var tanya=$("vTanya").value.trim(),pembuat=$("vPembuat").value.trim(),kode=$("vKode").value.trim(),pil=[],sl=$("vSalah");
+  [].forEach.call($("vPilihan").children,function(i){var x=i.value.trim();if(x&&pil.indexOf(x)<0)pil.push(x)});
+  var salah=tanya.length<5?"Tulis pertanyaannya dulu.":pil.length<2?"Isi paling sedikit dua pilihan yang berbeda.":!pembuat?"Tulis namamu sebagai pembuat.":!kode?"Isi kode pembuatnya.":"";
+  sl.hidden=!salah;sl.textContent=salah;if(salah)return;
+  var tb=$("vBuat");tb.disabled=true;tb.textContent="Membuat…";
+  function selesai(h){
+    tb.disabled=false;tb.textContent="Buat voting";
+    if(!h||!h.ok){sl.hidden=false;sl.textContent=(h&&h.sebab)||"Voting belum bisa dibuat. Coba lagi.";return}
+    $("vTanya").value="";$("buatV").open=false;$("votingKabar").textContent="Voting baru sudah dibuka. Bagikan ke kelas, ya!";
+    if(HIDUP)ambilVoting();else{VOTING.push({id:"c"+Date.now(),tanya:tanya,pilihan:pil,untuk:$("vUntuk").value,pembuat:pembuat,hasil:{A:pil.map(function(){return 0}),B:pil.map(function(){return 0}),C:pil.map(function(){return 0}),D:pil.map(function(){return 0})}});gambarVoting()}
+  }
+  if(HIDUP)posSkrip({aksi:"voting",semester:SEMESTER_ID,tanya:tanya,pilihan:pil,untuk:$("vUntuk").value,pembuat:pembuat,kode:kode}).then(selesai);else selesai({ok:true});
+});
+$("btnVoting").addEventListener("click",function(){$("dlgVoting").showModal();$("votingKabar").textContent="";gambarVoting();ambilVoting();
+  clearInterval(votingT);if(HIDUP)votingT=setInterval(function(){if($("dlgVoting").open&&!document.hidden&&!VOTING.some(function(v){return v._sibuk}))ambilVoting()},20000)});
+$("dlgVoting").addEventListener("close",function(){clearInterval(votingT)});
+$("votingTutup").addEventListener("click",function(){$("dlgVoting").close()});
+$("dlgVoting").addEventListener("click",function(e){if(e.target===$("dlgVoting"))$("dlgVoting").close()});
+if(HIDUP)ambilVoting();else gambarVoting();
 $("btnBagikan").addEventListener("click",function(){
   var url=location.href.split("#")[0],d={title:"Taman Kesan dan Pesan",text:"Titip kesan dan pesanmu di taman ini, nanti jadi satu ranting.",url:url};
   if(navigator.share){navigator.share(d).catch(function(){});return}
