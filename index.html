@@ -222,6 +222,12 @@ dialog.lembar[open]{animation:naik .28s ease-out}
       <button type="button" data-sudut="atas" aria-pressed="false">Atas</button>
     </div>
   </div>
+  <div class="grup"><span id="lblSuara">Suara</span>
+    <div class="pilih" role="group" aria-labelledby="lblSuara">
+      <button type="button" data-suara="0" aria-pressed="true">Mati</button>
+      <button type="button" data-suara="1" aria-pressed="false">Nyala</button>
+    </div>
+  </div>
 </div>
 
 <div class="panggung" id="panggung">
@@ -229,7 +235,7 @@ dialog.lembar[open]{animation:naik .28s ease-out}
   <div class="lap" id="lap"><div class="balon" id="balon" hidden></div></div>
   <p class="gagal" id="gagal" hidden>Perangkat ini tidak bisa menampilkan taman tiga dimensi. Semua pesan tetap bisa dibaca di daftar di bawah, dan tombol Tulis pesan tetap berfungsi.</p>
 </div>
-<p class="petunjuk">Pohon mulai gundul, lalu tumbuh satu ranting untuk setiap pesan dan rimbun di sekitar 20 pesan. Mulai 15 pesan, pesan pilihan berubah dari kuncup menjadi buah. Geser taman ke samping, ketuk daun terang untuk membaca pesan, dan ketuk hewan untuk menyapa.</p>
+<p class="petunjuk">Pohon mulai gundul, lalu tumbuh satu ranting untuk setiap pesan dan rimbun di sekitar 20 pesan. Mulai 15 pesan, pesan pilihan berubah dari kuncup menjadi buah. Geser taman ke samping, ketuk daun terang untuk membaca pesan, dan ketuk hewan untuk menyapa. Nyalakan Suara untuk mendengar taman.</p>
 
 <main class="daftar" id="daftar" aria-live="off">
   <h2>Semua pesan</h2>
@@ -694,6 +700,13 @@ function bangunDunia(){
     h.n.fase=i*1.3;
     if(h.w){var w=h.w;w.mode="diam";w.sampai=1+i*.9;w.yaw=h.ry;w.ph=0;w.hop=0;w.roll=0;w.tx=h.p[0];w.tz=h.p[2];w.bicara=0;h.n.w=w;pejalan.push(h.n)}
     klik.push({n:h.n,r:h.r,off:h.off,fn:function(){
+      if(!(h.n===burung&&(terbangOn||sibuk)))bunyi(["sapa","sapa","kicau","kucing","ayam","kelinci","gajah","trenggiling"][i]);
+      if(h.n===burung&&!tenang){ // diketuk: terbang tinggi berkeliling, lalu pulang ke kotak surat
+        if(terbangOn||sibuk)return;
+        var jj=keliling();ucap3(burung,.9,jj.gaya.ucap,h.nama,2600);
+        kelilingP=jj.then(function(){kelilingP=null;ucap3(burung,.9,MENDARAT[Math.floor(Math.random()*MENDARAT.length)],h.nama,3000)});
+        return;
+      }
       if(h.n.w)h.n.w.bicara=kini+3.8;
       if(!tenang&&h.n!==burung)tw(700,function(k){h.n.loncat=Math.sin(k*Math.PI)*.45},lin);
       ucap3(h.n,h.top,h.ucap,h.nama,3600)}});
@@ -865,10 +878,50 @@ function terbangKe(to,ms){
   var g=burung,a=g.p.slice(),dx=to[0]-a[0],dz=to[2]-a[2];
   var yaw0=g.r[1],yaw1=Math.abs(dx)+Math.abs(dz)>.05?Math.atan2(dx,dz):yaw0,dy=((yaw1-yaw0+Math.PI)%6.28318+6.28318)%6.28318-Math.PI;
   var tinggi=Math.min(1.6,.4+Math.abs(dx)*.12);
+  bunyi("desir",ms*tempo/1000);
   return tw(ms,function(k){
     var b=Math.min(1,k*5),naik=Math.cos(k*Math.PI)*tinggi*.25; // berbelok pelan, menukik dan menanjak mengikuti lintasan
     g.r=[-naik-.12*Math.sin(k*Math.PI),yaw0+dy*b,Math.sin(k*Math.PI*2)*.12];
     g.p=[a[0]+dx*k,a[1]+(to[1]-a[1])*k+Math.sin(k*Math.PI)*tinggi+Math.sin(k*Math.PI*6)*.04,a[2]+dz*k]});
+}
+var kelilingP=null,gayaLalu=-1,meluncur=false;
+// Lima gaya terbang; tiap ketukan memilih gaya yang berbeda dari sebelumnya
+function gayaTerbang(g){
+  var x=PERCH[0],P=PERCH,i,a,t=[];
+  if(g===0)return {nama:"keliling",ucap:"Cuit! Lihat aku terbang tinggi!",lama:7500,
+    titik:[P,[x+2.2,5.0,3.2],[x+5.6,7.2,1.2],[x+3.2,7.6,-1.6],[x-1.6,6.6,.4],[x-1.2,4.0,3.0],P]};
+  if(g===1)return {nama:"menukik",ucap:"Wuuush! Awas, aku menukik!",lama:8000,luncur:[.36,.6],
+    titik:[P,[x+1.5,6.4,2.6],[x+4.0,8.0,1.2],[x+6.4,4.6,3.4],[x+4.6,1.7,4.3],[x+1.6,2.1,4.6],[x-1.6,4.6,3.6],[x-.9,3.3,2.7],P]};
+  if(g===2){ // spiral naik di atas rumah, lalu meluncur turun
+    for(i=0;i<=12;i++){a=i/12*Math.PI*4;t.push([x+1+Math.cos(a+2.4)*(1.6+i*.07),2.6+i/12*5.2,1.4+Math.sin(a+2.4)*(1.6+i*.07)])}
+    return {nama:"spiral",ucap:"Naik, naik, naik…!",lama:9500,luncur:[.8,.96],titik:[P].concat(t,[[x+3.2,6.0,3.6],[x+1.2,3.4,3.3],P])};
+  }
+  if(g===3){ // angka delapan
+    for(i=1;i<12;i++){a=i/12*Math.PI*2;t.push([x+2+Math.sin(a)*3.6,5.4+Math.sin(a*2)*.9,1.6+Math.sin(a*2)*1.7])}
+    return {nama:"delapan",ucap:"Angka delapan, lho!",lama:8500,titik:[P,[x+1.2,3.6,2.8]].concat(t,[[x+.6,3.6,2.9],P])};
+  }
+  return {nama:"guling",ucap:"Lihat, aku bisa berguling!",lama:7000,guling:[.42,.62],
+    titik:[P,[x+2.4,4.6,3.4],[x+5.2,6.4,2.2],[x+7.0,6.8,.4],[x+4.2,6.2,-1.2],[x+.6,5.2,.8],[x-.8,3.4,2.8],P]};
+}
+var MENDARAT=["Hup! Mendarat lagi. Titipkan pesanmu, ya.","Fiuh, capek juga ternyata.","Pendaratan mulus! Mana pesanmu?","Sudah dulu, ya. Sayapku pegal."];
+function keliling(paksa){ // satu lintasan melengkung yang mulus dari dan kembali ke kotak surat
+  var g=paksa;if(g===undefined){do{g=Math.floor(Math.random()*5)}while(g===gayaLalu)}gayaLalu=g;
+  var G_=gayaTerbang(g),P=G_.titik,n=P.length-1,yawL=burung.r[1],bank=0;
+  function cr(a,b,c,d,t){return .5*(2*b+(c-a)*t+(2*a-5*b+4*c-d)*t*t+(3*b-a-3*c+d)*t*t*t)}
+  function di(u){var s=Math.min(n-1e-6,Math.max(0,u)*n),i=Math.floor(s),t=s-i,a=P[Math.max(0,i-1)],b=P[i],c=P[i+1],d=P[Math.min(n,i+2)];return [cr(a[0],b[0],c[0],d[0],t),cr(a[1],b[1],c[1],d[1],t),cr(a[2],b[2],c[2],d[2],t)]}
+  terbangOn=true;bunyi("desir",G_.lama*tempo/1000);
+  var janji=tw(G_.lama,function(k){
+    var a=di(k),b=di(Math.min(1,k+.012)),dx=b[0]-a[0],dy=b[1]-a[1],dz=b[2]-a[2],h=Math.sqrt(dx*dx+dz*dz);
+    burung.p=a;
+    meluncur=!!(G_.luncur&&k>G_.luncur[0]&&k<G_.luncur[1]);
+    if(h>1e-4){
+      var yaw=Math.atan2(dx,dz),belok=((yaw-yawL+Math.PI)%6.28318+6.28318)%6.28318-Math.PI;yawL=yaw;
+      bank+=(Math.max(-.6,Math.min(.6,-belok*9))-bank)*.15; // miring mengikuti arah belokan
+      var gul=G_.guling&&k>G_.guling[0]&&k<G_.guling[1]?(k-G_.guling[0])/(G_.guling[1]-G_.guling[0])*6.28318:0;
+      burung.r=[-Math.atan2(dy,h)*.7,yaw,bank+gul];
+    }
+  }).then(function(){burung.p=PERCH.slice();burung.r=[0,.6,0];terbangOn=false;meluncur=false});
+  janji.gaya=G_;return janji;
 }
 function melayang(){var g=burung,y=g.p[1];return tw(1600,function(k){g.p[1]=y+Math.sin(k*Math.PI*4)*.13},lin)}
 
@@ -889,6 +942,7 @@ function letakBalon(){
   balon.style.visibility="";balon.style.left=Math.max(100,Math.min(panggung.clientWidth-100,q.x))+"px";balon.style.top=Math.max(64,q.y)+"px";
 }
 function kilauDi(x,y,z){
+  bunyi("kilau");
   var q=proj(x,y,z);if(!q.ok)return;
   var k=document.createElement("div");k.className="kilau";k.style.left=q.x+"px";k.style.top=q.y+"px";
   for(var i=0;i<10;i++){var s=document.createElement("i"),a=i/10*6.283;s.style.setProperty("--x",Math.cos(a)*46+"px");s.style.setProperty("--y",Math.sin(a)*46+"px");k.appendChild(s)}
@@ -955,12 +1009,13 @@ function hidup(t,dt){
     g.intiF+=((g.intiT||0)-g.intiF)*Math.min(1,dt*1.5);var f=g.intiF;g.inti.vis=f>.02;g.inti.s=[C.rx*.95*f+.01,C.ry*.95*f+.01,C.rz*.75*f+.01];
   });
   kolecerL.forEach(function(b){b.r[2]=t*2.4+b.fase});
+  if(suaraOn&&t>tKicau){bunyi(waktu==="malam"?"hantu":"kicau");tKicau=t+(waktu==="malam"?9:3)+Math.random()*7}
   pejalan.forEach(function(n){langkah(n,dt,t)});
   var b=1+Math.sin(t*1.7)*.012;atsir.s=[1.2,1.2*b,1.2];atsir.r[2]=Math.sin(t*.8)*.012;atsir.p[1]=atsir.loncat||0;
   atsir.lambai.r[2]=-.45+Math.sin(t*2.6)*.26+Math.sin(t*5.2)*.04;
   b=1+Math.sin(t*1.4+1)*.012;dedi.s=[1.1,1.1*b,1.1];dedi.r[0]=Math.sin(t*.5)*.02;dedi.p[1]=.24+(dedi.loncat||0);
   if(!terbangOn){burung.p[1]=PERCH[1]+Math.abs(Math.sin(t*1.3))*.02;burung.r=[0,.6+Math.sin(t*.45)*.4,0]}
-  burung.sayap.forEach(function(s){var a=terbangOn?s.k*(Math.sin(t*20)*.85+.1):-s.k*1.25;s.r[2]+=(a-s.r[2])*Math.min(1,dt*30)});
+  burung.sayap.forEach(function(s){var a=terbangOn?(meluncur?s.k*.3:s.k*(Math.sin(t*20)*.85+.1)):-s.k*1.25;s.r[2]+=(a-s.r[2])*Math.min(1,dt*30)});
   awan.forEach(function(c,j){c.p[0]+=dt*.22*(1+j%3*.3);c.p[1]=c.y0+Math.sin(t*.2+j)*.15;if(c.p[0]>cam.cx+75)c.p[0]-=150});
   kupu.forEach(function(q){q.vis=waktu!=="malam";q.p=[q.x0+Math.sin(t*.4+q.fase)*2.2,1.5+Math.sin(t*.9+q.fase)*.5,2.6+Math.cos(t*.3+q.fase)*.8];var a=Math.sin(t*14)*.9;q.sy[0].r[2]=a;q.sy[1].r[2]=-a});
   kunang.forEach(function(f){f.vis=waktu==="malam";f.p[0]=f.x0+Math.sin(t*.5+f.fase)*1.2;f.p[1]=f.y0+Math.sin(t*.8+f.fase)*.4;var s=.04+.04*(Math.sin(t*2+f.fase)*.5+.5);f.s=[s,s,s]});
@@ -1092,7 +1147,7 @@ function isiBaca(m){
 async function bukaDaun(g,m){
   if(sibuk)return;isiBaca(m);daunAktif=g;
   if(tenang||!gl){dlgBaca.showModal();return}
-  sibuk=true;sembunyiBalon();
+  sibuk=true;sembunyiBalon();bunyi("daun");
   var a=[g.wm[12],g.wm[13],g.wm[14]],e=K.eye,f=K.f,b=[e[0]+f[0]*5,e[1]+f[1]*5+.1,e[2]+f[2]*5];
   var t=N(null,null,a.slice());
   isiLambang(t,g.kind,g.jenis,g.warna);
@@ -1104,7 +1159,7 @@ async function bukaDaun(g,m){
     // jeda ketegangan: bergetar sebentar sebelum pesan terbuka
     await tw(1100,function(k){t.r=[0,0,Math.sin(k*Math.PI*5)*.28*(1-k)];var s=2.3+k*.5;t.s=[s,s,s]},lin);
   }catch(_){}
-  lepas(t);sibuk=false;dlgBaca.showModal();
+  lepas(t);sibuk=false;bunyi("denting");dlgBaca.showModal();
 }
 $("bacaTutup").addEventListener("click",function(){dlgBaca.close()});
 dlgBaca.addEventListener("close",function(){if(daunAktif){daunAktif.vis=true;daunAktif=null;minta()}});
@@ -1225,7 +1280,9 @@ async function antar(m,keTaman){
     minta();
   }
   if(tenang){camT=batas(keTaman?p.x3:PERCH[0]+1.5);selesai();return}
-  sibuk=true;sembunyiBalon();burung.bawa.vis=true;terbangOn=true;
+  sibuk=true;sembunyiBalon();
+  if(kelilingP){try{await kelilingP}catch(e){}sembunyiBalon()} // tunggu burung pulang dulu bila sedang berkeliling
+  burung.bawa.vis=true;terbangOn=true;
   try{
     await geserKamera(PERCH[0]+1.5,700);
     if(keTaman){
@@ -1234,7 +1291,7 @@ async function antar(m,keTaman){
         // jeda ketegangan pertama: pohonnya belum ada
         ucap3(burung,.9,"Pohonnya belum ada… kita tanam dulu, ya!","Pak Pos Jalak",0);
         await melayang();sembunyiBalon();
-        tampil(p);p.grp.s=[.001,.001,.001];kilauDi(p.x3,.4,-1);
+        tampil(p);p.grp.s=[.001,.001,.001];bunyi("tanam");kilauDi(p.x3,.4,-1);
         await tw(2600,function(k){var s=Math.max(.001,k<.8?k/.8*1.07:1.07-(k-.8)/.2*.07);p.grp.s=[s,s,s]},lin);
         await terbangKe(hover,1500);
       } else {geserKamera(p.x3,3000);await terbangKe(hover,3200)}
@@ -1250,15 +1307,92 @@ async function antar(m,keTaman){
   selesai();burung.p=PERCH.slice();burung.r=[0,.6,0];burung.bawa.vis=false;terbangOn=false;sibuk=false;
 }
 
+/* ================= Suara: disintesis di peramban, tanpa berkas audio. Bawaan mati. ================= */
+var AC=null,induk=null,derau=null,suaraOn=false,ambien=null,tKicau=0;
+function siapSuara(){
+  if(AC)return true;
+  var C=window.AudioContext||window.webkitAudioContext;if(!C)return false;
+  try{AC=new C()}catch(e){return false}
+  induk=AC.createGain();induk.gain.value=.55;induk.connect(AC.destination);
+  var n=AC.sampleRate*2,b=AC.createBuffer(1,n,AC.sampleRate),d=b.getChannelData(0);
+  for(var i=0;i<n;i++)d[i]=Math.random()*2-1;
+  derau=b;return true;
+}
+function nada(o){ // satu nada dengan luncuran frekuensi: {t,f:[..],d,vol,jenis,bp,q,vib}
+  if(!suaraOn||!AC)return;
+  try{
+    var t=AC.currentTime+(o.t||0),os=AC.createOscillator(),g=AC.createGain(),d=o.d,i;
+    os.type=o.jenis||"sine";os.frequency.setValueAtTime(o.f[0],t);
+    for(i=1;i<o.f.length;i++)os.frequency.linearRampToValueAtTime(o.f[i],t+d*i/(o.f.length-1));
+    if(o.vib){var l=AC.createOscillator(),lg=AC.createGain();l.frequency.value=o.vib;lg.gain.value=o.f[0]*.04;l.connect(lg);lg.connect(os.frequency);l.start(t);l.stop(t+d)}
+    g.gain.setValueAtTime(.0001,t);g.gain.linearRampToValueAtTime(o.vol,t+Math.min(.03,d*.3));g.gain.exponentialRampToValueAtTime(.0001,t+d);
+    if(o.bp){var f=AC.createBiquadFilter();f.type="bandpass";f.frequency.value=o.bp;f.Q.value=o.q||1.2;os.connect(f);f.connect(g)}else os.connect(g);
+    g.connect(induk);os.start(t);os.stop(t+d+.03);
+  }catch(e){}
+}
+function desis(o){ // hembusan derau tersaring: {t,d,vol,f0,fm,f1,q}
+  if(!suaraOn||!AC)return;
+  try{
+    var t=AC.currentTime+(o.t||0),s=AC.createBufferSource(),f=AC.createBiquadFilter(),g=AC.createGain();
+    s.buffer=derau;s.loop=true;f.type="bandpass";f.Q.value=o.q||.8;
+    f.frequency.setValueAtTime(o.f0,t);f.frequency.linearRampToValueAtTime(o.fm||o.f1,t+o.d*.5);f.frequency.linearRampToValueAtTime(o.f1,t+o.d);
+    g.gain.setValueAtTime(.0001,t);g.gain.linearRampToValueAtTime(o.vol,t+o.d*.35);g.gain.linearRampToValueAtTime(.0001,t+o.d);
+    s.connect(f);f.connect(g);g.connect(induk);s.start(t);s.stop(t+o.d+.05);
+  }catch(e){}
+}
+function bunyi(apa,lama){
+  if(!suaraOn)return;var i,r;
+  if(apa==="kucing")nada({f:[520,790,460],d:.55,vol:.16,jenis:"sawtooth",bp:1300,q:2,vib:6});
+  else if(apa==="ayam"){for(i=0;i<3;i++)nada({t:i*.11,f:[700,430],d:.07,vol:.13,jenis:"square",bp:1600,q:2});nada({t:.36,f:[980,560],d:.2,vol:.15,jenis:"square",bp:1800,q:2})}
+  else if(apa==="kelinci"){nada({f:[280,720],d:.16,vol:.16});nada({t:.17,f:[1900,2500],d:.08,vol:.06})}
+  else if(apa==="gajah"){nada({f:[260,540,520,380],d:.95,vol:.15,jenis:"sawtooth",bp:950,q:1.5,vib:17});desis({d:.9,vol:.03,f0:800,f1:1200})}
+  else if(apa==="trenggiling"){for(i=0;i<3;i++)desis({t:i*.1,d:.07,vol:.06,f0:3200,f1:2600,q:2});nada({t:.05,f:[170,140],d:.3,vol:.1})}
+  else if(apa==="kicau"){r=Math.random()*600;for(i=0;i<2+Math.floor(Math.random()*3);i++)nada({t:i*.13,f:[2400+r,3300+r,2700+r],d:.1,vol:.05})}
+  else if(apa==="hantu"){nada({f:[430,390],d:.35,vol:.05});nada({t:.5,f:[430,370],d:.5,vol:.05})}
+  else if(apa==="sapa")nada({f:[660,880],d:.12,vol:.08,jenis:"triangle"});
+  else if(apa==="daun")desis({d:.5,vol:.05,f0:2500,f1:4500,q:.7});
+  else if(apa==="denting"){nada({f:[880,880],d:.6,vol:.07,jenis:"triangle"});nada({t:.08,f:[1320,1320],d:.6,vol:.05,jenis:"triangle"})}
+  else if(apa==="kilau")[523,659,784,1047].forEach(function(f,j){nada({t:j*.09,f:[f,f],d:.5,vol:.07,jenis:"triangle"})});
+  else if(apa==="tanam")nada({f:[120,70],d:.35,vol:.2});
+  else if(apa==="desir")desis({d:Math.max(.3,lama||1),vol:.05,f0:500,fm:1500,f1:600,q:.9});
+}
+function mulaiAmbien(){ // angin pelan sepanjang waktu, jangkrik di malam hari
+  if(ambien||!AC)return;
+  try{
+    var s=AC.createBufferSource(),f=AC.createBiquadFilter(),g=AC.createGain(),l=AC.createOscillator(),lg=AC.createGain();
+    s.buffer=derau;s.loop=true;f.type="lowpass";f.frequency.value=480;g.gain.value=0;l.frequency.value=.13;lg.gain.value=.02;
+    l.connect(lg);lg.connect(g.gain);s.connect(f);f.connect(g);g.connect(induk);s.start();l.start();
+    var o=AC.createOscillator(),og=AC.createGain(),p=AC.createOscillator(),pg=AC.createGain();
+    o.frequency.value=4300;og.gain.value=0;p.type="square";p.frequency.value=26;pg.gain.value=0;
+    p.connect(pg);pg.connect(og.gain);o.connect(og);og.connect(induk);o.start();p.start();
+    ambien={g:g,pg:pg};
+  }catch(e){}
+}
+function aturAmbien(){
+  if(!ambien||!AC)return;
+  ambien.g.gain.setTargetAtTime(suaraOn?.05:0,AC.currentTime,.3);
+  ambien.pg.gain.setTargetAtTime(suaraOn&&waktu==="malam"?.012:0,AC.currentTime,.5);
+}
+function aturSuara(on){
+  if(on){
+    if(!siapSuara()){roti("Peramban ini tidak mendukung suara.");return}
+    try{AC.resume()}catch(e){}
+    suaraOn=true;mulaiAmbien();bunyi("kicau");
+  } else suaraOn=false;
+  aturAmbien();tekan("[data-suara]","data-suara",suaraOn?"1":"0");
+}
+document.addEventListener("visibilitychange",function(){if(!AC)return;try{if(document.hidden)AC.suspend();else if(suaraOn)AC.resume()}catch(e){}});
+
 /* ================= Tempo, suasana, sudut pandang ================= */
 function tekan(sel,attr,nilai){[].forEach.call(document.querySelectorAll(sel),function(b){b.setAttribute("aria-pressed",String(b.getAttribute(attr)===nilai))})}
 [].forEach.call(document.querySelectorAll("[data-tempo]"),function(b){b.addEventListener("click",function(){
   tempo=parseFloat(b.getAttribute("data-tempo"));tekan("[data-tempo]","data-tempo",b.getAttribute("data-tempo"));
   try{localStorage.setItem("taman-tempo",b.getAttribute("data-tempo"))}catch(e){}
 })});
-function aturWaktu(w){waktu=w;root.setAttribute("data-waktu",w);tekan("button[data-waktu]","data-waktu",w);minta()}
+function aturWaktu(w){waktu=w;root.setAttribute("data-waktu",w);tekan("button[data-waktu]","data-waktu",w);aturAmbien();minta()}
 [].forEach.call(document.querySelectorAll("button[data-waktu]"),function(b){b.addEventListener("click",function(){aturWaktu(b.getAttribute("data-waktu"))})});
 var SUDUT={depan:{y:3.9,z:15.5,ty:3.0},atas:{y:11.5,z:14.5,ty:2.0}};
+[].forEach.call(document.querySelectorAll("[data-suara]"),function(b){b.addEventListener("click",function(){aturSuara(b.getAttribute("data-suara")==="1")})});
 [].forEach.call(document.querySelectorAll("[data-sudut]"),function(b){b.addEventListener("click",function(){
   var s=SUDUT[b.getAttribute("data-sudut")],a={y:cam.y,z:cam.z,ty:cam.ty};tekan("[data-sudut]","data-sudut",b.getAttribute("data-sudut"));
   tw(1400,function(k){cam.y=a.y+(s.y-a.y)*k;cam.z=a.z+(s.z-a.z)*k;cam.ty=a.ty+(s.ty-a.ty)*k});minta();
