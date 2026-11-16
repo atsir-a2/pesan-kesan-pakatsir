@@ -32,6 +32,9 @@
   --body:"Nunito","Segoe UI",system-ui,sans-serif;
   --t:1;
 }
+:root[data-waktu="siang"]{
+  --langit1:#9ad6f8; --langit2:#eaf7e6; --matahari:#ffe680;
+}
 :root[data-waktu="sore"]{
   --langit1:#f6b98c; --langit2:#fdebc8;
   --bukit1:#d2c58a; --bukit2:#a9b672; --tanah:#7fae5e; --tanah2:#6c9c50; --jalan:#eccf9a;
@@ -425,6 +428,25 @@ a.kecil{display:inline-grid;place-items:center;text-decoration:none;color:var(--
 .cv a{color:inherit;font-weight:700;text-decoration:underline;text-decoration-color:var(--tajuk1);text-underline-offset:3px}
 .cv a.kecil{text-decoration:none}
 .lencana{display:inline-block;margin-left:6px;min-width:20px;padding:0 6px;border-radius:99px;background:var(--aksen);color:var(--aksen-tinta);font-size:.75rem;line-height:20px;text-align:center}
+/* ---------- Jam dunia ---------- */
+.jam{position:absolute;z-index:5;top:34px;right:10px;width:74px;padding:4px 4px 6px;border:0;border-radius:18px;background:rgba(255,255,255,.82);color:#213b2c;display:grid;justify-items:center;gap:0;cursor:pointer;box-shadow:0 4px 0 rgba(33,59,44,.18);transition:transform calc(.28s*var(--t)) cubic-bezier(.34,1.8,.5,1)}
+.jam:hover{transform:translateY(-2px) rotate(-3deg)}.jam:active{transform:scale(.93)}
+.jam svg{width:46px;height:46px}
+.jam b{font-family:var(--display);font-size:1.05rem;line-height:1.1}
+.jam small{font-size:.66rem;font-weight:700;line-height:1.15;color:#4c6656;text-align:center;max-width:66px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.jamDaftar{display:grid;gap:8px;width:100%}
+.jamDaftar h3{font-size:1rem;margin:8px 0 0}
+.jamBaris{display:grid;grid-template-columns:auto 1fr auto;gap:4px 10px;align-items:center;text-align:left;border:2px solid var(--garis);background:var(--kertas);border-radius:16px;padding:9px 12px;cursor:pointer;min-height:54px}
+.jamBaris[aria-pressed="true"]{border-color:var(--tajuk1);box-shadow:inset 0 0 0 1.5px var(--tajuk1);background:color-mix(in srgb,var(--tajuk1) 13%,var(--kertas))}
+.jamBaris i{width:22px;height:22px;border-radius:50%;background:#ffd45e;box-shadow:inset 0 0 0 2px rgba(0,0,0,.08)}
+.jamBaris i.siang{background:#ffec8a}.jamBaris i.sore{background:#ff9d4d}
+.jamBaris i.malam{background:#31477a;box-shadow:inset -7px -2px 0 0 #f4f1d8}
+.jamBaris span{display:grid;min-width:0}
+.jamBaris span b{font-size:.98rem;line-height:1.25}
+.jamBaris span small{font-size:.78rem;color:var(--tinta2);line-height:1.3}
+.jamBaris em{font-style:normal;display:grid;justify-items:end}
+.jamBaris em b{font-family:var(--display);font-size:1.3rem;line-height:1.1}
+.jamBaris em small{font-size:.74rem;color:var(--tinta2);white-space:nowrap}
 /* ---------- Voting ---------- */
 .votingIsi{display:grid;gap:16px;width:100%}
 .vkartu{display:grid;gap:12px;background:var(--kertas);border:2px solid var(--garis);border-radius:20px;padding:14px;box-shadow:0 4px 0 var(--garis)}
@@ -494,7 +516,7 @@ a.kecil{display:inline-grid;place-items:center;text-decoration:none;color:var(--
 @media print{
   :root,:root[data-waktu]{--kertas:#fff;--panel:#fff;--tinta:#111;--tinta2:#333;--garis:#bbb;--tajuk1:#2f7a3f;--tajuk2:#1f5a2c;--aksen:#b3300f}
   body{background:#fff!important;font-size:11pt}
-  .panggung,.kendali,.cara,.aksi,.intip,.lewati,.roti,dialog,.kakiAksi,#album,.tumbuh,.gundul,.bibit,.lihat,#capContoh, .profilAksi,.tautMateri,.pembuka{display:none!important}
+  .panggung,.kendali,.cara,.aksi,.intip,.lewati,.roti,dialog,.kakiAksi,#album,.tumbuh,.gundul,.bibit,.lihat,#capContoh, .profilAksi,.tautMateri,.pembuka,.jam{display:none!important}
   *{animation:none!important;box-shadow:none!important;transition:none!important}
   .kisi.lipat .sisa{display:grid}
   .kisi{grid-template-columns:1fr 1fr;gap:8px}
@@ -546,6 +568,15 @@ a.kecil{display:inline-grid;place-items:center;text-decoration:none;color:var(--
   <div class="pelangi" id="pelangi" aria-hidden="true"></div>
   <div class="cuaca" id="cuaca" aria-hidden="true"></div>
   <div class="pembuka" id="pembuka"><svg viewBox="0 0 48 48" aria-hidden="true"><use href="#h-tunas"/></svg><span>Menyiapkan taman…</span></div>
+  <button class="jam" id="btnJam" type="button" aria-label="Jam dunia">
+    <svg viewBox="0 0 64 64" aria-hidden="true"><circle cx="16" cy="12" r="8" fill="#d9483b"/><circle cx="48" cy="12" r="8" fill="#d9483b"/><path d="M18 58 13 63M46 58 51 63" stroke="#8a5a36" stroke-width="4" stroke-linecap="round"/>
+      <circle cx="32" cy="35" r="25" fill="#fffaf0" stroke="#8a5a36" stroke-width="4"/>
+      <g stroke="#b9a58c" stroke-width="2" stroke-linecap="round"><path d="M32 15v4M32 51v4M12 35h4M48 35h4"/></g>
+      <line id="jamJarumJ" x1="32" y1="35" x2="32" y2="23" stroke="#213b2c" stroke-width="4" stroke-linecap="round"/>
+      <line id="jamJarumM" x1="32" y1="35" x2="32" y2="17" stroke="#dc5230" stroke-width="2.6" stroke-linecap="round"/>
+      <circle cx="32" cy="35" r="2.6" fill="#213b2c"/></svg>
+    <b id="jamTeks">00.00</b><small id="jamZona">WIB</small>
+  </button>
   <div class="lap" id="lap"><div class="balon" id="balon" hidden></div></div>
   <p class="gagal" id="gagal" hidden>Perangkat ini tidak bisa menampilkan taman tiga dimensi. Semua pesan tetap bisa dibaca di daftar di bawah, dan tombol Tulis pesan tetap berfungsi.</p>
 </div>
@@ -565,6 +596,7 @@ a.kecil{display:inline-grid;place-items:center;text-decoration:none;color:var(--
   <div class="grup"><span id="lblWaktu">Suasana</span>
     <div class="pilih" role="group" aria-labelledby="lblWaktu">
       <button type="button" data-waktu="pagi" aria-pressed="false">Pagi</button>
+      <button type="button" data-waktu="siang" aria-pressed="false">Siang</button>
       <button type="button" data-waktu="sore" aria-pressed="false">Sore</button>
       <button type="button" data-waktu="malam" aria-pressed="false">Malam</button>
     </div>
@@ -710,6 +742,15 @@ a.kecil{display:inline-grid;place-items:center;text-decoration:none;color:var(--
     <p class="gimKabar" id="rKabar" role="status"></p>
   </div>
   <button class="utama" id="mainLanjut" type="button" hidden>Lanjut ke game berikutnya</button>
+ </div>
+</dialog>
+<dialog id="dlgJam" class="mainDlg" aria-labelledby="jamJudul">
+ <div class="mainIsi">
+  <div class="dlg-kepala"><div><p class="langkahke">Dijaga Bu Petok</p><h2 id="jamJudul">Jam dunia</h2></div><button class="tutupx" id="jamTutup" type="button" aria-label="Tutup">×</button></div>
+  <p class="gimAturan" id="jamStatus" role="status"></p>
+  <button class="kecil" id="jamIkuti" type="button" hidden>Ikuti jam lagi</button>
+  <div class="jamDaftar" id="jamDaftar"></div>
+  <p class="gimLabel">Ketuk salah satu jam, lalu taman ikut berubah: pagi, siang, sore, atau malam di tempat itu. Tombol Suasana tetap bisa dipakai untuk mengatur sendiri.</p>
  </div>
 </dialog>
 <dialog id="dlgVoting" class="mainDlg" aria-labelledby="votingJudul">
@@ -1552,6 +1593,7 @@ function roti(t){var r=$("roti");r.textContent=t;r.hidden=false;clearTimeout(rot
 /* ================= Suasana ================= */
 var SUASANA={
  pagi:{sun:[-.35,.8,.5],sc:[.5,.47,.4],sky:[.66,.72,.74],gnd:[.42,.46,.38],fog:[.933,.973,.894],zen:[.56,.82,.95],glow:[1,.86,.5],core:[1,.93,.66],star:0},
+ siang:{sun:[-.12,.95,.3],sc:[.56,.54,.5],sky:[.68,.76,.82],gnd:[.44,.48,.4],fog:[.918,.969,.902],zen:[.4,.72,.97],glow:[1,.95,.72],core:[1,.98,.86],star:0},
  sore:{sun:[-.75,.42,.5],sc:[.6,.38,.25],sky:[.68,.57,.52],gnd:[.42,.37,.31],fog:[.992,.922,.784],zen:[.93,.62,.46],glow:[1,.6,.3],core:[1,.78,.5],star:0},
  malam:{sun:[.3,.8,.5],sc:[.17,.22,.4],sky:[.24,.3,.46],gnd:[.11,.14,.22],fog:[.192,.278,.478],zen:[.05,.09,.24],glow:[.5,.56,.75],core:[.96,.95,.86],star:1}
 };
@@ -2500,7 +2542,79 @@ function tekan(sel,attr,nilai){[].forEach.call(document.querySelectorAll(sel),fu
   try{localStorage.setItem("taman-tempo",b.getAttribute("data-tempo"))}catch(e){}
 })});
 function aturWaktu(w){waktu=w;root.setAttribute("data-waktu",w);tekan("button[data-waktu]","data-waktu",w);aturAmbien();minta()}
-[].forEach.call(document.querySelectorAll("button[data-waktu]"),function(b){b.addEventListener("click",function(){aturWaktu(b.getAttribute("data-waktu"))})});
+// Tombol Suasana = mengatur sendiri. Jam berhenti mengubah taman sampai pengunjung memilih jam lagi.
+[].forEach.call(document.querySelectorAll("button[data-waktu]"),function(b){b.addEventListener("click",function(){jdIkut=false;aturWaktu(b.getAttribute("data-waktu"));jdSegarkan()})});
+
+/* ---------- Jam dunia: taman mengikuti pagi, siang, sore, malam di zona waktu yang dipilih ---------- */
+var JD=[
+ {id:"lokal",nama:"Jam di perangkatmu",ket:"Zona waktu HP atau komputermu",tz:null,grup:0},
+ {id:"wib",nama:"WIB",ket:"Waktu Indonesia Barat · Jakarta, Bandung, Serang",tz:"Asia/Jakarta",off:420,grup:1},
+ {id:"wita",nama:"WITA",ket:"Waktu Indonesia Tengah · Makassar, Denpasar",tz:"Asia/Makassar",off:480,grup:1},
+ {id:"wit",nama:"WIT",ket:"Waktu Indonesia Timur · Jayapura, Ambon",tz:"Asia/Jayapura",off:540,grup:1},
+ {id:"riyadh",nama:"Arab Saudi",ket:"Mekah, Madinah, Riyadh",tz:"Asia/Riyadh",off:180,grup:2},
+ {id:"harare",nama:"Zimbabwe",ket:"Harare",tz:"Africa/Harare",off:120,grup:2},
+ {id:"newyork",nama:"Amerika Serikat, timur",ket:"New York, Washington",tz:"America/New_York",off:-300,grup:2},
+ {id:"losangeles",nama:"Amerika Serikat, barat",ket:"Los Angeles, San Francisco",tz:"America/Los_Angeles",off:-480,grup:2},
+ {id:"london",nama:"Inggris",ket:"London",tz:"Europe/London",off:0,grup:2},
+ {id:"amsterdam",nama:"Belanda",ket:"Amsterdam",tz:"Europe/Amsterdam",off:60,grup:2},
+ {id:"kairo",nama:"Mesir",ket:"Kairo",tz:"Africa/Cairo",off:120,grup:2},
+ {id:"istanbul",nama:"Turki",ket:"Istanbul",tz:"Europe/Istanbul",off:180,grup:2},
+ {id:"delhi",nama:"India",ket:"New Delhi",tz:"Asia/Kolkata",off:330,grup:2},
+ {id:"kl",nama:"Malaysia",ket:"Kuala Lumpur",tz:"Asia/Kuala_Lumpur",off:480,grup:2},
+ {id:"tokyo",nama:"Jepang",ket:"Tokyo",tz:"Asia/Tokyo",off:540,grup:2},
+ {id:"seoul",nama:"Korea Selatan",ket:"Seoul",tz:"Asia/Seoul",off:540,grup:2},
+ {id:"sydney",nama:"Australia",ket:"Sydney",tz:"Australia/Sydney",off:600,grup:2},
+ {id:"saopaulo",nama:"Brasil",ket:"São Paulo",tz:"America/Sao_Paulo",off:-180,grup:2}
+];
+var jdZona="lokal",jdIkut=true,jdT=0,JD_FASE={pagi:"pagi",siang:"siang",sore:"sore",malam:"malam"};
+(function(){var s=bacaAtur("zona");if(s&&JD.some(function(z){return z.id===s}))jdZona=s})();
+function jdCari(id){for(var i=0;i<JD.length;i++)if(JD[i].id===id)return JD[i];return JD[0]}
+function jdWaktu(z,kini){ // jam, menit, dan nomor hari di zona itu
+  kini=kini||new Date();
+  if(!z.tz)return {j:kini.getHours(),m:kini.getMinutes(),hari:Math.floor((kini.getTime()-kini.getTimezoneOffset()*60000)/86400000)};
+  try{
+    var b={};new Intl.DateTimeFormat("en-US",{timeZone:z.tz,hourCycle:"h23",year:"numeric",month:"numeric",day:"numeric",hour:"numeric",minute:"numeric"}).formatToParts(kini).forEach(function(p){b[p.type]=parseInt(p.value,10)});
+    if(isNaN(b.hour)||isNaN(b.minute))throw 0;
+    return {j:b.hour%24,m:b.minute,hari:Math.floor(Date.UTC(b.year,b.month-1,b.day)/86400000)};
+  }catch(e){ // peramban lama: pakai selisih tetap dari UTC
+    var g=new Date(kini.getTime()+z.off*60000);return {j:g.getUTCHours(),m:g.getUTCMinutes(),hari:Math.floor(g.getTime()/86400000)};
+  }
+}
+function jdFase(w){var t=w.j+w.m/60;return t>=4.5&&t<10?"pagi":t>=10&&t<15?"siang":t>=15&&t<18.25?"sore":"malam"}
+function jdTeks(w){return (w.j<10?"0":"")+w.j+"."+(w.m<10?"0":"")+w.m}
+function jdSegarkan(){
+  var z=jdCari(jdZona),w=jdWaktu(z),f=jdFase(w);
+  if(jdIkut&&f!==waktu)aturWaktu(f);
+  $("jamTeks").textContent=jdTeks(w);$("jamZona").textContent=jdIkut?(z.tz?z.nama.split(",")[0]:"jam HP"):"manual";
+  $("jamJarumJ").setAttribute("transform","rotate("+((w.j%12)*30+w.m*.5)+" 32 35)");$("jamJarumM").setAttribute("transform","rotate("+(w.m*6)+" 32 35)");
+  $("btnJam").setAttribute("aria-label","Jam dunia. "+(z.tz?z.nama:"Jam perangkat")+" pukul "+jdTeks(w)+", "+f+(jdIkut?"":". Suasana taman diatur manual"));
+  if($("dlgJam").open)jdDaftar();
+}
+function jdDaftar(){
+  var w=$("jamDaftar"),lokal=jdWaktu(JD[0]),z0=jdCari(jdZona),w0=jdWaktu(z0),grup=-1,JUDUL=["","Waktu Indonesia","Negara lain"];
+  $("jamStatus").textContent=jdIkut?"Bu Petok: “Petok! "+(z0.tz?"Di "+z0.nama.split(",")[0]:"Di tempatmu")+" sekarang pukul "+jdTeks(w0)+", "+jdFase(w0)+". Taman ikut "+jdFase(w0)+".”"
+    :"Bu Petok: “Petok! Suasana taman sedang kamu atur sendiri lewat tombol Suasana. Ketuk salah satu jam kalau mau taman ikut jam lagi.”";
+  $("jamIkuti").hidden=jdIkut;
+  var fokusId=document.activeElement&&document.activeElement.getAttribute&&document.activeElement.getAttribute("data-z");
+  w.innerHTML="";
+  JD.forEach(function(z){
+    if(z.grup!==grup){grup=z.grup;if(JUDUL[grup]){var j=document.createElement("h3");j.textContent=JUDUL[grup];w.appendChild(j)}}
+    var t=jdWaktu(z),f=jdFase(t),b=document.createElement("button"),ik=document.createElement("i"),nm=document.createElement("span"),jm=document.createElement("em"),beda=t.hari-lokal.hari;
+    b.type="button";b.className="jamBaris";b.setAttribute("data-z",z.id);b.setAttribute("aria-pressed",String(jdIkut&&z.id===jdZona));ik.className=f;
+    var n1=document.createElement("b"),n2=document.createElement("small"),j1=document.createElement("b"),j2=document.createElement("small");
+    n1.textContent=z.nama;n2.textContent=z.ket;nm.appendChild(n1);nm.appendChild(n2);
+    j1.textContent=jdTeks(t);j2.textContent=f+(beda>0?" · besok":beda<0?" · kemarin":"");jm.appendChild(j1);jm.appendChild(j2);
+    b.appendChild(ik);b.appendChild(nm);b.appendChild(jm);
+    b.addEventListener("click",function(){jdZona=z.id;jdIkut=true;simpanAtur("zona",z.id);bunyi("ayam");jdSegarkan()});
+    w.appendChild(b);
+  });
+  if(fokusId){var kb=w.querySelector('[data-z="'+fokusId+'"]');if(kb)kb.focus()}
+}
+$("btnJam").addEventListener("click",function(){$("dlgJam").showModal();jdDaftar()});
+$("jamIkuti").addEventListener("click",function(){jdIkut=true;jdSegarkan()});
+$("jamTutup").addEventListener("click",function(){$("dlgJam").close()});
+$("dlgJam").addEventListener("click",function(e){if(e.target===$("dlgJam"))$("dlgJam").close()});
+document.addEventListener("visibilitychange",function(){if(!document.hidden)jdSegarkan()});
 var SUDUT={depan:{y:3.9,z:15.5,ty:3.0},atas:{y:11.5,z:14.5,ty:2.0}};
 [].forEach.call(document.querySelectorAll("[data-suara]"),function(b){b.addEventListener("click",function(){aturSuara(b.getAttribute("data-suara")==="1")})});
 [].forEach.call(document.querySelectorAll("[data-sudut]"),function(b){b.addEventListener("click",function(){
@@ -2539,7 +2653,7 @@ function tutupPembuka(){var p=$("pembuka");if(p)p.classList.add("usai")}
 
 /* ================= Mulai ================= */
 if(panggung.clientWidth<panggung.clientHeight*1.1){cam.z=13.5;SUDUT.depan.z=13.5;SUDUT.atas.z=13;cam.cx=camT=-3.1}
-var jam=new Date().getHours(),awal=jam>=5&&jam<15?"pagi":jam>=15&&jam<18?"sore":"malam";
+var jam=new Date().getHours(),awal=jam>=5&&jam<10?"pagi":jam>=10&&jam<15?"siang":jam>=15&&jam<18?"sore":"malam";
 var siap=false;
 if(gl){
   try{
@@ -2552,7 +2666,7 @@ if(gl){
 if(!siap){kanvas.hidden=true;$("gagal").hidden=false}
 ["bd","sk","st"].forEach(function(id){var p=mk(id);if(siap)tanam(p,false);else{p.tanam=true;ditanam.push(p);p.n=PESAN.filter(function(m){return m.p===id}).length}});
 if(siap)PESAN.forEach(function(m){buatDaun(m,false)});
-gambarDaftar();aturWaktu(awal);
+gambarDaftar();aturWaktu(awal);jdSegarkan();jdT=setInterval(jdSegarkan,15000);
 if(HIDUP){$("capContoh").hidden=true;muat()}
 if(!HIDUP||!siap)setTimeout(tutupPembuka,700);setTimeout(tutupPembuka,7000);
 (function(){var a=bacaAtur("teks");if(a==="besar")aturTeks(a);a=bacaAtur("kontras");if(a==="tinggi")aturKontras(a);
