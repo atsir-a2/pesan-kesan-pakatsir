@@ -242,7 +242,7 @@ dialog.lembar[open]{animation:naik .28s ease-out}
   <div id="rumpun" class="daftar" style="padding:0"></div>
   <p id="belum" style="margin:0;color:var(--tinta2);font-size:.9rem"></p>
 </main>
-<p class="kaki">Pesan bersifat anonim dan baru tampil setelah diperiksa pemilik taman. Pengirim yang memilih "cukup lewat email" tidak ditampilkan di sini.</p>
+<p class="kaki">Pesan bersifat anonim dan langsung tumbuh di taman. Pemilik taman tetap bisa menyembunyikan pesan yang tidak pantas. Pengirim yang memilih "cukup lewat email" tidak ditampilkan di sini.</p>
 
 <dialog id="dlgBaca" aria-labelledby="bacaJudul">
   <div class="dlg">
@@ -300,7 +300,7 @@ dialog.lembar[open]{animation:naik .28s ease-out}
       <p class="ringkas" id="ringkas"></p>
       <fieldset class="baris" id="pilTampil">
         <legend>Pesan ini mau diapakan?</legend>
-        <label class="opsi" for="fTampil1"><input type="radio" name="tampil" id="fTampil1" value="taman" checked><span><b>Tampilkan di taman</b><br><small>Menjadi satu ranting di pohon, setelah diperiksa pemilik taman.</small></span></label>
+        <label class="opsi" for="fTampil1"><input type="radio" name="tampil" id="fTampil1" value="taman" checked><span><b>Tampilkan di taman</b><br><small>Langsung tumbuh menjadi satu ranting di pohon.</small></span></label>
         <label class="opsi" for="fTampil2"><input type="radio" name="tampil" id="fTampil2" value="email"><span><b>Cukup lewat email</b><br><small>Hanya dibaca pemilik taman, tidak tampil di taman.</small></span></label>
       </fieldset>
       <details class="usul">
@@ -1128,7 +1128,7 @@ function gambarDaftar(){
       var mt=document.createElement("div");mt.className="meta";
       var d=document.createElement("span");d.textContent="Dari "+m.dari+(m.kelas?" · Kelas "+m.kelas:"")+(m.ket?" · "+m.ket:"")+" · "+SEM;mt.appendChild(d);
       if(m.buah){var b=document.createElement("span");b.className="tanda pilihan";b.textContent="Pesan pilihan";mt.appendChild(b)}
-      if(!HIDUP||m.milikmu){var e=document.createElement("span");e.className="tanda";e.textContent=m.milikmu?(HIDUP?"Kirimanmu, menunggu diperiksa":"Kirimanmu, hanya di layar ini"):"Contoh";mt.appendChild(e)}
+      if(!HIDUP||m.milikmu){var e=document.createElement("span");e.className="tanda";e.textContent=m.milikmu?(HIDUP?"Kirimanmu":"Kirimanmu, hanya di layar ini"):"Contoh";mt.appendChild(e)}
       c.appendChild(mt);k.appendChild(c);
     });
     s.appendChild(k);w.appendChild(s);
@@ -1240,30 +1240,52 @@ $("formTulis").addEventListener("submit",function(e){
     antar(m,keTaman);
   });
 });
-function kirim(m,keTaman){ // mode hidup: simpan ke Google Sheet lewat Apps Script
+function kirim(m,keTaman,ke){ // mode hidup: simpan ke Google Sheet lewat Apps Script
   if(!HIDUP)return Promise.resolve({ok:true});
-  var ctl=window.AbortController?new AbortController():null,t=setTimeout(function(){if(ctl)ctl.abort()},15000);
+  var ctl=window.AbortController?new AbortController():null,t=setTimeout(function(){if(ctl)ctl.abort()},30000);
   var isi={semester:SEMESTER_ID,p:m.p,kelas:m.kelas||"",ket:m.ket||"",dari:m.dari,teks:m.teks,tampil:keTaman?"taman":"email",usul:$("fHewan").value,situs:$("fSitus").value};
   return fetch(URL_SKRIP,{method:"POST",headers:{"Content-Type":"text/plain;charset=utf-8"},body:JSON.stringify(isi),signal:ctl?ctl.signal:undefined})
     .then(function(r){return r.json()})
     .catch(function(){return {ok:false,sebab:"Tidak tersambung. Periksa internetmu, lalu coba lagi."}})
-    .then(function(h){clearTimeout(t);return h});
-}
-function muat(){ // mode hidup: ambil pesan yang sudah disetujui
-  fetch(URL_SKRIP+"?semester="+encodeURIComponent(SEMESTER_ID)).then(function(r){return r.json()}).then(function(h){
-    (h.pesan||[]).forEach(function(m){
-      var p=mk(m.p);if(!p)return;
-      PESAN.push(m);
-      if(siap){if(!p.tanam)tanam(p,false);buatDaun(m,false)}
-      else{if(!p.tanam){p.tanam=true;ditanam.push(p)}p.n=(p.n||0)+1}
+    .then(function(h){
+      clearTimeout(t);
+      // saat banyak yang mengirim bersamaan, coba lagi sendiri sampai dua kali sebelum menyerah
+      if((!h||!h.ok)&&(ke||0)<2)return new Promise(function(r){setTimeout(r,1500+Math.random()*2500)}).then(function(){return kirim(m,keTaman,(ke||0)+1)});
+      return h;
     });
-    gambarDaftar();minta();
+}
+var DILIHAT={};
+function kunciPesan(m){return m.p+"|"+m.dari+"|"+m.teks}
+function terima(h,animasi){ // pesan baru dari Sheet; yang sudah ada dilewati
+  var baru=0;
+  (h.pesan||[]).forEach(function(m){
+    var p=mk(m.p),k=kunciPesan(m);if(!p||DILIHAT[k])return;
+    DILIHAT[k]=1;PESAN.push(m);baru++;
+    if(siap){
+      if(!p.tanam)tanam(p,false,animasi);
+      var e=buatDaun(m,animasi&&!tenang);
+      if(animasi&&!tenang){var t=titikCabang(p,p.n-1);kilauDi(p.x3+t.e[0],t.e[1],-1+t.e[2])}
+    }else{if(!p.tanam){p.tanam=true;ditanam.push(p)}p.n=(p.n||0)+1}
+  });
+  if(baru){gambarDaftar();minta()}
+  return baru;
+}
+function muat(){ // mode hidup: ambil pesan yang tampil, lalu cek ulang berkala supaya ranting baru tumbuh langsung
+  fetch(URL_SKRIP+"?semester="+encodeURIComponent(SEMESTER_ID)).then(function(r){return r.json()}).then(function(h){
+    terima(h,false);
+    setInterval(function(){
+      if(document.hidden)return;
+      fetch(URL_SKRIP+"?semester="+encodeURIComponent(SEMESTER_ID)).then(function(r){return r.json()}).then(function(h){
+        if(terima(h,true))roti("Ada ranting baru yang baru saja tumbuh di taman.");
+      }).catch(function(){});
+    },30000);
   }).catch(function(){roti("Pesan belum bisa dimuat. Coba muat ulang halaman.")});
 }
 async function antar(m,keTaman){
+  if(keTaman&&HIDUP)DILIHAT[kunciPesan(m)]=1;
   var p=mk(m.p),pohonBaru=false,beres=false,slot=null,hover=null;
   if(keTaman){
-    if(!gl){PESAN.push(m);if(!p.tanam){p.tanam=true;ditanam.push(p)}p.n=(p.n||0)+1;gambarDaftar();roti(HIDUP?"Pesanmu terkirim dan akan tampil setelah diperiksa pemilik taman.":"Pesanmu masuk ke daftar contoh. Pesan ini belum benar-benar terkirim.");return}
+    if(!gl){PESAN.push(m);if(!p.tanam){p.tanam=true;ditanam.push(p)}p.n=(p.n||0)+1;gambarDaftar();roti(HIDUP?"Pesanmu terkirim dan langsung tumbuh di taman.":"Pesanmu masuk ke daftar contoh. Pesan ini belum benar-benar terkirim.");return}
     if(!p.tanam){tanam(p,!tenang,true);pohonBaru=true}
     slot=titikCabang(p,p.n);hover=[p.x3+slot.e[0],slot.e[1]+.25,-1+slot.e[2]+.7];
   } else if(!gl){roti(HIDUP?"Pesanmu terkirim ke pemilik taman lewat email.":"Di versi jadi, pesan ini dikirim ke email pemilik taman. Sekarang belum benar-benar terkirim.");return}
@@ -1272,7 +1294,7 @@ async function antar(m,keTaman){
     if(keTaman){
       if(pohonBaru){tampil(p);p.grp.s=[1,1,1]}
       PESAN.push(m);buatDaun(m,true);kilauDi(p.x3+slot.e[0],slot.e[1],-1+slot.e[2]);gambarDaftar();
-      roti((pohonBaru?"Pohon "+p.pendek+" baru saja ditanam dan ranting pertamanya tumbuh. ":"Satu ranting baru tumbuh di pohon "+p.pendek+". ")+(HIDUP?"Pesanmu terkirim. Ranting ini baru tampil untuk semua pengunjung setelah diperiksa pemilik taman.":"Di versi jadi, ranting baru tumbuh setelah pesan diperiksa. Pesan ini belum benar-benar terkirim."));
+      roti((pohonBaru?"Pohon "+p.pendek+" baru saja ditanam dan ranting pertamanya tumbuh. ":"Satu ranting baru tumbuh di pohon "+p.pendek+". ")+(HIDUP?"Pesanmu terkirim, dan rantingnya langsung terlihat oleh semua pengunjung.":"Di versi jadi, ranting baru langsung tumbuh untuk semua pengunjung. Pesan ini belum benar-benar terkirim."));
     } else {
       kilauDi(PERCH[0],PERCH[1]-.1,PERCH[2]);
       roti(HIDUP?"Surat masuk ke kotak pos rumah. Pesanmu terkirim ke pemilik taman lewat email dan tidak tampil di taman.":"Surat masuk ke kotak pos rumah. Di versi jadi, pesan ini dikirim ke email pemilik taman. Sekarang belum benar-benar terkirim.");
