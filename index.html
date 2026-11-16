@@ -3,7 +3,18 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Taman Kesan dan Pesan 3D</title>
+<title>Taman Kesan dan Pesan · Atsir Al Atsari, S.Pd.</title>
+<meta name="description" content="Taman kesan dan pesan dari mahasiswa untuk Atsir Al Atsari, S.Pd. Setiap pesan menumbuhkan satu ranting di pohon mata kuliahnya.">
+<meta name="theme-color" content="#6fb36a">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 48'%3E%3Ccircle cx='24' cy='24' r='24' fill='%23f6fbef'/%3E%3Cpath d='M24 42V24' stroke='%234f9d5b' stroke-width='4' stroke-linecap='round'/%3E%3Cpath d='M24 27C13 27 7 19 8 10 18 9 25 17 24 27Z' fill='%236fb36a'/%3E%3Cpath d='M24 23C24 13 31 6 40 7 41 16 34 24 24 23Z' fill='%238fca93'/%3E%3C/svg%3E">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Taman Kesan dan Pesan">
+<meta property="og:description" content="Titip kesan dan pesanmu untuk Kak Atsir. Setiap pesan menumbuhkan satu ranting di taman.">
+<meta property="og:url" content="https://atsir-a2.github.io/pesan-kesan-pakatsir/">
+<meta property="og:image" content="https://atsir-a2.github.io/pesan-kesan-pakatsir/pratinjau.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
@@ -262,7 +273,31 @@ body{background-image:radial-gradient(color-mix(in srgb,var(--garis) 75%,transpa
 @media (prefers-reduced-motion:reduce){.kartu{rotate:var(--r)}}
 
 /* ---------- Pojok main ---------- */
-.gim{gap:14px;justify-items:start}
+.gim{display:grid;gap:14px;justify-items:start}
+dialog.mainDlg{width:min(560px,calc(100vw - 20px));overflow:auto}
+.mainIsi{padding:18px;display:grid;gap:14px;justify-items:start}
+.mainIsi .dlg-kepala{width:100%}
+.mainIsi h2{font-size:1.45rem}
+.sungai{display:grid;grid-template-columns:74px 1fr 74px;width:100%;min-height:196px;border-radius:18px;overflow:hidden;border:2px solid var(--garis)}
+.tepi{background:var(--tanah);display:grid;align-content:center;justify-items:center;gap:4px;padding:6px 0}
+.tepi button,#sMuatan button{width:60px;height:50px;border:0;background:none;padding:0;cursor:pointer;transition:translate calc(.3s*var(--t)) cubic-bezier(.34,1.7,.5,1)}
+.tepi button svg,#sMuatan button svg,#sGajah svg{display:block;width:60px;height:48px}
+.tepi button:disabled{opacity:.6;cursor:default}
+.tepi button:not(:disabled):hover,#sMuatan button:hover{translate:0 -4px}
+.air{position:relative;background:linear-gradient(#a9dcf0,#7cc3e2)}
+:root[data-waktu="malam"] .air{background:linear-gradient(#2c4f7a,#223d63)}
+.air::before,.air::after{content:"";position:absolute;left:12%;right:12%;top:26%;height:3px;border-radius:9px;background:rgba(255,255,255,.5)}
+.air::after{left:30%;right:22%;top:46%}
+.rakit{position:absolute;z-index:1;bottom:24px;left:4px;width:124px;height:60px;display:flex;align-items:flex-end;justify-content:center;transition:left calc(1.6s*var(--t)) ease-in-out}
+.rakit.kanan{left:calc(100% - 128px)}
+.rakit::after{content:"";position:absolute;left:0;right:0;bottom:-10px;height:14px;border-radius:8px;background:var(--batang);box-shadow:inset 0 -4px 0 rgba(0,0,0,.18)}
+#sMuatan{display:block;width:60px;height:50px}
+.barisan{display:flex;flex-wrap:wrap;gap:6px;align-items:center}
+.barisan span{width:46px;height:42px;display:grid;place-items:center;background:var(--kertas);border-radius:12px}
+.barisan svg{width:40px;height:32px}
+.barisan .tanya{border:2.5px dashed var(--aksen);color:var(--aksen);font-family:var(--display);font-size:1.3rem;background:var(--panel)}
+.barisan .tanya.goyang{animation:goyang calc(.5s*var(--t)) ease-in-out infinite}
+.barisan .tanya.pas{border-style:solid;border-color:var(--tajuk1);animation:girang calc(.8s*var(--t)) ease-out}
 .gimAturan{margin:0;max-width:62ch}
 .gimLabel{margin:0;font-size:.85rem;color:var(--tinta2)}
 .semak,.baki{display:flex;flex-wrap:wrap;gap:10px}
@@ -297,6 +332,134 @@ dialog.foto figure{margin:0;display:grid;gap:8px}
 dialog.foto img{width:100%;max-height:74vh;object-fit:contain;border-radius:12px;background:var(--kertas)}
 dialog.foto figcaption{text-align:center;font-weight:700}
 dialog.foto .tutupx{position:absolute;top:-14px;right:-8px;box-shadow:0 3px 0 var(--garis);border:2px solid var(--garis)}
+
+/* ---------- Aksesibilitas: lewati, teks besar, kontras tinggi, gerak tenang ---------- */
+.lewati{position:absolute;left:12px;top:-60px;z-index:90;background:var(--tinta);color:var(--kertas);padding:10px 16px;border-radius:12px;font-weight:700}
+.lewati:focus{top:10px}
+:root[data-teks="besar"]{font-size:120%}
+:root[data-kontras="tinggi"]{--tinta:#08140c;--tinta2:#1c3324;--garis:#2f4d39;--panel:#ffffff;--kertas:#ffffff;--aksen:#a82a0c;--tajuk1:#1f6b33;--tajuk2:#144a22}
+:root[data-kontras="tinggi"][data-waktu="malam"]{--tinta:#ffffff;--tinta2:#e3eee6;--garis:#c9dccf;--panel:#0b120e;--kertas:#050806;--aksen:#ffb199;--tajuk1:#8fe0a0;--tajuk2:#c9f2d1}
+:root[data-kontras="tinggi"] body{background-image:none}
+:root[data-kontras="tinggi"] .kartu{background:var(--panel);border-color:var(--tinta);box-shadow:0 4px 0 var(--tinta)}
+:root[data-kontras="tinggi"][data-waktu="malam"] .pilih button[aria-pressed="true"]{color:#06100a}
+:root[data-kontras="tinggi"] a,:root[data-kontras="tinggi"] .hantu{text-decoration:underline}
+:root[data-gerak="tenang"] *,:root[data-gerak="tenang"] *::before,:root[data-gerak="tenang"] *::after{animation:none!important;transition:none!important}
+.kepala{grid-template-columns:minmax(0,1fr)}
+.kepala>*{max-width:100%;min-width:0}
+.kepala .cap,#capContoh{white-space:normal}
+.profil .kecil{justify-self:start}
+.lagi{flex:1 1 100%}
+.lagi summary{cursor:pointer;font-weight:700;font-size:.85rem;color:var(--tinta2);padding:4px;border-radius:8px}
+.lagi[open] summary{margin-bottom:10px}
+.lagi>div{display:flex;flex-wrap:wrap;gap:12px 18px;align-items:end}
+/* ---------- Layar pembuka, cuaca ---------- */
+.pembuka{position:absolute;inset:0;z-index:8;display:grid;place-content:center;justify-items:center;gap:6px;background:var(--kertas);color:var(--tinta2);font-weight:700;transition:opacity .8s,visibility .8s}
+.pembuka svg{width:76px;height:76px;transform-origin:50% 90%;animation:tumbuhTunas calc(1.6s*var(--t)) ease-in-out infinite alternate}
+.pembuka.usai{opacity:0;visibility:hidden}
+@keyframes tumbuhTunas{from{scale:.7}to{scale:1.05}}
+.cuaca{position:absolute;inset:0;z-index:2;pointer-events:none;overflow:hidden;opacity:0;transition:opacity 2.5s;background:rgba(110,140,165,.16)}
+.cuaca.turun{opacity:1}
+.cuaca i{position:absolute;top:-8%;width:2px;height:18px;border-radius:2px;background:rgba(255,255,255,.6);animation:hujan linear infinite}
+@keyframes hujan{to{top:104%;translate:-26px 0}}
+.pelangi{position:absolute;z-index:1;left:50%;top:6%;width:min(78%,640px);aspect-ratio:2/1;translate:-50% 0;pointer-events:none;opacity:0;transition:opacity 4s;filter:blur(1.5px);
+  background:radial-gradient(50% 100% at 50% 100%,transparent 70%,#b98cf0 71.5%,#6aa8f5 75%,#6fd08a 79%,#f7e36a 83%,#f7a65a 87%,#f27a7a 91%,transparent 93%)}
+.pelangi.tampak{opacity:.5}
+/* ---------- Balasan pemilik taman ---------- */
+.balas{background:var(--panel);border-radius:12px 12px 12px 4px;padding:8px 10px;font-size:.9rem;line-height:1.45;border:2px dashed var(--garis);overflow-wrap:anywhere}
+.balas b{display:block;font-size:.74rem;color:var(--tajuk2);letter-spacing:.02em}
+:root[data-waktu="malam"] .balas b{color:var(--tinta2)}
+.dlg .balas{background:var(--kertas);margin-top:4px}
+/* ---------- Tentang pengajar ---------- */
+.profilAtas{display:flex;gap:14px;align-items:center}
+.profilAtas svg{width:84px;height:84px;flex:none}
+.profilAtas h3{font-size:1.35rem}
+.profilAtas p,.profil>p{margin:0;color:var(--tinta2)}
+.profil>p{color:var(--tinta);max-width:68ch}
+.angka{display:grid;gap:10px;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));margin:0}
+.angka div{background:var(--kertas);border-radius:16px;padding:10px 12px;display:grid}
+.angka b{font-family:var(--display);font-size:1.7rem;line-height:1.1;color:var(--tajuk2)}
+:root[data-waktu="malam"] .angka b{color:var(--tinta)}
+.angka span{font-size:.82rem;color:var(--tinta2)}
+.sorot{display:flex;flex-wrap:wrap;gap:6px;margin:0;padding:0;list-style:none}
+.sorot li{font-size:.84rem;font-weight:700;border:2px solid var(--garis);border-radius:99px;padding:4px 12px;background:var(--kertas)}
+.cv{display:grid;gap:16px;width:100%}
+.cv h3{font-size:1.08rem;margin-bottom:6px;display:flex;align-items:center;gap:8px}
+.cv h3::before{content:"";width:12px;height:12px;border-radius:50% 0 50% 50%;rotate:45deg;background:var(--tajuk1);flex:none}
+.cv ul{margin:0;padding-left:18px;display:grid;gap:6px}
+.cv li{line-height:1.45}
+.cv small{display:block;color:var(--tinta2);font-size:.84rem}
+.cv p{margin:0;line-height:1.55}
+/* ---------- Game Braille ---------- */
+.mainIsi>.pilih{flex-wrap:wrap;border-radius:20px;width:auto;max-width:100%}
+.mainDlg,.mainIsi{max-width:100%}
+.mainIsi>*{min-width:0;max-width:100%}
+.sel{display:inline-grid;grid-template-columns:repeat(2,18px);grid-auto-rows:18px;gap:7px;padding:12px 14px;border-radius:14px;background:var(--kertas);border:2px solid var(--garis)}
+.sel i{border-radius:50%;border:2px solid var(--garis)}
+.sel i.ttk{background:var(--tinta);border-color:var(--tinta)}
+.sel.kecilS{grid-template-columns:repeat(2,7px);grid-auto-rows:7px;gap:3px;padding:5px 6px;border-radius:8px;border-width:1.5px}
+.sel.kecilS i{border-width:1px}
+.selBaris{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.selBaris.goyang .sel{animation:goyang calc(.5s*var(--t)) ease-in-out infinite}
+.hurufPilih{display:flex;flex-wrap:wrap;gap:8px}
+.hurufPilih button{min-width:58px;min-height:52px;padding:6px 14px;border:2px solid var(--garis);border-radius:16px;background:var(--kertas);box-shadow:0 3px 0 var(--garis);font-family:var(--display);font-size:1.3rem;cursor:pointer;text-transform:uppercase}
+.hurufPilih button:disabled{opacity:.5;cursor:default}
+.tabelB{width:100%}
+.tabelB summary{cursor:pointer;font-weight:700;font-size:.88rem;color:var(--tinta2)}
+.tabelB div{display:grid;grid-template-columns:repeat(auto-fill,minmax(44px,1fr));gap:6px;margin-top:8px}
+.tabelB span{display:grid;justify-items:center;gap:2px;font-weight:700;text-transform:uppercase;font-size:.85rem}
+
+/* ---------- Penyempurnaan: tata letak HP, lipatan pesan, motto, cetak ---------- */
+.kendali{margin-top:38px}
+.kisi.lipat .sisa{display:none}
+.lihat{justify-self:center}
+.motto{margin:0;display:grid;gap:10px;background:var(--kertas);border-radius:20px;padding:16px 18px 16px 20px;border-left:6px solid var(--tajuk1)}
+.motto blockquote{margin:0;font-family:var(--display);font-size:1.18rem;line-height:1.4}
+.motto figcaption{display:flex;flex-wrap:wrap;gap:8px}
+.motto figcaption span{font-family:var(--display);font-size:1rem;background:var(--panel);border:2px solid var(--garis);border-radius:99px;padding:3px 14px;box-shadow:0 3px 0 var(--garis)}
+.motto figcaption span:last-child{color:var(--aksen)}
+.cv .rumus{margin-top:6px;color:var(--tajuk2)}
+:root[data-waktu="malam"] .cv .rumus{color:var(--tinta)}
+.kakiAksi{max-width:1100px;margin:0 auto;padding:0 16px 18px;display:flex;flex-wrap:wrap;gap:10px}
+.profilAksi{display:flex;flex-wrap:wrap;gap:10px}
+a.kecil{display:inline-grid;place-items:center;text-decoration:none;color:var(--tinta);text-align:center}
+.cv a{color:inherit;font-weight:700;text-decoration:underline;text-decoration-color:var(--tajuk1);text-underline-offset:3px}
+.cv a.kecil{text-decoration:none}
+.hanyaCetak{display:none}
+@media (max-width:620px){
+  .kepala{padding-top:18px;gap:8px}
+  .kepala p{font-size:1rem}
+  .kepala .aksi{display:grid;grid-template-columns:1fr 1fr;gap:10px;width:100%}
+  .kepala .aksi .utama{grid-column:1/-1}
+  .kendali{gap:12px}
+  .mainIsi>.pilih button{padding:7px 9px;font-size:.8rem}
+  .kepala .aksi .hantu,.kepala .aksi .kecil{display:grid;place-items:center;text-align:center;min-height:44px;padding:6px 10px;border:2px solid var(--garis);border-radius:99px;background:var(--panel);font-size:.9rem;font-weight:700}
+  .panggung{height:470px}
+  .cara{display:block;margin:18px 16px 0;padding:4px 14px;background:var(--panel);border:2px solid var(--garis);border-radius:24px;box-shadow:0 5px 0 var(--garis)}
+  .cara div{border:0;box-shadow:none;background:none;border-radius:0;padding:9px 0}
+  .cara div+div{border-top:1.5px dashed var(--garis)}
+  .rumpun{padding:14px 12px}
+  .profilAtas svg{width:64px;height:64px}
+  .kakiAksi button{flex:1 1 140px}
+}
+@media print{
+  :root,:root[data-waktu]{--kertas:#fff;--panel:#fff;--tinta:#111;--tinta2:#333;--garis:#bbb;--tajuk1:#2f7a3f;--tajuk2:#1f5a2c;--aksen:#b3300f}
+  body{background:#fff!important;font-size:11pt}
+  .panggung,.kendali,.cara,.aksi,.intip,.lewati,.roti,dialog,.kakiAksi,#album,.tumbuh,.gundul,.bibit,.lihat,#capContoh, .profilAksi,.tautMateri,.pembuka{display:none!important}
+  *{animation:none!important;box-shadow:none!important;transition:none!important}
+  .kisi.lipat .sisa{display:grid}
+  .kisi{grid-template-columns:1fr 1fr;gap:8px}
+  .kartu{rotate:none;break-inside:avoid;background:#fff!important;border:1px solid #999!important;padding:10px 12px}
+  .kartu::before,.kartu::after{display:none}
+  .rumpun{border:0;padding:0;gap:8px}
+  .rumpun header,.judul,.cv h3{break-after:avoid}
+  #rumpun{gap:18px;padding-top:0}
+  .daftar{padding:14px 0}
+  .kepala{padding:0 0 8px}
+  .hanyaCetak{display:block;padding-top:10px}
+  .hanyaCetak .cv section{break-inside:avoid}
+  .kaki{border:0;padding:8px 0 0;margin:0}
+  a{color:inherit;text-decoration:none}
+}
 </style>
 </head>
 <body>
@@ -308,30 +471,44 @@ dialog.foto .tutupx{position:absolute;top:-14px;right:-8px;box-shadow:0 3px 0 va
 <symbol id="h-ayam" viewBox="0 0 80 64"><g clip-path="url(#tepi)"><circle cx="32" cy="20" r="6" fill="#d9483b"/><circle cx="40" cy="16" r="7" fill="#d9483b"/><circle cx="48" cy="20" r="6" fill="#d9483b"/><ellipse cx="40" cy="43" rx="23" ry="22" fill="#fffaf0" stroke="#eadfc8" stroke-width="1.5"/><path d="M34 43H46L40 53Z" fill="#f0a030"/></g><g fill="#fff1d9" stroke="#eadfc8" stroke-width="1.5"><ellipse cx="22" cy="57" rx="8" ry="5"/><ellipse cx="58" cy="57" rx="8" ry="5"/></g></symbol>
 <symbol id="h-gajah" viewBox="0 0 80 64"><g clip-path="url(#tepi)"><ellipse cx="15" cy="40" rx="14" ry="19" fill="#8fa1af"/><ellipse cx="65" cy="40" rx="14" ry="19" fill="#8fa1af"/><ellipse cx="14" cy="41" rx="8" ry="12" fill="#e9c3c8"/><ellipse cx="66" cy="41" rx="8" ry="12" fill="#e9c3c8"/><ellipse cx="40" cy="41" rx="23" ry="23" fill="#a9bac6"/><g fill="#f08aa5"><circle cx="51" cy="17" r="3.4"/><circle cx="57" cy="21" r="3.4"/><circle cx="55" cy="27" r="3.4"/><circle cx="48" cy="27" r="3.4"/><circle cx="46" cy="21" r="3.4"/></g><circle cx="51.5" cy="22.5" r="3" fill="#f3c63f"/></g><path d="M40 44V60" stroke="#a9bac6" stroke-width="12" stroke-linecap="round"/><path d="M36 52h8M36 57h8" stroke="#8fa1af" stroke-width="1.5" stroke-linecap="round"/></symbol>
 <symbol id="h-jalak" viewBox="0 0 80 64"><g clip-path="url(#tepi)"><path d="M38 24C40 10 50 3 60 5 54 9 51 16 49 26Z" fill="#fff" stroke="#cfd6dc" stroke-width="1.5"/><ellipse cx="40" cy="43" rx="21" ry="21" fill="#fff" stroke="#cfd6dc" stroke-width="1.5"/><path d="M34 42H46L40 53Z" fill="#e8b93a"/></g><ellipse cx="23" cy="57" rx="8" ry="5" fill="#eef2f4" stroke="#cfd6dc" stroke-width="1.5"/><ellipse cx="57" cy="57" rx="8" ry="5" fill="#eef2f4" stroke="#cfd6dc" stroke-width="1.5"/><ellipse cx="17" cy="57" rx="3.5" ry="4" fill="#1f1f1f"/><ellipse cx="63" cy="57" rx="3.5" ry="4" fill="#1f1f1f"/></symbol>
+<symbol id="h-jagung" viewBox="0 0 80 64"><ellipse cx="40" cy="28" rx="13" ry="24" fill="#f3c63f"/><path d="M33 12v32M40 6v40M47 12v32M28 20h24M27 30h26M29 40h22" stroke="#d9a520" stroke-width="1.5" stroke-linecap="round"/><path d="M40 62C22 58 19 40 25 30 29 45 35 54 40 62ZM40 62C58 58 61 40 55 30 51 45 45 54 40 62Z" fill="#6fb36a"/></symbol>
 <symbol id="h-tunas" viewBox="0 0 48 48"><ellipse cx="24" cy="43" rx="15" ry="4" fill="#c79a63"/><path d="M24 43V24" stroke="#4f9d5b" stroke-width="4" stroke-linecap="round"/><path d="M24 27C13 27 7 19 8 10 18 9 25 17 24 27Z" fill="#6fb36a"/><path d="M24 23C24 13 31 6 40 7 41 16 34 24 24 23Z" fill="#8fca93"/></symbol>
 </defs></svg>
+<a class="lewati" href="#daftar">Lewati ke daftar pesan</a>
+<noscript><p style="margin:16px;padding:12px 16px;border:2px solid #d5e5cc;border-radius:16px;background:#fff">Taman ini membutuhkan JavaScript. Aktifkan JavaScript di browser untuk melihat taman dan menulis pesan.</p></noscript>
 <header class="kepala">
   <span class="cap" id="capContoh">Purwarupa 3D · semua pesan di halaman ini hanya contoh</span>
   <p class="alis">Semester Ganjil 2026/2027</p>
   <h1>Taman <span class="h">Kesan</span> dan <span class="a">Pesan</span></h1>
-  <p>Untuk <b>Atsir Al Atsari, S.Pd.</b> Setiap pesan dari mahasiswa menumbuhkan satu ranting di pohon mata kuliahnya.</p>
+  <p>Untuk <a href="#tentang" style="color:inherit"><b>Atsir Al Atsari, S.Pd.</b></a> Setiap pesan dari mahasiswa menumbuhkan satu ranting di pohon mata kuliahnya.</p>
   <div class="aksi">
     <button class="utama" id="btnTulis" type="button">Tulis pesan</button>
     <a class="hantu" href="#daftar">Intip semua pesan</a>
+    <button class="kecil" id="btnMain" type="button">Pojok main</button>
   </div>
 </header>
 
+<div class="panggung" id="panggung">
+  <svg class="ombak atas" viewBox="0 0 1200 40" preserveAspectRatio="none" aria-hidden="true"><path d="M0 40V24C100 6 200 6 300 22S500 38 600 22 800 6 900 22s200 14 300 0V40Z"/></svg>
+  <svg class="ombak" viewBox="0 0 1200 40" preserveAspectRatio="none" aria-hidden="true"><path d="M0 40V24C100 6 200 6 300 22S500 38 600 22 800 6 900 22s200 14 300 0V40Z"/></svg>
+  <canvas id="kanvas" tabindex="0" aria-label="Taman tiga dimensi. Geser ke samping atau tekan panah kiri dan kanan untuk menyusuri pohon. Semua pesan juga tersedia sebagai daftar di bawah."></canvas>
+  <div class="pelangi" id="pelangi" aria-hidden="true"></div>
+  <div class="cuaca" id="cuaca" aria-hidden="true"></div>
+  <div class="pembuka" id="pembuka"><svg viewBox="0 0 48 48" aria-hidden="true"><use href="#h-tunas"/></svg><span>Menyiapkan taman…</span></div>
+  <div class="lap" id="lap"><div class="balon" id="balon" hidden></div></div>
+  <p class="gagal" id="gagal" hidden>Perangkat ini tidak bisa menampilkan taman tiga dimensi. Semua pesan tetap bisa dibaca di daftar di bawah, dan tombol Tulis pesan tetap berfungsi.</p>
+</div>
 <div class="kendali" role="group" aria-label="Pengaturan taman" id="kendali">
-  <div class="grup"><label for="pilSemester">Taman semester</label>
-    <select id="pilSemester" class="pilsem">
-      <option value="2026-ganjil" selected>Ganjil 2026/2027 · sedang dibuka</option>
-      <option value="2026-genap" disabled>Genap 2026/2027 · belum dibuka</option>
-    </select>
-  </div>
   <div class="grup"><span id="lblTempo">Tempo</span>
     <div class="pilih" role="group" aria-labelledby="lblTempo">
       <button type="button" data-tempo="1" aria-pressed="true">Santai</button>
       <button type="button" data-tempo="0.35" aria-pressed="false">Cepat</button>
+    </div>
+  </div>
+  <div class="grup"><span id="lblSuara">Suara</span>
+    <div class="pilih" role="group" aria-labelledby="lblSuara">
+      <button type="button" data-suara="0" aria-pressed="true">Mati</button>
+      <button type="button" data-suara="1" aria-pressed="false">Nyala</button>
     </div>
   </div>
   <div class="grup"><span id="lblWaktu">Suasana</span>
@@ -341,27 +518,46 @@ dialog.foto .tutupx{position:absolute;top:-14px;right:-8px;box-shadow:0 3px 0 va
       <button type="button" data-waktu="malam" aria-pressed="false">Malam</button>
     </div>
   </div>
+  <div class="grup"><label for="pilSemester">Taman semester</label>
+    <select id="pilSemester" class="pilsem">
+      <option value="2026-ganjil" selected>Ganjil 2026/2027 · sedang dibuka</option>
+      <option value="2026-genap" disabled>Genap 2026/2027 · belum dibuka</option>
+    </select>
+  </div>
+  <details class="lagi"><summary>Pengaturan lain</summary><div>
   <div class="grup"><span id="lblSudut">Sudut</span>
     <div class="pilih" role="group" aria-labelledby="lblSudut">
       <button type="button" data-sudut="depan" aria-pressed="true">Depan</button>
       <button type="button" data-sudut="atas" aria-pressed="false">Atas</button>
     </div>
   </div>
-  <div class="grup"><span id="lblSuara">Suara</span>
-    <div class="pilih" role="group" aria-labelledby="lblSuara">
-      <button type="button" data-suara="0" aria-pressed="true">Mati</button>
-      <button type="button" data-suara="1" aria-pressed="false">Nyala</button>
+  <div class="grup"><span id="lblTeks">Ukuran teks</span>
+    <div class="pilih" role="group" aria-labelledby="lblTeks">
+      <button type="button" data-teks="biasa" aria-pressed="true">Biasa</button>
+      <button type="button" data-teks="besar" aria-pressed="false">Besar</button>
     </div>
   </div>
+  <div class="grup"><span id="lblKontras">Kontras</span>
+    <div class="pilih" role="group" aria-labelledby="lblKontras">
+      <button type="button" data-kontras="biasa" aria-pressed="true">Biasa</button>
+      <button type="button" data-kontras="tinggi" aria-pressed="false">Tinggi</button>
+    </div>
+  </div>
+  <div class="grup"><span id="lblGerak">Gerak</span>
+    <div class="pilih" role="group" aria-labelledby="lblGerak">
+      <button type="button" data-gerak="hidup" aria-pressed="true">Hidup</button>
+      <button type="button" data-gerak="tenang" aria-pressed="false">Tenang</button>
+    </div>
+  </div>
+  <div class="grup"><span id="lblCuaca">Cuaca</span>
+    <div class="pilih" role="group" aria-labelledby="lblCuaca">
+      <button type="button" data-cuaca="otomatis" aria-pressed="true">Berganti</button>
+      <button type="button" data-cuaca="cerah" aria-pressed="false">Cerah</button>
+    </div>
+  </div>
+  </div></details>
 </div>
 
-<div class="panggung" id="panggung">
-  <svg class="ombak atas" viewBox="0 0 1200 40" preserveAspectRatio="none" aria-hidden="true"><path d="M0 40V24C100 6 200 6 300 22S500 38 600 22 800 6 900 22s200 14 300 0V40Z"/></svg>
-  <svg class="ombak" viewBox="0 0 1200 40" preserveAspectRatio="none" aria-hidden="true"><path d="M0 40V24C100 6 200 6 300 22S500 38 600 22 800 6 900 22s200 14 300 0V40Z"/></svg>
-  <canvas id="kanvas" tabindex="0" aria-label="Taman tiga dimensi. Geser ke samping atau tekan panah kiri dan kanan untuk menyusuri pohon. Semua pesan juga tersedia sebagai daftar di bawah."></canvas>
-  <div class="lap" id="lap"><div class="balon" id="balon" hidden></div></div>
-  <p class="gagal" id="gagal" hidden>Perangkat ini tidak bisa menampilkan taman tiga dimensi. Semua pesan tetap bisa dibaca di daftar di bawah, dan tombol Tulis pesan tetap berfungsi.</p>
-</div>
 <section class="cara" aria-label="Cara menikmati taman">
   <div><i></i><b>Satu pesan, satu ranting</b><span>Pohon mulai gundul, lalu rimbun di sekitar 20 pesan.</span></div>
   <div><i class="bulat"></i><b>Kuncup menjadi buah</b><span>Mulai 15 pesan, pesan pilihan berubah menjadi buah.</span></div>
@@ -369,15 +565,58 @@ dialog.foto .tutupx{position:absolute;top:-14px;right:-8px;box-shadow:0 3px 0 va
   <div><i class="tapak"></i><b>Sapa penghuni taman</b><span>Ketuk hewan mana pun, mereka suka disapa. Nyalakan Suara untuk mendengar taman.</span></div>
 </section>
 
-<main class="daftar" id="daftar" aria-live="off">
+<main class="daftar" id="daftar" aria-live="off" tabindex="-1">
   <div class="judul"><h2>Ranting-ranting cerita</h2><span id="jumlah"></span></div>
   <div id="rumpun"></div>
   <div id="belum" class="bibit"></div>
 </main>
 
-<section class="daftar" id="main" aria-labelledby="mainJudul">
-  <div class="judul"><h2 id="mainJudul">Pojok main: Petak Umpet Semak</h2><span>asah logika sebentar</span></div>
-  <div class="rumpun gim">
+<section class="daftar" id="tentang" aria-labelledby="tentangJudul">
+  <div class="judul"><h2 id="tentangJudul">Tentang pengajar</h2><span>penjaga taman ini</span></div>
+  <div class="rumpun profil">
+    <div class="profilAtas">
+      <svg viewBox="0 0 84 84" aria-hidden="true"><circle cx="42" cy="42" r="40" fill="#dff0d6"/><path d="M14 84C14 62 26 54 42 54S70 62 70 84Z" fill="#2f8f83"/><path d="M36 54h12l-6 8Z" fill="#f6fbef"/><circle cx="42" cy="36" r="17" fill="#f1c9a5"/><path d="M24 34C23 20 32 14 43 14S62 21 60 34C55 28 50 25 42 25S29 28 24 34Z" fill="#2b2118"/><g fill="none" stroke="#1f1f1f" stroke-width="2.2"><circle cx="35" cy="38" r="5.5"/><circle cx="49" cy="38" r="5.5"/><path d="M40.5 38h3M29.5 37 25 35M54.5 37 59 35"/></g></svg>
+      <div><h3>Atsir Al Atsari, S.Pd.</h3><p>Asisten Dosen Program Studi Pendidikan Khusus, Universitas Sultan Ageng Tirtayasa</p></div>
+    </div>
+    <p>Praktisi pendidikan khusus yang bekerja di tiga ranah Tri Dharma: mengajar, meneliti, dan mengabdi. Berpengalaman memimpin organisasi disabilitas dari tingkat daerah sampai nasional, dengan minat pada penguatan data, kesadaran publik, dan advokasi hak penyandang disabilitas.</p>
+    <figure class="motto">
+      <blockquote>Usaha tidak selalu berbanding lurus dengan hasil. Maka, berusahalah sebaik mungkin, berdoalah, lalu bertawakal.</blockquote>
+      <figcaption><span>Usaha ≠ Hasil</span><span>Usaha + Doa = Tawakal</span></figcaption>
+    </figure>
+    <div class="angka">
+      <div><b id="aPesan">0</b><span>pesan mahasiswa di taman semester ini</span></div>
+      <div><b>6</b><span>mata kuliah yang didampingi</span></div>
+      <div><b>7</b><span>artikel ilmiah terbit, 2024–2026</span></div>
+      <div><b>3,94</b><span>IPK S1 dari skala 4,00</span></div>
+    </div>
+    <ul class="sorot">
+      <li>Wisudawan terbaik S1 mewakili FKIP Untirta</li>
+      <li>Peringkat 1 Pemuda Pelopor Kota Serang, bidang teknologi informasi</li>
+      <li>Penulis pertama di jurnal terakreditasi Sinta 3</li>
+    </ul>
+    <div class="profilAksi">
+      <button class="kecil" id="btnProfil" type="button">Lihat profil lengkap</button>
+      <a class="kecil tautMateri" href="https://drive.google.com/drive/folders/1ZFFyBywPXC1MqSlO_CeldE-8G5wv6xUq" target="_blank" rel="noopener">Buka materi perkuliahan</a>
+    </div>
+  </div>
+</section>
+
+<div id="cetakCv" class="hanyaCetak"></div>
+<section class="daftar" id="album" aria-labelledby="albumJudul">
+  <div class="judul"><h2 id="albumJudul">Album semester</h2><span>Ganjil 2026/2027 · jejak kegiatan mengajar</span></div>
+  <div class="polaroid" id="albumIsi"></div>
+  <p class="gundul" id="albumKosong" hidden></p>
+</section>
+<dialog id="dlgMain" class="mainDlg" aria-labelledby="mainJudul">
+ <div class="mainIsi">
+  <div class="dlg-kepala"><div><p class="langkahke">Pojok main · asah logika</p><h2 id="mainJudul">Petak Umpet Semak</h2></div><button class="tutupx" id="mainTutup" type="button" aria-label="Tutup">×</button></div>
+  <div class="pilih" role="group" aria-label="Pilih game">
+    <button type="button" data-main="semak" aria-pressed="true">Petak umpet</button>
+    <button type="button" data-main="seberang" aria-pressed="false">Rakit</button>
+    <button type="button" data-main="baris" aria-pressed="false">Barisan</button>
+    <button type="button" data-main="braille" aria-pressed="false">Braille</button>
+  </div>
+  <div class="gim" data-panel="semak">
     <p class="gimAturan" id="gAturan"></p>
     <div class="grup"><span id="lblGim">Tingkat</span>
       <div class="pilih" role="group" aria-labelledby="lblGim">
@@ -392,17 +631,94 @@ dialog.foto .tutupx{position:absolute;top:-14px;right:-8px;box-shadow:0 3px 0 va
     <p class="gimKabar" id="gKabar" role="status"></p>
     <ol class="riwayat" id="gRiwayat" aria-label="Tebakan sebelumnya"></ol>
   </div>
-</section>
-
-<section class="daftar" id="album" aria-labelledby="albumJudul">
-  <div class="judul"><h2 id="albumJudul">Album semester</h2><span>Ganjil 2026/2027 · jejak kegiatan mengajar</span></div>
-  <div class="polaroid" id="albumIsi"></div>
-  <p class="gundul" id="albumKosong" hidden></p>
-</section>
+  <div class="gim" data-panel="seberang" hidden>
+    <p class="gimAturan">Bantu Mbah Gading menyeberangkan Oyen, Bu Petok, dan sekarung jagung. Rakitnya hanya muat <b>satu</b> bawaan. Oyen tidak boleh ditinggal berdua dengan Bu Petok, dan Bu Petok tidak boleh ditinggal berdua dengan jagung.</p>
+    <div class="sungai"><div class="tepi" id="sKiri"></div><div class="air"><div class="rakit" id="sRakit"><span id="sGajah"></span><span id="sMuatan"></span></div></div><div class="tepi" id="sKanan"></div></div>
+    <p class="gimLabel">Ketuk bawaan di tepi tempat rakit berada untuk menaikkannya. Ketuk bawaan di rakit untuk menurunkannya.</p>
+    <div class="aksi"><button class="utama" id="sJalan" type="button">Seberangkan rakit</button><button class="kecil" id="sUlang" type="button">Ulangi</button></div>
+    <p class="gimKabar" id="sKabar" role="status"></p>
+  </div>
+  <div class="gim" data-panel="baris" hidden>
+    <p class="gimAturan">Penghuni taman berbaris mengikuti pola yang berulang. Siapa yang berdiri di tempat bertanda tanya?</p>
+    <p class="gimLabel" id="bBabak"></p>
+    <div class="barisan" id="bBaris"></div>
+    <div class="baki" id="bPilih"></div>
+    <div class="aksi"><button class="kecil" id="bUlang" type="button">Mulai dari babak 1</button></div>
+    <p class="gimKabar" id="bKabar" role="status"></p>
+  </div>
+  <div class="gim" data-panel="braille" hidden>
+    <p class="gimAturan">Pak Pos Jalak membawa surat bertuliskan huruf Braille. Tiap huruf memakai enam titik: titik 1, 2, 3 di kiri dan titik 4, 5, 6 di kanan. Huruf apa yang tertulis?</p>
+    <p class="gimLabel"><b>Polanya:</b> a sampai j hanya memakai titik 1, 2, 4, 5. Huruf k sampai t sama dengan a sampai j ditambah titik 3. Huruf u, v, x, y, z sama dengan a sampai e ditambah titik 3 dan 6.</p>
+    <p class="gimLabel" id="rBabak"></p>
+    <div class="selBaris" id="rSel"></div>
+    <div class="hurufPilih" id="rPilih"></div>
+    <details class="tabelB"><summary>Lihat tabel huruf Braille</summary><div id="rTabel"></div></details>
+    <div class="aksi"><button class="kecil" id="rUlang" type="button">Mulai dari babak 1</button></div>
+    <p class="gimKabar" id="rKabar" role="status"></p>
+  </div>
+  <button class="utama" id="mainLanjut" type="button" hidden>Lanjut ke game berikutnya</button>
+ </div>
+</dialog>
+<dialog id="dlgProfil" class="mainDlg" aria-labelledby="profilJudul">
+ <div class="mainIsi">
+  <div class="dlg-kepala"><div><p class="langkahke">Profil pengajar</p><h2 id="profilJudul">Atsir Al Atsari, S.Pd.</h2></div><button class="tutupx" id="profilTutup" type="button" aria-label="Tutup">×</button></div>
+  <div class="cv">
+   <section><h3>Ringkasan</h3><p>Praktisi pendidikan khusus yang berdedikasi membangun ekosistem inklusif melalui pengajaran, penelitian, dan pengabdian kepada masyarakat. Memiliki rekam jejak kepemimpinan di organisasi disabilitas tingkat daerah hingga nasional, serta pengalaman dalam kedosenan dan analisis kebijakan pendidikan inklusif.</p></section>
+   <section><h3>Motto hidup</h3><p>“Usaha tidak selalu berbanding lurus dengan hasil. Maka, berusahalah sebaik mungkin, berdoalah, lalu bertawakal.”</p><p class="rumus"><b>Usaha ≠ Hasil.</b> <b>Usaha + Doa = Tawakal.</b></p></section>
+   <section><h3>Pendidikan</h3><ul>
+    <li>S1 Pendidikan Khusus, Universitas Sultan Ageng Tirtayasa<small>2022–2026 · IPK 3,94 dari 4,00 · Wisudawan terbaik jenjang S1 mewakili FKIP pada wisuda gelombang IV</small></li>
+   </ul></section>
+   <section><h3>Pengalaman</h3><ul>
+    <li>Asisten Dosen, Program Studi Pendidikan Khusus, Universitas Sultan Ageng Tirtayasa<small>September 2025–sekarang · Mengajar di kelas, mendampingi pengerjaan tugas, merancang materi dan skema evaluasi, menilai hasil belajar, serta mengelola administrasi perkuliahan</small></li>
+    <li>Asisten Administrasi (magang), UPT Layanan Disabilitas Bidang Pendidikan Kota Yogyakarta<small>Januari–Februari 2026 · Mendukung penyelenggaraan pendidikan inklusi</small></li>
+    <li>Asisten Guru (magang), SD Negeri 1 Bantul<small>September–November 2025 · Asisten mengajar di kelas peserta didik autis dan peserta didik dengan hambatan penglihatan</small></li>
+    <li>Pegawai Magang, Subbagian Tata Usaha, Direktorat PK-PLK, Kementerian Pendidikan Dasar dan Menengah<small>Juli–Agustus 2025</small></li>
+   </ul></section>
+   <section><h3>Materi perkuliahan yang disusun</h3><p>Disusun untuk perkuliahan semester Ganjil 2026/2027. Ketuk nama mata kuliah untuk membuka foldernya.</p><ul>
+    <li><a href="https://drive.google.com/drive/folders/1dIOW3Iu0X-9wfpoOUqYAkYbNgj9U68-Z" target="_blank" rel="noopener">Bina Diri Anak dengan Hambatan Intelektual</a><small>Juknis presentasi observasi program bina diri · Instrumen penilaian antarkelompok</small></li>
+    <li><a href="https://drive.google.com/drive/folders/1FKSEmJQaM2S6tDLlzbXo3ZYN6rWbB4C_" target="_blank" rel="noopener">Literasi Anak Berkebutuhan Khusus</a><small>Mengenal PISA · Literasi sains dan pembelajarannya · Literasi membaca dan menulis serta pembelajarannya</small></li>
+    <li><a href="https://drive.google.com/drive/folders/1cyZNnKqmPwfuEx8DmePWoTaOE4-x-4Vk" target="_blank" rel="noopener">Pendidikan Anak dengan Hambatan Penglihatan</a><small>Konsep dasar anak dengan hambatan penglihatan · Juknis laporan observasi dan tugas</small></li>
+    <li><a href="https://drive.google.com/drive/folders/1P8c-y0XojbqnAan0Bv_NnH5JlQuTiDyh" target="_blank" rel="noopener">Pengantar Anak Berkebutuhan Khusus</a><small>Faktor penyebab ABK · Konsep dasar anak dengan hambatan penglihatan · Konsep dasar PDDI</small></li>
+    <li><a href="https://drive.google.com/drive/folders/1rM3tJiZqF8xyssKq6y7Nd6qjwynG5Wby" target="_blank" rel="noopener">Statistika Terapan Pendidikan</a><small>Statistik dan statistika · Jenis data · Distribusi frekuensi · Ukuran pemusatan, letak, dan variabilitas data · Persyaratan analisis parametrik · Uji t · Wilcoxon dan Mann-Whitney · Buku saku</small></li>
+   </ul><p><a class="kecil tautMateri" href="https://drive.google.com/drive/folders/1ZFFyBywPXC1MqSlO_CeldE-8G5wv6xUq" target="_blank" rel="noopener">Buka semua materi di Google Drive</a></p></section>
+   <section><h3>Publikasi ilmiah</h3><ul>
+    <li>Analisis Implementasi Kebijakan Permendikbudristek No. 48 Tahun 2023 pada Layanan UPT ULD-RC Kota Yogyakarta<small>Jurnal Ortopedagogia, 2026 · Penulis pertama · Sinta 3</small></li>
+    <li>Dari Situs ke Situs Web: Transformasi Media Pembelajaran Sejarah Lokal di Era Digital<small>Nirwasita: Jurnal Pendidikan Sejarah dan Ilmu Sosial, 2026 · Penulis pertama · Sinta 5</small></li>
+    <li lang="en">Effect of the GASING Method on Addition Speed in Students with Visual Impairments: A Single-Subject A-B-A Study<small lang="id">Jurnal Penelitian dan Pengembangan Pendidikan Luar Biasa, 2025 · Penulis pertama · Sinta 3</small></li>
+    <li>Analisis Manajemen Program Pelatihan Kewirausahaan untuk Penyandang Disabilitas di Workshop Disabilitas Serang<small>Transformasi: Jurnal Penelitian dan Pengembangan Pendidikan Non Formal Informal, 2025 · Penulis pertama · Sinta 4</small></li>
+    <li>Inovasi Teknologi Asistif Deteksi Arah, Jarak, Bahaya, Gmaps Berbasis Universal Design for Learning (UDL) untuk Orientasi Mobilitas Tunanetra<small>Jurnal UNIK: Pendidikan Luar Biasa, 2025 · Sinta 2</small></li>
+    <li>Edukasi Pendataan Disabilitas sebagai Upaya dalam Meningkatkan Pemerataan Hak Warga Disabilitas di Desa Pasanggrahan<small>Archive: Jurnal Pengabdian Kepada Masyarakat, 2025 · Penulis kedua · Sinta 5</small></li>
+    <li lang="en">Readiness, Opportunities and Conditions of Disability in Gaining Right to Work<small lang="id">Proceeding of International Conference on Learning Community, 2024 · Penulis pertama</small></li>
+   </ul></section>
+   <section><h3>Penghargaan dan beasiswa</h3><ul>
+    <li>Wisudawan terbaik jenjang S1 mewakili FKIP Untirta<small>Wisuda gelombang IV</small></li>
+    <li>Peringkat 1 Pemuda Pelopor bidang Teknologi Informasi<small>Dinas Pariwisata, Kepemudaan, dan Olahraga Kota Serang, 2025</small></li>
+    <li>Peringkat 2 Lomba Esai, Gebyar Kemahasiswaan Untidar<small>Universitas Tidar, tingkat nasional, 2025</small></li>
+    <li>Peringkat 2 Lomba Karya Tulis Ilmiah, Social History Competition Season 5<small>Universitas PGRI Mahadewa Indonesia, tingkat nasional, 2025</small></li>
+    <li>Peringkat 4 Mahasiswa Berprestasi FKIP Untirta<small>2025</small></li>
+    <li>Beasiswa Riset BAZNAS untuk pendanaan tugas akhir<small>Tingkat nasional, 2025</small></li>
+    <li>Beasiswa Karawang Cerdas<small>Pemerintah Kabupaten Karawang, 2024 dan 2025</small></li>
+    <li>Partisipasi Semesta Konten Pembelajaran Pendidikan Khusus<small>Kementerian Pendidikan Dasar dan Menengah, 2025</small></li>
+   </ul></section>
+   <section><h3>Organisasi dan kepemimpinan</h3><ul>
+    <li>Ketua Umum, Komunitas Mahasiswa Disabilitas<small>November 2024–April 2026</small></li>
+    <li>Sekretaris II, DPP Himpunan Difabel Muhammadiyah<small>Juni 2024–sekarang · sebelumnya Wakil Kepala Bidang Ekonomi Kreatif, 2023–2024</small></li>
+    <li>Sekretaris Umum I, DPC Pertuni Kota Serang<small>Januari 2023–Februari 2025</small></li>
+    <li>Sekretaris Umum I, Himpunan Pendidikan Khusus<small>Maret 2024–Januari 2025 · sebelumnya Kepala Bidang Pengabdian, 2023–2024</small></li>
+    <li>Ketua pelaksana beberapa program pengabdian<small>PkM Gerakan Jawara Inklusi dan PkM Bina Desa Inklusi (2024), Kelas Perdana SIBI (2025)</small></li>
+   </ul></section>
+   <section><h3>Keahlian</h3><p>Teknologi pendidikan, perencanaan acara, dan pengembangan chatbot AI. Terbiasa memakai ATLAS.ti untuk analisis data kualitatif dan WordPress untuk pengelolaan situs.</p></section>
+  </div>
+ </div>
+</dialog>
 <dialog id="dlgFoto" class="foto" aria-label="Foto kegiatan">
   <figure><img id="fotoBesar" alt=""><figcaption id="fotoKet"></figcaption></figure>
   <button class="tutupx" id="fotoTutup" type="button" aria-label="Tutup">×</button>
 </dialog>
+<div class="kakiAksi">
+  <button class="kecil" id="btnBagikan" type="button">Bagikan taman</button>
+  <button class="kecil" id="btnCetak" type="button">Cetak rangkuman</button>
+</div>
 <p class="kaki">Terima kasih sudah ikut merawat taman ini. Pesan bersifat anonim dan langsung tumbuh di taman. Pemilik taman tetap bisa menyembunyikan pesan yang tidak pantas. Pengirim yang memilih "cukup lewat email" tidak ditampilkan di sini.</p>
 
 <dialog id="dlgBaca" aria-labelledby="bacaJudul">
@@ -410,6 +726,7 @@ dialog.foto .tutupx{position:absolute;top:-14px;right:-8px;box-shadow:0 3px 0 va
     <p class="meta" id="bacaMeta"></p>
     <h2 id="bacaJudul"></h2>
     <p class="isipesan" id="bacaIsi"></p>
+    <div class="balas" id="bacaBalas" hidden></div>
     <div class="aksi"><button class="polos" type="button" id="bacaTutup">Tutup</button></div>
   </div>
 </dialog>
@@ -533,7 +850,7 @@ var PESAN=[
  {p:"sk",dari:"Pejuang Bab 4",teks:"Bimbingannya terjadwal dan catatannya jelas, jadi saya tahu harus merevisi bagian mana."},
  {p:"sk",dari:"H.R.",buah:true,teks:"Terima kasih sudah mengajari cara membaca jurnal dengan teliti. Skripsi saya jadi lebih terarah."},
  {p:"sk",dari:"Revisi Lagi",teks:"Saran: balasan untuk draf kalau bisa sedikit lebih cepat menjelang sidang."},
- {p:"bd",kelas:"A",dari:"Langkah Kecil",teks:"Observasi program bina diri membuka mata saya. Waktu presentasinya terasa kurang lama."},
+ {p:"bd",kelas:"A",dari:"Langkah Kecil",teks:"Observasi program bina diri membuka mata saya. Waktu presentasinya terasa kurang lama.",balas:"Terima kasih! Semester depan waktu presentasinya saya tambah."},
  {p:"bd",kelas:"B",dari:"T.W.",buah:true,teks:"Umpan balik untuk tugas kami detail dan membangun. Saya jadi tahu bagian mana yang harus diperbaiki."},
  {p:"bd",kelas:"A",dari:"D.",teks:"Kelasnya hangat. Semua boleh bertanya tanpa takut salah."},
  {p:"bd",kelas:"B",dari:"Sikat Gigi",teks:"Instrumen penilaian antarkelompoknya adil. Semoga contoh analisis tugasnya ditambah."},
@@ -1250,14 +1567,17 @@ function campur(dt){
   var a=tenang?1:Math.min(1,dt*2.2);
   for(k in T){if(typeof T[k]==="number")Sn[k]+=(T[k]-Sn[k])*a;else for(var i=0;i<3;i++)Sn[k][i]+=(T[k][i]-Sn[k][i])*a}
 }
+var dprMaks=2,ukurN=0,ukurJ=0;
 function bingkai(now){
   raf=0;if(!t0){t0=now;tLalu=now}
+  var selang=now-tLalu;
   var t=(now-t0)/1000,dt=Math.min(.05,(now-tLalu)/1000),i;tLalu=now;kini=t;
+  if(selang>4&&selang<400){ukurJ+=selang;if(++ukurN>=50){if(ukurJ/ukurN>40&&dprMaks>1)dprMaks=Math.max(1,dprMaks-.5);ukurN=ukurJ=0}}
   for(i=tweens.length-1;i>=0;i--){var w=tweens[i];if(w.t0===null)w.t0=now;var k=Math.min(1,(now-w.t0)/w.d);w.fn(w.e(k));if(k>=1){tweens.splice(i,1);w.res()}}
   if(!tenang)hidup(t,dt);
   cam.cx=tenang?camT:cam.cx+(camT-cam.cx)*(1-Math.exp(-dt*9));
   campur(dt);
-  var cw=kanvas.clientWidth,ch=kanvas.clientHeight,dpr=Math.min(2,window.devicePixelRatio||1),pw=Math.round(cw*dpr),ph=Math.round(ch*dpr);
+  var cw=kanvas.clientWidth,ch=kanvas.clientHeight,dpr=Math.min(dprMaks,window.devicePixelRatio||1),pw=Math.round(cw*dpr),ph=Math.round(ch*dpr);
   if(kanvas.width!==pw||kanvas.height!==ph){kanvas.width=pw;kanvas.height=ph}
   if(pw&&ph){
     var goy=tenang?0:Math.sin(t*.25)*.4;
@@ -1362,7 +1682,7 @@ function hujanDaun(){ // daun berguguran pelan saat pesan terkirim
   for(var i=0;i<18;i++){var d=document.createElement("i"),u=10+Math.random()*12,l=(3.5+Math.random()*3.5)*(.45+.55*tempo);d.className="gugur";
     d.style.cssText="left:"+Math.random()*100+"vw;width:"+u+"px;height:"+u+"px;background:"+W[i%W.length]+";animation-duration:"+l+"s;animation-delay:"+Math.random()*1.6+"s";
     d.style.setProperty("--dx",(Math.random()*160-80)+"px");d.style.setProperty("--pt",(Math.random()*720-360)+"deg");
-    document.body.appendChild(d);setTimeout(function(x){x.remove()},(l+1.8)*1000,d)}
+    (document.querySelector("dialog[open]")||document.body).appendChild(d);setTimeout(function(x){x.remove()},(l+1.8)*1000,d)}
 }
 /* ---------- Pojok main: Petak Umpet Semak (logika deduksi) ---------- */
 var GH=[{id:"kucing",nama:"Oyen"},{id:"kelinci",nama:"Cimol"},{id:"ayam",nama:"Bu Petok"},{id:"gajah",nama:"Mbah Gading"},{id:"jalak",nama:"Pak Pos Jalak"}];
@@ -1371,7 +1691,7 @@ function gimMulai(){
   var a=[],i,j,t;for(i=0;i<GIM.n;i++)a.push(i);
   for(i=a.length-1;i>0;i--){j=Math.floor(Math.random()*(i+1));t=a[i];a[i]=a[j];a[j]=t}
   GIM.rahasia=a;GIM.tebak=a.map(function(){return -1});GIM.ke=0;GIM.selesai=false;GIM.sibuk=false;
-  $("gRiwayat").innerHTML="";$("gSemak").className="semak";
+  $("gRiwayat").innerHTML="";$("gSemak").className="semak";$("mainLanjut").hidden=true;
   $("gAturan").innerHTML=(GIM.n===4?"Empat":"Lima")+" penghuni taman bersembunyi, satu di tiap semak. Tebak siapa di semak mana. Setelah mengintip, kamu hanya diberi tahu <b>berapa</b> hewan yang sudah di semak yang benar, bukan yang mana. Pakai petunjuk itu untuk tebakan berikutnya.";
   $("gKabar").textContent="Cimol: “Ayo cari kami! Susun dulu tebakanmu.”";
   gimGambar();
@@ -1405,7 +1725,7 @@ function gimIntip(){
     k.textContent=benar+" dari "+GIM.n+" pas";li.insertBefore(document.createTextNode("Intipan ke-"+GIM.ke),li.firstChild);li.appendChild(k);
     $("gRiwayat").insertBefore(li,$("gRiwayat").firstChild);
     if(benar===GIM.n){
-      GIM.selesai=true;gimGambar();$("gSemak").classList.add("menang");bunyi("denting");hujanDaun();
+      GIM.selesai=true;gimGambar();$("gSemak").classList.add("menang");mainMenang();
       $("gKabar").textContent="Ketemu semua dalam "+GIM.ke+" kali mengintip! "+(GIM.ke<=GIM.n?"Logikamu tajam sekali.":GIM.ke<=GIM.n+3?"Runut dan sabar, bagus!":"Akhirnya ketemu. Coba lagi dengan intipan lebih sedikit?");
     } else {
       gimGambar();
@@ -1418,6 +1738,147 @@ $("gUlang").addEventListener("click",gimMulai);
 [].forEach.call(document.querySelectorAll("[data-gim]"),function(b){b.addEventListener("click",function(){
   GIM.n=parseInt(b.getAttribute("data-gim"),10);tekan("[data-gim]","data-gim",b.getAttribute("data-gim"));gimMulai()})});
 gimMulai();
+
+/* ---------- Pojok main: jendela, pilihan game, dan lanjut ke game berikutnya ---------- */
+var MAIN=["semak","seberang","baris","braille"],MAINJ={semak:"Petak Umpet Semak",seberang:"Seberangkan Penghuni Taman",baris:"Lanjutkan Barisan",braille:"Surat Braille"},mainKini="semak";
+function mainPilih(id){
+  mainKini=id;tekan("[data-main]","data-main",id);
+  [].forEach.call(document.querySelectorAll("[data-panel]"),function(p){p.hidden=p.getAttribute("data-panel")!==id});
+  $("mainJudul").textContent=MAINJ[id];$("mainLanjut").hidden=true;
+}
+function mainMenang(){var nx=MAIN[(MAIN.indexOf(mainKini)+1)%MAIN.length];$("mainLanjut").textContent="Lanjut: "+MAINJ[nx];$("mainLanjut").hidden=false;bunyi("denting");hujanDaun()}
+function acakSusun(a){a=a.slice();for(var i=a.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1)),t=a[i];a[i]=a[j];a[j]=t}return a}
+function tombolHewan(id,label){var t=document.createElement("button");t.type="button";t.appendChild(svgPakai(id));t.setAttribute("aria-label",label);return t}
+
+/* Game 2: Seberangkan Penghuni Taman (perencanaan langkah) */
+var SBH=[{id:"kucing",nama:"Oyen"},{id:"ayam",nama:"Bu Petok"},{id:"jagung",nama:"jagung"}];
+var SB={pos:{},rakit:0,muat:null,sibuk:false,usai:false,n:0};
+$("sGajah").appendChild(svgPakai("gajah"));
+function sebMulai(){
+  SB.pos={kucing:0,ayam:0,jagung:0};SB.rakit=0;SB.muat=null;SB.sibuk=false;SB.usai=false;SB.n=0;
+  $("sRakit").classList.remove("kanan");$("mainLanjut").hidden=true;
+  $("sKabar").textContent="Mbah Gading: “Pelan-pelan saja. Siapa yang naik dulu?”";sebGambar();
+}
+function sebGambar(){
+  [$("sKiri"),$("sKanan")].forEach(function(w,sisi){
+    w.innerHTML="";
+    SBH.forEach(function(o){
+      if(SB.muat===o.id||SB.pos[o.id]!==sisi)return;
+      var b=tombolHewan(o.id,"Naikkan "+o.nama+" ke rakit");b.disabled=SB.sibuk||SB.usai||SB.rakit!==sisi;
+      b.addEventListener("click",function(){if(SB.muat)SB.pos[SB.muat]=sisi;SB.muat=o.id;bunyi("kilau");sebGambar()});
+      w.appendChild(b);
+    });
+  });
+  var m=$("sMuatan");m.innerHTML="";
+  if(SB.muat){var o=SBH.filter(function(x){return x.id===SB.muat})[0],b=tombolHewan(o.id,"Turunkan "+o.nama+" dari rakit");b.disabled=SB.sibuk||SB.usai;
+    b.addEventListener("click",function(){SB.pos[SB.muat]=SB.rakit;SB.muat=null;sebGambar();sebCek()});m.appendChild(b)}
+  $("sJalan").disabled=SB.sibuk||SB.usai;
+}
+function sebCek(){
+  if(SB.muat||SB.pos.kucing!==1||SB.pos.ayam!==1||SB.pos.jagung!==1)return;
+  SB.usai=true;sebGambar();mainMenang();
+  $("sKabar").textContent="Semua sampai dengan selamat dalam "+SB.n+" penyeberangan! "+(SB.n<=7?"Itu jumlah paling sedikit yang mungkin.":"Bisa lebih hemat? Paling sedikit 7 penyeberangan.");
+}
+function sebJalan(){
+  if(SB.sibuk||SB.usai)return;
+  SB.sibuk=true;SB.rakit=1-SB.rakit;$("sRakit").classList.toggle("kanan",SB.rakit===1);sebGambar();
+  $("sKabar").textContent="Rakit meluncur pelan… semoga yang ditinggal akur."; // jeda ketegangan sebelum hasil
+  setTimeout(function(){
+    SB.sibuk=false;SB.n++;
+    var tinggal=1-SB.rakit,ada=function(id){return SB.muat!==id&&SB.pos[id]===tinggal};
+    if(ada("kucing")&&ada("ayam")){SB.usai=true;$("sKabar").textContent="Aduh, Oyen menjahili Bu Petok saat ditinggal berdua. Ketuk Ulangi untuk mencoba lagi."}
+    else if(ada("ayam")&&ada("jagung")){SB.usai=true;$("sKabar").textContent="Yah, Bu Petok mematuki jagungnya saat ditinggal berdua. Ketuk Ulangi untuk mencoba lagi."}
+    else $("sKabar").textContent="Sampai di tepi "+(SB.rakit?"kanan":"kiri")+". Penyeberangan ke-"+SB.n+", semua aman.";
+    sebGambar();
+  },tenang?0:400+1500*tempo);
+}
+$("sJalan").addEventListener("click",sebJalan);$("sUlang").addEventListener("click",sebMulai);
+
+/* Game 3: Lanjutkan Barisan (pengenalan pola) */
+var POLA=[[0,1],[0,0,1],[0,1,2],[0,1,1,2],[0,1,2,1],[0,0,1,2,2],[0,1,2,2,1,0]];
+var BR={babak:0,salah:0,jawab:0,sibuk:false,seq:[],pilih:[]};
+function barMulai(){BR.babak=0;BR.salah=0;$("mainLanjut").hidden=true;$("bKabar").textContent="Cimol: “Cari bagian yang berulang, ya!”";barBabak()}
+function barBabak(){
+  var p=POLA[BR.babak],per=p.length,peta=acakSusun([0,1,2,3,4]),L=per*2+Math.floor(Math.random()*per),maks=Math.max.apply(null,p),i;
+  if(L>13)L=per*2;
+  BR.seq=[];for(i=0;i<L;i++)BR.seq.push(peta[p[i%per]]);BR.jawab=peta[p[L%per]];
+  BR.pilih=acakSusun(peta.slice(0,maks+2));BR.sibuk=false;barGambar(false);
+}
+function barGambar(terjawab){
+  var w=$("bBaris"),b=$("bPilih");w.innerHTML="";b.innerHTML="";
+  $("bBabak").textContent="Babak "+Math.min(BR.babak+1,POLA.length)+" dari "+POLA.length;
+  BR.seq.forEach(function(h){var s=document.createElement("span");s.appendChild(svgPakai(GH[h].id));s.setAttribute("aria-label",GH[h].nama);s.setAttribute("role","img");w.appendChild(s)});
+  var q=document.createElement("span");q.className="tanya"+(terjawab?" pas":"");q.id="bTanya";
+  if(terjawab)q.appendChild(svgPakai(GH[BR.jawab].id));else q.textContent="?";w.appendChild(q);
+  BR.pilih.forEach(function(h){var t=tombolHewan(GH[h].id,"Pilih "+GH[h].nama);t.disabled=BR.sibuk;t.addEventListener("click",function(){barJawab(h)});b.appendChild(t)});
+}
+function barJawab(h){
+  if(BR.sibuk)return;BR.sibuk=true;barGambar(false);$("bTanya").classList.add("goyang");
+  $("bKabar").textContent="Hmm… kita cocokkan dulu dengan barisannya…";
+  setTimeout(function(){
+    if(h!==BR.jawab){BR.salah++;BR.sibuk=false;barGambar(false);$("bKabar").textContent="Belum pas. Baca lagi barisannya dari depan dan cari bagian yang berulang.";return}
+    barGambar(true);BR.babak++;
+    if(BR.babak>=POLA.length){$("bKabar").textContent="Semua barisan selesai! "+(BR.salah?"Salah tebak "+BR.salah+" kali. Coba lagi tanpa salah?":"Tanpa salah sekali pun. Matamu jeli!");mainMenang();return}
+    $("bKabar").textContent="Tepat! Itu "+GH[BR.jawab].nama+". Barisan berikutnya sedikit lebih sulit.";bunyi("kilau");
+    setTimeout(barBabak,tenang?900:900+1300*tempo);
+  },tenang?0:400+1300*tempo);
+}
+$("bUlang").addEventListener("click",barMulai);
+/* Game 4: Surat Braille (membaca sandi enam titik) */
+var BRL={a:[1],b:[1,2],c:[1,4],d:[1,4,5],e:[1,5],f:[1,2,4],g:[1,2,4,5],h:[1,2,5],i:[2,4],j:[2,4,5],k:[1,3],l:[1,2,3],m:[1,3,4],n:[1,3,4,5],o:[1,3,5],p:[1,2,3,4],q:[1,2,3,4,5],r:[1,2,3,5],s:[2,3,4],t:[2,3,4,5],u:[1,3,6],v:[1,2,3,6],w:[2,4,5,6],x:[1,3,4,6],y:[1,3,4,5,6],z:[1,3,5,6]};
+var KATA4=["ayam","daun","buah","akar","biji","pagi","sore","oyen"],KATA5=["taman","tunas","bunga","siram","pohon","jalak","gajah","embun"];
+var RB={babak:0,salah:0,jawab:"",pilih:[],sibuk:false},RB_MAKS=10;
+function selBraille(hf,kecil){
+  var s=document.createElement("span"),t=BRL[hf];s.className="sel"+(kecil?" kecilS":"");
+  [1,4,2,5,3,6].forEach(function(n){var d=document.createElement("i");if(t.indexOf(n)>=0)d.className="ttk";s.appendChild(d)});
+  s.setAttribute("role","img");s.setAttribute("aria-label","Sel Braille, titik "+t.join(", "));return s;
+}
+(function(){var w=$("rTabel");Object.keys(BRL).forEach(function(hf){var s=document.createElement("span");s.appendChild(selBraille(hf,true));s.appendChild(document.createTextNode(hf));w.appendChild(s)})})();
+function brMulai(){RB.babak=0;RB.salah=0;$("mainLanjut").hidden=true;$("rKabar").textContent="Pak Pos Jalak: “Surat pertama, satu huruf saja dulu.”";brBabak()}
+function brBabak(){
+  var b=RB.babak,kol,lain;
+  if(b<7){kol=(b<4?"abcdefghij":"klmnopqrstuvwxyz").split("");RB.jawab=kol[Math.floor(Math.random()*kol.length)];lain=acakSusun(kol.filter(function(x){return x!==RB.jawab})).slice(0,3)}
+  else{kol=b<8?KATA4:KATA5;RB.jawab=kol[Math.floor(Math.random()*kol.length)];lain=acakSusun(kol.filter(function(x){return x!==RB.jawab})).slice(0,3)}
+  RB.pilih=acakSusun(lain.concat([RB.jawab]));RB.sibuk=false;brGambar();
+}
+function brGambar(){
+  var w=$("rSel"),p=$("rPilih");w.innerHTML="";p.innerHTML="";w.className="selBaris";
+  $("rBabak").textContent="Surat "+Math.min(RB.babak+1,RB_MAKS)+" dari "+RB_MAKS+(RB.babak>=7?" · sekarang satu kata utuh":RB.babak>=4?" · huruf k sampai z":" · huruf a sampai j");
+  RB.jawab.split("").forEach(function(hf){w.appendChild(selBraille(hf,false))});
+  RB.pilih.forEach(function(x){var t=document.createElement("button");t.type="button";t.textContent=x;t.disabled=RB.sibuk;t.addEventListener("click",function(){brJawab(x)});p.appendChild(t)});
+}
+function brJawab(x){
+  if(RB.sibuk)return;RB.sibuk=true;brGambar();$("rSel").classList.add("goyang");
+  $("rKabar").textContent="Pak Pos Jalak meraba titik-titiknya…";
+  setTimeout(function(){
+    if(x!==RB.jawab){RB.salah++;RB.sibuk=false;brGambar();$("rKabar").textContent="Belum pas. Hitung lagi titiknya: kiri 1, 2, 3 dan kanan 4, 5, 6.";return}
+    $("rSel").classList.remove("goyang");RB.babak++;
+    if(RB.babak>=RB_MAKS){$("rKabar").textContent="Semua surat terbaca! "+(RB.salah?"Salah baca "+RB.salah+" kali. Coba lagi tanpa melihat tabel?":"Tanpa salah sekali pun. Jarimu, eh, matamu teliti!");mainMenang();return}
+    $("rKabar").textContent="Tepat, itu “"+RB.jawab.toUpperCase()+"”. Surat berikutnya datang.";bunyi("kilau");
+    setTimeout(brBabak,tenang?900:900+1300*tempo);
+  },tenang?0:400+1300*tempo);
+}
+$("rUlang").addEventListener("click",brMulai);
+var MULAI={semak:gimMulai,seberang:sebMulai,baris:barMulai,braille:brMulai};
+[].forEach.call(document.querySelectorAll("[data-main]"),function(b){b.addEventListener("click",function(){mainPilih(b.getAttribute("data-main"))})});
+$("mainLanjut").addEventListener("click",function(){var nx=MAIN[(MAIN.indexOf(mainKini)+1)%MAIN.length];mainPilih(nx);MULAI[nx]()});
+$("btnMain").addEventListener("click",function(){$("dlgMain").showModal()});
+$("mainTutup").addEventListener("click",function(){$("dlgMain").close()});
+$("dlgMain").addEventListener("click",function(e){if(e.target===$("dlgMain"))$("dlgMain").close()});
+sebMulai();barMulai();brMulai();
+$("btnProfil").addEventListener("click",function(){$("dlgProfil").showModal()});
+$("btnBagikan").addEventListener("click",function(){
+  var url=location.href.split("#")[0],d={title:"Taman Kesan dan Pesan",text:"Titip kesan dan pesanmu di taman ini, nanti jadi satu ranting.",url:url};
+  if(navigator.share){navigator.share(d).catch(function(){});return}
+  if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(url).then(function(){roti("Tautan taman sudah disalin. Tinggal tempel di grup kelas.")},function(){roti("Salin tautan ini: "+url)});return}
+  roti("Salin tautan ini: "+url);
+});
+$("btnCetak").addEventListener("click",function(){
+  var w=$("cetakCv");if(!w.firstChild){var j=document.createElement("h2");j.textContent="Profil pengajar";w.appendChild(j);w.appendChild(document.querySelector("#dlgProfil .cv").cloneNode(true))}
+  window.print();
+});
+$("profilTutup").addEventListener("click",function(){$("dlgProfil").close()});
+$("dlgProfil").addEventListener("click",function(e){if(e.target===$("dlgProfil"))$("dlgProfil").close()});
 
 /* ---------- Album semester: foto dibaca otomatis dari folder foto/<semester>/ di repositori ---------- */
 var REPO="atsir-a2/pesan-kesan-pakatsir";
@@ -1437,10 +1898,10 @@ function muatAlbum(){
   if(!HIDUP){gambarAlbum([]);return}
   var kunci="album-"+SEMESTER_ID,simpan=null;
   try{simpan=JSON.parse(sessionStorage.getItem(kunci))}catch(e){}
-  if(simpan){gambarAlbum(simpan);return}
+  if(simpan&&simpan.length){gambarAlbum(simpan);return}
   fetch("https://api.github.com/repos/"+REPO+"/contents/foto/"+SEMESTER_ID).then(function(r){return r.ok?r.json():[]}).then(function(a){
     var d=(Array.isArray(a)?a:[]).filter(function(f){return f.type==="file"&&/\.(jpe?g|png|webp|gif)$/i.test(f.name)}).map(function(f){return f.name}).sort();
-    try{sessionStorage.setItem(kunci,JSON.stringify(d))}catch(e){}
+    if(d.length)try{sessionStorage.setItem(kunci,JSON.stringify(d))}catch(e){}
     gambarAlbum(d);
   }).catch(function(){gambarAlbum([])});
 }
@@ -1466,19 +1927,29 @@ function gambarDaftar(){
       bt.addEventListener("click",function(){$("btnTulis").click()});
       var tn=svgPakai("tunas");tn.setAttribute("viewBox","0 0 48 48");g.appendChild(tn);g.appendChild(el("span",null,"Pohon ini masih menunggu ranting pertamanya. Mau jadi yang pertama?"));g.appendChild(bt);s.appendChild(g);
     }
-    var k=el("div","kisi");
-    isi_.forEach(function(m){
+    var k=el("div","kisi"),batas=window.innerWidth<700?3:6,urutPesan=isi_.map(function(m,i){return {m:m,i:i}}).sort(function(a,b){return (b.m.buah?1:0)-(a.m.buah?1:0)||(b.m.milikmu?1:0)-(a.m.milikmu?1:0)||b.i-a.i}).map(function(o){return o.m});
+    urutPesan.forEach(function(m,ke){
       var c=el("article","kartu");c.style.setProperty("--w",p.warna);
       c.appendChild(el("p",null,m.teks));
       var mt=el("div","meta");mt.appendChild(el("b",null,m.dari));
       mt.appendChild(el("span",null,(m.kelas?"Kelas "+m.kelas+" · ":"")+(m.ket?m.ket+" · ":"")+SEM));
       if(m.buah)mt.appendChild(el("span","tanda pilihan","Pesan pilihan"));
       if(!HIDUP||m.milikmu)mt.appendChild(el("span","tanda",m.milikmu?(HIDUP?"Kirimanmu":"Kirimanmu, hanya di layar ini"):"Contoh"));
-      c.appendChild(mt);k.appendChild(c);
+      c.appendChild(mt);
+      if(m.balas){var bl_=el("div","balas");bl_.appendChild(el("b",null,"Balasan Atsir"));bl_.appendChild(document.createTextNode(m.balas));c.appendChild(bl_)}
+      if(ke>=batas)c.className+=" sisa";
+      k.appendChild(c);
     });
     if(n)s.appendChild(k);
+    if(n>batas){
+      if(!p.buka)k.classList.add("lipat");
+      var lh=el("button","kecil lihat",p.buka?"Tampilkan lebih sedikit":"Lihat semua "+n+" pesan");lh.type="button";lh.setAttribute("aria-expanded",p.buka?"true":"false");
+      lh.addEventListener("click",function(){p.buka=!p.buka;k.classList.toggle("lipat",!p.buka);lh.textContent=p.buka?"Tampilkan lebih sedikit":"Lihat semua "+n+" pesan";lh.setAttribute("aria-expanded",p.buka?"true":"false");if(!p.buka)s.scrollIntoView({block:"start"})});
+      s.appendChild(lh);
+    }
     w.appendChild(s);
   });
+  $("aPesan").textContent=total;
   $("jumlah").textContent=total?total+" pesan sudah tumbuh di taman ini":"Belum ada ranting. Taman ini menunggumu.";
   var bl=$("belum"),belum=urut(MK).filter(function(p){return !p.tanam});bl.innerHTML="";bl.hidden=!belum.length;
   if(belum.length){
@@ -1494,6 +1965,7 @@ function isiBaca(m){
   var p=mk(m.p);
   $("bacaMeta").textContent=p.nama+(m.kelas?" · Kelas "+m.kelas:"")+(m.ket?" ("+m.ket+")":"")+" · "+SEM+(m.milikmu?" · kirimanmu":HIDUP?"":" · contoh");
   $("bacaJudul").textContent="Dari "+m.dari;$("bacaIsi").textContent=m.teks;
+  var bb=$("bacaBalas");bb.hidden=!m.balas;bb.textContent="";if(m.balas){var bj_=document.createElement("b");bj_.textContent="Balasan Atsir";bb.appendChild(bj_);bb.appendChild(document.createTextNode(m.balas))}
 }
 async function bukaDaun(g,m){
   if(sibuk)return;isiBaca(m);daunAktif=g;
@@ -1608,32 +2080,36 @@ function kirim(m,keTaman,ke){ // mode hidup: simpan ke Google Sheet lewat Apps S
 var DILIHAT={};
 function kunciPesan(m){return m.p+"|"+m.dari+"|"+m.teks}
 function terima(h,animasi){ // pesan baru dari Sheet; yang sudah ada dilewati
-  var baru=0;
+  var baru=0,ubah=false;
   (h.pesan||[]).forEach(function(m){
-    var p=mk(m.p),k=kunciPesan(m);if(!p||DILIHAT[k])return;
-    DILIHAT[k]=1;PESAN.push(m);baru++;
+    var p=mk(m.p),k=kunciPesan(m),lama=DILIHAT[k];if(!p)return;
+    if(lama){if(lama!==1&&(lama.balas||"")!==(m.balas||"")){lama.balas=m.balas;ubah=true}return}
+    DILIHAT[k]=m;PESAN.push(m);baru++;
     if(siap){
       if(!p.tanam)tanam(p,false,animasi);
       var e=buatDaun(m,animasi&&!tenang);
       if(animasi&&!tenang){var t=titikCabang(p,p.n-1);kilauDi(p.x3+t.e[0],t.e[1],-1+t.e[2])}
     }else{if(!p.tanam){p.tanam=true;ditanam.push(p)}p.n=(p.n||0)+1}
   });
-  if(baru){gambarDaftar();minta()}
+  if(baru||ubah){gambarDaftar();minta()}
   return baru;
 }
 function muat(){ // mode hidup: ambil pesan yang tampil, lalu cek ulang berkala supaya ranting baru tumbuh langsung
   fetch(URL_SKRIP+"?semester="+encodeURIComponent(SEMESTER_ID)).then(function(r){return r.json()}).then(function(h){
-    terima(h,false);
-    setInterval(function(){
-      if(document.hidden)return;
-      fetch(URL_SKRIP+"?semester="+encodeURIComponent(SEMESTER_ID)).then(function(r){return r.json()}).then(function(h){
-        if(terima(h,true))roti("Ada ranting baru yang baru saja tumbuh di taman.");
-      }).catch(function(){});
-    },30000);
-  }).catch(function(){roti("Pesan belum bisa dimuat. Coba muat ulang halaman.")});
+    terima(h,false);tutupPembuka();
+    var mulaiCek=Date.now();
+    (function cekLagi(){ // 30 detik sekali selama 10 menit pertama, lalu 2 menit sekali, supaya ringan bagi Apps Script
+      setTimeout(function(){
+        if(document.hidden){cekLagi();return}
+        fetch(URL_SKRIP+"?semester="+encodeURIComponent(SEMESTER_ID)).then(function(r){return r.json()}).then(function(h){
+          if(terima(h,true))roti("Ada ranting baru yang baru saja tumbuh di taman.");
+        }).catch(function(){}).then(cekLagi);
+      },Date.now()-mulaiCek<600000?30000:120000);
+    })();
+  }).catch(function(){tutupPembuka();roti("Pesan belum bisa dimuat. Coba muat ulang halaman.")});
 }
 async function antar(m,keTaman){
-  if(keTaman&&HIDUP)DILIHAT[kunciPesan(m)]=1;
+  if(keTaman&&HIDUP)DILIHAT[kunciPesan(m)]=m;
   var p=mk(m.p),pohonBaru=false,beres=false,slot=null,hover=null;
   if(keTaman){
     if(!gl){PESAN.push(m);if(!p.tanam){p.tanam=true;ditanam.push(p)}p.n=(p.n||0)+1;gambarDaftar();roti(HIDUP?"Pesanmu terkirim dan langsung tumbuh di taman.":"Pesanmu masuk ke daftar contoh. Pesan ini belum benar-benar terkirim.");return}
@@ -1772,6 +2248,34 @@ var SUDUT={depan:{y:3.9,z:15.5,ty:3.0},atas:{y:11.5,z:14.5,ty:2.0}};
 })});
 try{var st=localStorage.getItem("taman-tempo");if(st==="0.35"){tempo=0.35;root.style.setProperty("--t",.5);tekan("[data-tempo]","data-tempo","0.35")}}catch(e){}
 
+/* ---------- Tampilan: ukuran teks, kontras, gerak (tersimpan di perangkat ini bila bisa) ---------- */
+function simpanAtur(k,v){try{localStorage.setItem("taman-"+k,v)}catch(e){}}
+function bacaAtur(k){try{return localStorage.getItem("taman-"+k)}catch(e){return null}}
+function aturTeks(v){root.setAttribute("data-teks",v);tekan("[data-teks]","data-teks",v);simpanAtur("teks",v);minta()}
+function aturKontras(v){root.setAttribute("data-kontras",v);tekan("[data-kontras]","data-kontras",v);simpanAtur("kontras",v)}
+function aturGerak(v){tenang=v==="tenang";root.setAttribute("data-gerak",v);tekan("[data-gerak]","data-gerak",v);simpanAtur("gerak",v);if(tenang)hentiCuaca();minta()}
+[["teks",aturTeks],["kontras",aturKontras],["gerak",aturGerak],["cuaca",function(v){aturCuaca(v)}]].forEach(function(q){
+  [].forEach.call(document.querySelectorAll("button[data-"+q[0]+"]"),function(b){b.addEventListener("click",function(){q[1](b.getAttribute("data-"+q[0]))})});
+});
+/* ---------- Cuaca: sesekali gerimis sebentar, lalu pelangi ---------- */
+var cuacaMode="otomatis",cuacaT=0,cuacaT2=0;
+(function(){var w=$("cuaca");for(var i=0;i<34;i++){var d=document.createElement("i");d.style.left=(Math.random()*108)+"%";d.style.animationDuration=(.7+Math.random()*.6)+"s";d.style.animationDelay=(-Math.random()*1.2)+"s";d.style.opacity=.4+Math.random()*.6;w.appendChild(d)}})();
+function hentiCuaca(){clearTimeout(cuacaT);clearTimeout(cuacaT2);$("cuaca").classList.remove("turun");$("pelangi").classList.remove("tampak")}
+function jadwalCuaca(tunggu){
+  clearTimeout(cuacaT);if(cuacaMode!=="otomatis"||tenang)return;
+  cuacaT=setTimeout(function(){
+    if(cuacaMode!=="otomatis"||tenang||document.hidden||document.querySelector("dialog[open]")){jadwalCuaca(30000);return}
+    $("cuaca").classList.add("turun");
+    cuacaT2=setTimeout(function(){
+      $("cuaca").classList.remove("turun");
+      if(waktu!=="malam"){$("pelangi").classList.add("tampak");cuacaT2=setTimeout(function(){$("pelangi").classList.remove("tampak")},26000)}
+      jadwalCuaca(200000+Math.random()*200000);
+    },24000);
+  },tunggu);
+}
+function aturCuaca(v){cuacaMode=v;tekan("[data-cuaca]","data-cuaca",v);simpanAtur("cuaca",v);if(v==="cerah")hentiCuaca();else jadwalCuaca(8000)}
+function tutupPembuka(){var p=$("pembuka");if(p)p.classList.add("usai")}
+
 /* ================= Mulai ================= */
 if(panggung.clientWidth<panggung.clientHeight*1.1){cam.z=13.5;SUDUT.depan.z=13.5;SUDUT.atas.z=13;cam.cx=camT=-3.1}
 var jam=new Date().getHours(),awal=jam>=5&&jam<15?"pagi":jam>=15&&jam<18?"sore":"malam";
@@ -1789,6 +2293,10 @@ if(!siap){kanvas.hidden=true;$("gagal").hidden=false}
 if(siap)PESAN.forEach(function(m){buatDaun(m,false)});
 gambarDaftar();aturWaktu(awal);
 if(HIDUP){$("capContoh").hidden=true;muat()}
+if(!HIDUP||!siap)setTimeout(tutupPembuka,700);setTimeout(tutupPembuka,7000);
+(function(){var a=bacaAtur("teks");if(a==="besar")aturTeks(a);a=bacaAtur("kontras");if(a==="tinggi")aturKontras(a);
+  a=bacaAtur("gerak");if(a==="tenang"||(tenang&&a!=="hidup"))aturGerak("tenang");
+  a=bacaAtur("cuaca");if(a==="cerah")aturCuaca("cerah");else jadwalCuaca(50000+Math.random()*50000)})();
 if(siap){
   ucap3(atsir,3.0,"Terima kasih sudah mampir ke tamanku!","Atsir Al Atsari, S.Pd.",0);
   if(window.IntersectionObserver)new IntersectionObserver(function(en){terlihat=en[0].isIntersecting;if(terlihat)minta()}).observe(panggung);
