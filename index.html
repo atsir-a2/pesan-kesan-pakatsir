@@ -451,25 +451,49 @@ a.kecil{display:inline-grid;place-items:center;text-decoration:none;color:var(--
 .alatTaman button[aria-pressed="true"]{background:#4f9d5b;color:#fff}
 .panggung.modeKebun{height:min(680px,calc(100svh - 16px))}
 .modeKebun #btnAks{display:none}
-.kebunHud{position:absolute;z-index:7;left:8px;right:8px;bottom:8px;max-width:620px;margin:0 auto;max-height:min(46%,260px);overflow:auto;overscroll-behavior:contain;background:color-mix(in srgb,var(--panel) 95%,transparent);color:var(--tinta);border:2px solid var(--garis);border-radius:20px;padding:10px 12px 12px;box-shadow:0 5px 0 var(--garis);display:grid;gap:8px;align-content:start}
-.khAtas{display:flex;align-items:center;gap:10px}
-.khAtas b{font-family:var(--display);font-size:1.15rem}
-.khBibit{font-weight:700;font-size:.85rem;background:var(--kertas);border:2px solid var(--garis);border-radius:99px;padding:2px 10px}
-.khAtas .tutupx{margin-left:auto;width:38px;height:38px}
-.khPetak{display:flex;gap:5px;overflow-x:auto;padding-bottom:2px}
-.khPetak button{flex:none;width:34px;height:34px;border-radius:10px;border:2px solid var(--garis);background:var(--kertas);font-weight:700;font-size:.82rem;cursor:pointer;position:relative}
+.kebunHud{position:absolute;z-index:7;left:8px;right:8px;bottom:8px;max-width:620px;margin:0 auto;max-height:min(46%,268px);overflow:auto;overscroll-behavior:contain;background:color-mix(in srgb,var(--panel) 96%,transparent);color:var(--tinta);border:2px solid var(--garis);border-radius:22px;padding:12px;box-shadow:0 5px 0 var(--garis);display:grid;gap:10px;align-content:start}
+.khAtas{display:flex;align-items:center;gap:8px;min-width:0}
+.khAtas svg{width:28px;height:28px;flex:none}
+.khAtas b{font-family:var(--display);font-size:1.15rem;line-height:1;white-space:nowrap}
+.khBibit{font-weight:700;font-size:.8rem;background:color-mix(in srgb,var(--tajuk1) 16%,var(--kertas));color:var(--tajuk2);border-radius:99px;padding:4px 10px;white-space:nowrap}
+:root[data-waktu="malam"] .khBibit{color:var(--tinta)}
+.khAtas .tutupx{margin-left:auto;width:36px;height:36px;flex:none}
+.khAjak{display:grid;grid-template-columns:1fr auto;gap:8px 12px;align-items:center;background:var(--kertas);border:2px dashed var(--garis);border-radius:16px;padding:10px 12px}
+.khAjak[hidden]{display:none}
+.khAjak p{margin:0;font-size:.88rem;line-height:1.4}
+.khAjak p b{display:block;font-size:.72rem;letter-spacing:.04em;text-transform:uppercase;color:var(--aksen)}
+.khAjak .utama{padding:9px 16px;font-size:.95rem}
+.khPetak{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:5px}
+.khPetak button{height:36px;min-width:0;border-radius:10px;border:2px solid var(--garis);background:var(--kertas);font-weight:700;font-size:.8rem;cursor:pointer;position:relative;padding:0}
 .khPetak button::after{content:"";position:absolute;right:3px;top:3px;width:7px;height:7px;border-radius:50%;background:var(--garis)}
 .khPetak .st-tumbuh::after{background:#4f9d5b}.khPetak .st-haus::after{background:#5bb4f0}.khPetak .st-layu::after{background:#b8a26a}
 .khPetak .st-pupuk::after{background:#f2c94c}.khPetak .st-panen::after{background:#d9483b}.khPetak .st-mati::after{background:#6b6258}
-.khPetak button[aria-pressed="true"]{border-color:var(--tajuk1);box-shadow:inset 0 0 0 1.5px var(--tajuk1)}
-.khStatus{margin:0;font-size:.9rem;line-height:1.45}
+.khPetak button[aria-pressed="true"]{border-color:var(--tajuk1);background:color-mix(in srgb,var(--tajuk1) 14%,var(--kertas));box-shadow:inset 0 0 0 1.5px var(--tajuk1)}
+.khKartu{display:grid;gap:6px;background:var(--kertas);border-radius:14px;padding:9px 12px}
+.khStatus{margin:0;font-size:.88rem;line-height:1.45}
+.khAir{display:grid;grid-template-columns:auto 1fr auto;gap:8px;align-items:center;font-size:.78rem;font-weight:700;color:var(--tinta2)}
+.khAir[hidden]{display:none}
+.khAir div{height:9px;border-radius:99px;background:var(--panel);border:1.5px solid var(--garis);overflow:hidden}
+.khAir i{display:block;height:100%;border-radius:99px;background:#5bb4f0;transition:width .6s}
+.khAir.kering i{background:#b8a26a}
 .khAksi{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.khAksi:empty{display:none}
 .khAksi .utama{padding:9px 20px;font-size:1rem}
-.khAksi .benih{border-left:6px solid var(--w)}
+.khAksi.benihGrid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr))}
+.khAksi .benih{border-left:6px solid var(--w);text-align:left;padding:8px 10px;min-height:44px;font-size:.84rem}
+.khAksi .benih small{display:block;font-weight:600;color:var(--tinta2);font-size:.74rem}
 .khAksi .kecil:disabled{opacity:.45;cursor:default}
-.khAjak{margin:0;font-weight:700;flex:1 1 100%}
 .khCara summary{cursor:pointer;font-weight:700;font-size:.84rem;color:var(--tinta2)}
 .khCara p{margin:6px 0 0;font-size:.84rem;line-height:1.45;color:var(--tinta2)}
+@media (max-width:620px){
+  .kebunHud{left:6px;right:6px;bottom:6px;padding:10px;gap:8px;border-radius:20px}
+  .khPetak{grid-template-columns:repeat(6,minmax(0,1fr))}
+  .khPetak button{height:32px}
+  .khAksi.benihGrid{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .khAksi:not(.benihGrid) button{flex:1 1 0}
+  .khAjak{grid-template-columns:1fr}
+  .khAjak .utama{justify-self:start}
+}
 .aksIsi{display:grid;gap:12px;width:100%}
 .aksBaris{display:grid;gap:6px}
 .aksBaris b{font-size:.95rem}
@@ -600,9 +624,20 @@ a.kecil{display:inline-grid;place-items:center;text-decoration:none;color:var(--
     <button type="button" id="btnAks">Aksesori</button>
   </div>
   <div class="kebunHud" id="kebunHud" hidden role="region" aria-label="Kebun bibit">
-    <div class="khAtas"><b>Kebun Bibit</b><span class="khBibit" id="khBibit"></span><button class="tutupx" id="khTutup" type="button" aria-label="Kembali ke taman">×</button></div>
+    <div class="khAtas">
+      <svg viewBox="0 0 48 48" aria-hidden="true"><use href="#h-tunas"/></svg>
+      <b>Kebun Bibit</b><span class="khBibit" id="khBibit"></span>
+      <button class="tutupx" id="khTutup" type="button" aria-label="Kembali ke taman">×</button>
+    </div>
+    <div class="khAjak" id="khAjak" hidden>
+      <p><b>Atsir</b>“Ayo isi pesan, supaya saya bisa beli bibit pohon yang kamu inginkan!”</p>
+      <button class="utama" id="khTulis" type="button">Tulis pesan</button>
+    </div>
     <div class="khPetak" id="khPetak" role="group" aria-label="Pilih petak"></div>
-    <p class="khStatus" id="khStatus" role="status" aria-live="polite"></p>
+    <div class="khKartu">
+      <p class="khStatus" id="khStatus" role="status" aria-live="polite"></p>
+      <div class="khAir" id="khAir" hidden><span>Air</span><div><i id="khAirI"></i></div><b id="khAirT"></b></div>
+    </div>
     <div class="khAksi" id="khAksi"></div>
     <details class="khCara"><summary>Cara bermain</summary><p>Setiap pesan mahasiswa di taman ini menjadi satu bibit, dan setiap panen memberi satu bibit tambahan. Tanam bibit di petak kosong, lalu siram. Air bertahan sekitar lima menit, dan tanaman hanya tumbuh selama tanahnya basah. Saat menjadi semak, tanaman butuh pupuk, yang hanya bisa diberikan pagi atau sore. Tanaman yang kering menjadi layu, dan mati bila dibiarkan layu 12 jam. Kebun ini tersimpan di perangkatmu sendiri.</p></details>
   </div>
@@ -941,14 +976,25 @@ a.kecil{display:inline-grid;place-items:center;text-decoration:none;color:var(--
         <label class="opsi" for="fTampil2"><input type="radio" name="tampil" id="fTampil2" value="email"><span><b>Cukup lewat email</b><br><small>Hanya dibaca pemilik taman, tidak tampil di taman.</small></span></label>
       </fieldset>
       <details class="usul">
-        <summary>Mau usul hewan baru untuk taman?</summary>
+        <summary>Mau usul hewan atau aksesori untuk taman?</summary>
         <div class="baris">
           <label for="fHewan">Hewan yang kamu usulkan</label>
           <select id="fHewan">
             <option value="">Tidak ada usul</option>
-            <option>Kura-kura</option><option>Kancil</option><option>Kucing anggora</option><option>Orang utan</option><option>Bebek</option><option>Burung cenderawasih</option>
+            <option>Anjing</option><option>Badak jawa</option><option>Bebek</option><option>Burung cenderawasih</option><option>Harimau sumatra</option><option>Kambing</option><option>Kancil</option><option>Komodo</option><option>Kucing anggora</option><option>Kuda</option><option>Kura-kura</option><option>Orang utan</option><option>Panda</option><option>Pinguin</option><option>Rusa</option><option>Sapi</option>
+            <option value="__lain">Lainnya, tulis sendiri</option>
           </select>
-          <small>Usul tidak terhubung dengan pesanmu. Pemilik taman yang memilih hewan mana yang akan tinggal di sini.</small>
+          <input type="text" id="fHewanLain" maxlength="40" autocomplete="off" placeholder="Misalnya: lumba-lumba" aria-label="Hewan lain yang kamu usulkan" hidden>
+          <small>Hewan dari daftar langsung datang ke taman. Usul di luar daftar dibaca pemilik taman dan bisa ditambahkan nanti. Usulmu tidak terhubung dengan pesanmu.</small>
+        </div>
+        <div class="baris">
+          <label for="fAks">Aksesori yang kamu usulkan</label>
+          <select id="fAks">
+            <option value="">Tidak ada usul</option>
+            <option value="__lain">Tulis sendiri</option>
+          </select>
+          <input type="text" id="fAksLain" maxlength="40" autocomplete="off" placeholder="Misalnya: kacamata renang, syal rajut" aria-label="Aksesori yang kamu usulkan" hidden>
+          <small>Aksesori yang sudah ada bisa langsung dipakai lewat tombol Aksesori di taman.</small>
         </div>
       </details>
     </section>
@@ -1738,6 +1784,7 @@ function langkah(n,dt,t){ // hewan berjalan-jalan di wilayahnya, berhenti sebent
   });
   if(n.belalai){n.belalai.r[2]=Math.sin(t*1.1+n.fase)*.1;n.belalai.r[0]=Math.sin(t*.7+n.fase)*.09}
   if(n.sayapKecil)n.sayapKecil.forEach(function(s){s.r[2]=s.k*Math.max(0,Math.sin(t*.9+n.fase))*.25});
+  if(n.ekorG)n.ekorG.r[1]=Math.sin(t*(gerak?6:2.4)+n.fase)*(gerak?.4:.25);
 }
 function hidup(t,dt){
   daunL.forEach(function(n){
@@ -1910,14 +1957,148 @@ function kembalikanHewan(){ // semua hewan kembali ke tempat asalnya
   minta();
 }
 
+
+/* ================= Hewan usulan mahasiswa: datang ke taman bila diusulkan ================= */
+function cincinBadan(g,col,by,rz,rx,ry,z,tebal){var f=Math.sqrt(Math.max(.05,1-(z/rz)*(z/rz)));return B(g,G.cincin,col,[0,by,z],[rx*f*1.02,ry*f*1.02,tebal||.35])}
+function hewan4(o){ // hewan berkaki empat dari bentuk sederhana; tanpa mata, hidung, dan mulut
+  var g=N(),s=o.s||1,c=H(o.w),c2=H(o.w2||o.w),L=o.kaki||.32,P=o.panjang||1,Lb=o.lebar||1,by=L+.24*s,rx=.3*s*Lb,ry=.26*s,rz=.44*s*P,kT=o.kakiT||1;
+  g.bay=bayangan(g,.42*s*Math.max(P,Lb));
+  B(g,G.bola,c,[0,by,0],[rx,ry,rz]);
+  if(o.w2)B(g,G.bola,c2,[0,by-.07*s,.03*s],[rx*.8,ry*.78,rz*.82]);
+  if(o.belang)[-.6,-.3,0,.3,.58].forEach(function(f){cincinBadan(g,H(o.belang),by,rz,rx,ry,f*rz,.13)});
+  if(o.lipatan)[-.35,.25].forEach(function(f){cincinBadan(g,H(o.lipatan),by,rz,rx,ry,f*rz,.28)});
+  if(o.pita)cincinBadan(g,H(o.pita),by,rz,rx,ry,.3*rz,.5);
+  if(o.bercak)[[.62,.55,.15],[-.7,.4,-.25],[.1,.92,-.45],[-.25,.85,.35],[.75,.1,-.55],[-.55,.2,.55]].forEach(function(q){B(g,G.bola,H(o.bercak),[q[0]*rx,by+q[1]*ry,q[2]*rz],[.11*s,.06*s,.13*s])});
+  g.kaki=[[-1,1],[1,1],[-1,-1],[1,-1]].map(function(q){var l=N(null,null,[q[0]*.17*s*Lb,L+.04,q[1]*.26*s*P]);add(g,l);
+    B(l,G.tabung,o.kakiW?H(o.kakiW):c,[0,-L/2,0],[.07*s*kT,L+.08,.07*s*kT]);if(o.kuku)B(l,G.tabung,H(o.kuku),[0,-L+.02,0],[.075*s*kT,.05,.075*s*kT]);return l});
+  var lh=o.leher||0;
+  if(lh){B(g,G.tabung,c,[0,by+.12*s+lh/2,rz*.82],[.11*s,lh+.22*s,.11*s],[.35,0,0]);if(o.surai)for(var m=0;m<5;m++)B(g,G.kotak,H(o.surai),[0,by+.2*s+m*lh*.24,rz*.62+m*.05],[.04,.12*s,.07*s],[.35,0,0])}
+  var kr=o.kr||.2,kp=N(null,null,[0,by+.17*s+lh,rz*.9+lh*.35]);add(g,kp);g.kepala=kp;
+  B(kp,G.bola,o.wk?H(o.wk):c,[0,0,0],[kr*s,kr*.92*s,kr*1.05*s]);
+  if(o.moncong)B(kp,G.bola,o.wm?H(o.wm):c2,[0,-.05*s,kr*.85*s],[kr*.55*s,kr*.45*s,kr*.7*s*o.moncong]);
+  if(o.bulu)B(kp,G.bola,c,[0,-.14*s,-.06*s],[kr*1.2*s,kr*.75*s,kr*s]);
+  if(o.janggut)B(kp,G.kerucut,c,[0,-.2*s,kr*.9*s],[.05*s,.14*s,.05*s],[3.14,0,0]);
+  var tl=o.telinga,tc=o.wt?H(o.wt):c;
+  if(tl)g.telinga=[-1,1].map(function(k){var e=N(null,null,[k*kr*.62*s,kr*.62*s,-.02]);add(kp,e);
+    if(tl==="runcing")B(e,G.kerucut,tc,[0,.08*s,0],[.07*s,.18*s,.05*s]);
+    else if(tl==="bulat")B(e,G.bola,tc,[0,.035*s,0],[.075*s,.075*s,.04*s]);
+    else if(tl==="jatuh"){e.p=[k*kr*.9*s,0,0];B(e,G.bola,tc,[k*.03*s,-.08*s,0],[.05*s,.14*s,.08*s],[0,0,k*.25])}
+    e.k=k;e.b=tl==="runcing"?-k*.12:0;e.r[2]=e.b;return e});
+  var tdk=o.tanduk,tw_=H(o.wTanduk||"#d9c9a3");
+  if(tdk==="rusa")[-1,1].forEach(function(k){B(kp,G.tabung,tw_,[k*.09*s,.25*s,-.02],[.022*s,.28*s,.022*s],[0,0,-k*.35]);B(kp,G.tabung,tw_,[k*.15*s,.31*s,.04],[.018*s,.14*s,.018*s],[.6,0,-k*.9]);B(kp,G.tabung,tw_,[k*.13*s,.4*s,-.03],[.016*s,.12*s,.016*s],[-.3,0,k*.3])});
+  if(tdk==="kambing")[-1,1].forEach(function(k){B(kp,G.kerucut,tw_,[k*.07*s,.2*s,-.05*s],[.04*s,.2*s,.04*s],[-.8,0,-k*.15])});
+  if(tdk==="sapi")[-1,1].forEach(function(k){B(kp,G.kerucut,tw_,[k*.2*s,.12*s,0],[.04*s,.16*s,.04*s],[0,0,-k*1.1])});
+  if(tdk==="badak")B(kp,G.kerucut,tw_,[0,.05*s,kr*1.35*s],[.06*s,.2*s,.06*s],[.45,0,0]);
+  var ek=N(null,null,[0,by+.06*s,-rz*.95]);add(g,ek);g.ekorG=ek;var ec=o.we?H(o.we):c;
+  if(o.ekor==="lebat")B(ek,G.bola,ec,[0,.1*s,-.14*s],[.1*s,.11*s,.22*s],[.6,0,0]);
+  else if(o.ekor==="bola")B(ek,G.bola,ec,[0,.02,-.03*s],[.07*s,.07*s,.07*s]);
+  else if(o.ekor==="tipis")B(ek,G.tabung,ec,[0,-.06*s,-.13*s],[.026*s,.32*s,.026*s],[1.1,0,0]);
+  else if(o.ekor==="naik")B(ek,G.tabung,ec,[0,.08*s,-.1*s],[.03*s,.3*s,.03*s],[-.9,0,0]);
+  else if(o.ekor==="surai")B(ek,G.bola,ec,[0,-.15*s,-.1*s],[.07*s,.24*s,.08*s],[.35,0,0]);
+  return g;
+}
+function burungDarat(o){ // bebek dan pinguin
+  var g=N(),c=H(o.w),s=o.s||1;g.bay=bayangan(g,.32*s);
+  if(o.tegak){B(g,G.bola,c,[0,.36*s,0],[.22*s,.34*s,.2*s]);B(g,G.bola,H(o.w2),[0,.32*s,.08*s],[.16*s,.27*s,.14*s])}
+  else{B(g,G.bola,c,[0,.26*s,0],[.24*s,.2*s,.32*s]);B(g,G.kerucut,c,[0,.36*s,-.3*s],[.08*s,.16*s,.06*s],[-1.1,0,0])}
+  g.sayapKecil=[-1,1].map(function(k){var sy=B(g,G.bola,H(o.wSayap||o.w),[k*(o.tegak?.21:.22)*s,(o.tegak?.38:.28)*s,-.02],[.05*s,(o.tegak?.2:.12)*s,(o.tegak?.09:.2)*s]);sy.k=k;return sy});
+  var kp=N(null,null,o.tegak?[0,.78*s,.02]:[0,.5*s,.22*s]);add(g,kp);g.kepala=kp;
+  B(kp,G.bola,H(o.wk||o.w),[0,0,0],[.15*s,.15*s,.15*s]);
+  B(kp,o.tegak?G.kerucut:G.kotak,H("#f39a2b"),o.tegak?[0,-.02,.17*s]:[0,-.03*s,.16*s],o.tegak?[.04*s,.1*s,.04*s]:[.12*s,.035*s,.13*s],o.tegak?[1.57,0,0]:[0,0,0]);
+  [-1,1].forEach(function(k){B(g,G.kotak,H("#f39a2b"),[k*.08*s,.015,.04*s],[.08*s,.03,.12*s])});
+  g.patuk=!o.tegak;return g;
+}
+function buatKura(){
+  var g=N(),k=H("#7a5a32"),c=H("#7d9a55");g.bay=bayangan(g,.45);
+  g.kaki=[[-1,1],[1,1],[-1,-1],[1,-1]].map(function(q){var l=N(null,null,[q[0]*.26,.1,q[1]*.27]);add(g,l);B(l,G.bola,c,[q[0]*.04,-.04,0],[.08,.08,.08]);return l});
+  B(g,G.bola,k,[0,.18,0],[.36,.22,.44]);B(g,G.bola,H("#c9b98a"),[0,.1,0],[.35,.07,.43]);
+  [[0,.39,0],[.18,.34,.17],[-.18,.34,.17],[.18,.34,-.17],[-.18,.34,-.17],[0,.36,.27],[0,.36,-.27]].forEach(function(q){B(g,G.bola,H("#9c7a48"),q,[.1,.03,.1])});
+  var kp=N(null,null,[0,.2,.5]);add(g,kp);g.kepala=kp;B(kp,G.bola,c,[0,0,0],[.12,.11,.14]);B(g,G.tabung,c,[0,.16,.42],[.07,.14,.07],[1.2,0,0]);
+  var ek=N(null,null,[0,.12,-.45]);add(g,ek);g.ekorG=ek;B(ek,G.kerucut,c,[0,0,-.05],[.05,.12,.05],[-1.57,0,0]);
+  return g;
+}
+function buatKomodo(){
+  var g=hewan4({w:"#7d7560",w2:"#958a6f",kaki:.15,panjang:1.6,lebar:.85,s:1,moncong:1.5,kr:.17,ekor:""});
+  B(g.ekorG,G.kerucut,H("#7d7560"),[0,-.06,-.42],[.13,.85,.12],[-1.5,0,0]);g.bay.s=[.65,1,.85];
+  g.kaki.forEach(function(l,i){l.r[2]=(i%2?1:-1)*.5});return g;
+}
+function buatOrangutan(){
+  var g=N(),c=H("#b4552a"),c2=H("#8e3f1e");g.bay=bayangan(g,.45);
+  B(g,G.bola,c,[0,.42,0],[.3,.36,.26]);[[.2,.5,-.1],[-.22,.55,-.05],[0,.62,-.2]].forEach(function(q){B(g,G.bola,c2,q,[.14,.16,.12])});
+  g.kaki=[-1,1].map(function(k){var l=N(null,null,[k*.32,.68,.04]);add(g,l);B(l,G.tabung,c,[0,-.32,.04],[.07,.66,.07],[.1,0,k*-.08]);B(l,G.bola,c2,[0,-.66,.08],[.08,.06,.1]);return l});
+  [-1,1].forEach(function(k){B(g,G.bola,c,[k*.14,.1,.12],[.1,.09,.14])});
+  var kp=N(null,null,[0,.86,.06]);add(g,kp);g.kepala=kp;B(kp,G.bola,c,[0,0,0],[.2,.19,.18]);B(kp,G.bola,H("#c98a63"),[0,-.03,.12],[.15,.13,.08]);
+  return g;
+}
+function buatCenderawasih(){
+  var g=N(),c=H("#7a3b2a");g.bay=bayangan(g,.3);
+  B(g,G.bola,c,[0,.3,0],[.15,.15,.22]);B(g,G.bola,H("#3f8f4d"),[0,.32,.13],[.1,.1,.08]);
+  var kp=N(null,null,[0,.48,.15]);add(g,kp);g.kepala=kp;B(kp,G.bola,H("#f2cc4d"),[0,0,0],[.11,.11,.11]);B(kp,G.kerucut,H("#c9c4b6"),[0,-.02,.12],[.03,.08,.03],[1.57,0,0]);
+  var ek=N(null,null,[0,.3,-.18]);add(g,ek);g.ekorG=ek;
+  [-.3,-.15,0,.15,.3].forEach(function(a,i){B(ek,G.kerucut,H(i%2?"#f7c531":"#f39a2b"),[a*.4,-.05,-.28],[.05,.6,.03],[-1.95,0,a])});
+  [-1,1].forEach(function(k){B(ek,G.tabung,H("#2b2118"),[k*.06,-.15,-.45],[.008,.7,.008],[-2.0,0,k*.15])});
+  g.sayapKecil=[-1,1].map(function(k){var s=B(g,G.bola,H("#5a2a1c"),[k*.14,.32,-.02],[.04,.1,.16]);s.k=k;return s});
+  [-1,1].forEach(function(k){B(g,G.tabung,H("#8a6a45"),[k*.05,.08,0],[.012,.16,.012])});
+  return g;
+}
+var SPESIES={
+ "Anjing":{nm:"Doni, anjing penjaga taman",bunyi:"sapa",buat:function(){return hewan4({w:"#c9894c",w2:"#f1dcc0",telinga:"jatuh",wt:"#8a5a36",moncong:1,ekor:"naik",s:.95})},top:1.25,ucap:["Guk! Terima kasih sudah mengusulkan aku.","Aku jaga taman siang dan malam.","Lempar ranting? Eh, jangan ranting pesan, ya!","Guk guk! Ekorku bergoyang kalau ada pesan baru."],angkat:"Guk! Aku diangkat!",taruh:"Guk, tempat yang bagus.",j:{s:.85}},
+ "Badak jawa":{nm:"Bima, badak jawa",bunyi:"gajah",buat:function(){return hewan4({w:"#8d9196",telinga:"runcing",tanduk:"badak",wTanduk:"#c9c4b6",moncong:1.2,s:1.3,kaki:.26,lebar:1.15,lipatan:"#7a7e83",ekor:"tipis",kuku:"#5c5f63"})},top:1.6,ucap:["Terima kasih sudah mengusulkan aku. Aku langka sekali.","Culaku cuma satu, tapi semangatku banyak.","Aku suka berkubang di lumpur. Segar!","Jaga hutan Ujung Kulon, ya."],angkat:"Waduh, aku berat sekali, lho!",taruh:"Fiuh, tanahnya empuk.",j:{s:1.1}},
+ "Bebek":{nm:"Kwek, bebek kecil",bunyi:"ayam",buat:function(){return burungDarat({w:"#fff6dc",wSayap:"#f4e8c8",s:1})},top:1.0,ucap:["Kwek! Terima kasih sudah mengusulkan aku.","Kwek kwek, jalan berbaris, yuk!","Ada kolam di sini? Aku mau berenang.","Kwek! Hujan itu hari kesukaanku."],angkat:"Kwek kwek! Aku terbang!",taruh:"Kwek, mendarat mulus.",j:{s:.75},jalan:{v:.6,f:12,amp:.03,goy:.16}},
+ "Burung cenderawasih":{nm:"Elok, cenderawasih dari Papua",bunyi:"kicau",buat:buatCenderawasih,top:.9,ucap:["Terima kasih sudah mengusulkan aku, burung dari Papua.","Bulu ekorku indah, kan?","Orang menyebutku burung surga.","Aku suka menari untuk teman-temanku."],angkat:"Hati-hati dengan bulu ekorku!",taruh:"Terima kasih, buluku tetap rapi.",j:{s:.55},jalan:{v:.45,f:10,amp:.05,goy:.05,ria:.18}},
+ "Harimau sumatra":{nm:"Loreng, harimau sumatra",bunyi:"sapa",buat:function(){return hewan4({w:"#e98a3a",w2:"#fff3e0",telinga:"bulat",belang:"#2b2118",ekor:"tipis",s:1.1,kaki:.3,kr:.23})},top:1.4,ucap:["Grr, terima kasih sudah mengusulkan aku.","Tenang, aku cuma mau tidur siang.","Lorengku tidak ada yang sama, seperti sidik jarimu.","Jaga hutan Sumatra, ya. Itu rumahku."],angkat:"Grr! Pelan-pelan, ya.",taruh:"Grr… di sini teduh.",j:{s:1}},
+ "Kambing":{nm:"Embek, kambing kampung",bunyi:"sapa",buat:function(){return hewan4({w:"#ece6da",tanduk:"kambing",wTanduk:"#9a8f7d",telinga:"jatuh",moncong:1,ekor:"bola",kuku:"#555",s:.9,janggut:true})},top:1.2,ucap:["Mbeek! Terima kasih sudah mengusulkan aku.","Rumputnya enak di sini.","Aku pandai memanjat, lho.","Mbeek! Jangan lupa makan sayur."],angkat:"Mbeek! Aku digendong!",taruh:"Mbeek, rumput baru!",j:{s:.85}},
+ "Kancil":{nm:"Cerdik, si kancil",bunyi:"kelinci",buat:function(){return hewan4({w:"#b0773f",w2:"#f1dcc0",telinga:"runcing",moncong:1,ekor:"bola",we:"#ffffff",s:.7,kaki:.36,kakiT:.6})},top:1.0,ucap:["Terima kasih sudah mengusulkan aku. Aku si kancil yang cerdik.","Mau tebak-tebakan? Aku jagonya.","Buaya bisa kuakali, ujian juga bisa kamu taklukkan.","Belajar yang rajin, biar makin cerdik."],angkat:"Eh, aku ditangkap? Cerdik juga kamu.",taruh:"Hop, aman.",j:{s:.65},jalan:{v:.8,f:9,amp:.08,goy:.02,ria:.12}},
+ "Komodo":{nm:"Kodo, komodo dari Flores",bunyi:"trenggiling",buat:buatKomodo,top:.9,ucap:["Terima kasih sudah mengusulkan aku dari Pulau Komodo.","Aku kadal terbesar di dunia, lho.","Jalanku pelan, tapi pasti.","Jaga Taman Nasional Komodo, ya."],angkat:"Hati-hati, ekorku panjang!",taruh:"Hangat juga tanah di sini.",j:{s:.8},jalan:{v:.3,f:6,amp:.01,goy:.08}},
+ "Kucing anggora":{nm:"Kapas, kucing anggora",bunyi:"kucing",buat:function(){return hewan4({w:"#f6f0e6",telinga:"runcing",ekor:"lebat",s:.75,kaki:.2,bulu:true,kr:.24})},top:1.05,ucap:["Meong, terima kasih sudah mengusulkan aku.","Buluku harus disisir tiap hari.","Oyen temanku, tapi aku lebih lembut. Meong.","Mrrr… pesan-pesan ini menenangkan."],angkat:"Meong! Hati-hati buluku.",taruh:"Meong, empuk sekali.",j:{s:.8}},
+ "Kuda":{nm:"Lari, kuda poni",bunyi:"sapa",buat:function(){return hewan4({w:"#8a5a36",telinga:"runcing",moncong:1.6,kaki:.5,kakiT:.85,s:1.05,leher:.24,surai:"#3a2a1c",ekor:"surai",we:"#3a2a1c",kuku:"#2b2118"})},top:1.8,ucap:["Hiii! Terima kasih sudah mengusulkan aku.","Mau kubonceng keliling taman?","Lariku cepat, tapi aku tetap sabar menunggu pesanmu.","Hiii! Semangat kuliahnya!"],angkat:"Hiii! Kakiku tidak menapak!",taruh:"Hiii, tempat yang lapang.",j:{s:.9},jalan:{v:.7,f:8,amp:.04,goy:.02}},
+ "Kura-kura":{nm:"Lambat, kura-kura",bunyi:"trenggiling",buat:buatKura,top:.85,ucap:["Terima kasih sudah mengusulkan aku. Aku sampai juga, pelan-pelan.","Pelan-pelan asal sampai.","Rumahku selalu kubawa ke mana-mana.","Tidak apa lambat, yang penting tidak berhenti."],angkat:"Wah, aku terbang lebih cepat dari jalanku!",taruh:"Terima kasih, perjalananku jadi singkat.",j:{s:.7},jalan:{v:.15,f:5,amp:.01,goy:.03}},
+ "Orang utan":{nm:"Uta, orang utan Kalimantan",bunyi:"sapa",buat:buatOrangutan,top:1.45,ucap:["Terima kasih sudah mengusulkan aku dari Kalimantan.","Aku suka memanjat pohon pesan ini.","Lenganku panjang, bisa memeluk banyak teman.","Jaga hutan, ya. Itu rumahku."],angkat:"Hooo! Biasanya aku yang bergelantungan.",taruh:"Hooo, terima kasih.",j:{s:.85},jalan:{v:.4,f:5,amp:.05,goy:.08}},
+ "Panda":{nm:"Bambu, panda gembul",bunyi:"sapa",buat:function(){return hewan4({w:"#f4f4ef",kakiW:"#22262b",telinga:"bulat",wt:"#22262b",ekor:"bola",s:1.15,kaki:.22,lebar:1.15,kr:.24,pita:"#22262b"})},top:1.35,ucap:["Terima kasih sudah mengusulkan aku. Ada bambu?","Makan, tidur, makan lagi. Hidup yang indah.","Aku gembul, tapi lincah, lho.","Belajarnya jangan lupa istirahat, seperti aku."],angkat:"Oh, aku berat, lho!",taruh:"Hmm, enak buat rebahan.",j:{s:1}},
+ "Pinguin":{nm:"Salju, pinguin",bunyi:"ayam",buat:function(){return burungDarat({w:"#22262b",w2:"#ffffff",tegak:true,s:1})},top:1.3,ucap:["Terima kasih sudah mengusulkan aku. Panas, ya!","Aku rindu salju.","Jalanku goyang-goyang, tapi aku sampai.","Aku burung yang tidak bisa terbang, tapi jago berenang."],angkat:"Akhirnya aku terbang juga!",taruh:"Hore, mendarat!",j:{s:.85},jalan:{v:.35,f:9,amp:.02,goy:.22}},
+ "Rusa":{nm:"Timor, rusa timor",bunyi:"kelinci",buat:function(){return hewan4({w:"#a86f3d",w2:"#f1dcc0",tanduk:"rusa",telinga:"runcing",moncong:1,ekor:"bola",we:"#ffffff",s:.95,kaki:.46,kakiT:.7,leher:.16})},top:1.75,ucap:["Terima kasih sudah mengusulkan aku.","Tandukku tumbuh lagi setiap tahun.","Aku suka padang rumput yang luas.","Melompat tinggi, seperti cita-citamu."],angkat:"Hati-hati dengan tandukku!",taruh:"Rumputnya segar di sini.",j:{s:.85}},
+ "Sapi":{nm:"Belang, sapi perah",bunyi:"gajah",buat:function(){return hewan4({w:"#f4f1ea",bercak:"#2b2b2b",tanduk:"sapi",telinga:"bulat",moncong:1.2,wm:"#e8b4a8",ekor:"tipis",kuku:"#3a3330",s:1.2,kaki:.34})},top:1.55,ucap:["Mooo! Terima kasih sudah mengusulkan aku.","Susu segar, siapa mau?","Aku santai, mengunyah sambil berpikir.","Mooo! Jangan lupa minum susu."],angkat:"Mooo! Kok aku melayang?",taruh:"Mooo, rumput baru.",j:{s:1.05}}
+};
+var TEMPAT_TAMU=[[1.6,1.9],[8.2,2.0],[14.8,1.9],[-3.4,6.1],[3.2,6.3],[10.2,6.4],[17.2,6.2],[21.6,2.1]],TAMU={},tamuN=0;
+function tambahTamu(nama,diam){
+  var sp=SPESIES[nama];if(!sp||TAMU[nama]||tamuN>=TEMPAT_TAMU.length||!siap)return null;
+  var n=sp.buat(),tp=TEMPAT_TAMU[tamuN++],x=tp[0],z=tp[1],J=sp.jalan||{v:.5,f:7,amp:.04,goy:.05},idx="t:"+nama;
+  var h={n:n,p:[x,0,z],ry:Math.random()*2-1,r:sp.r||(.55+(sp.j.s||1)*.25),off:sp.top*.5,top:sp.top,nama:sp.nm,ucap:sp.ucap,angkat:sp.angkat,taruh:sp.taruh,suara:sp.bunyi,idx:idx};
+  var ps=null;try{ps=(JSON.parse(bacaAtur("hewan"))||{})[idx]}catch(e){}
+  if(ps&&isFinite(ps[0])&&isFinite(ps[1])){x=ps[0];z=ps[1]}
+  n.p=[x,0,z];n.r=[0,h.ry,0];n.fase=tamuN*1.7;add(adegan,n);
+  var w={x0:x-1.6,x1:x+1.6,z0:Math.max(.9,z-1.1),z1:Math.min(7,z+1.1),v:J.v,f:J.f,amp:J.amp,goy:J.goy,ria:J.ria||0,mode:"diam",sampai:kini+2+Math.random()*3,yaw:h.ry,ph:0,hop:0,roll:0,tx:x,tz:z,bicara:0};
+  n.w=w;pejalan.push(n);HUNI.push(h);TAMU[nama]=h;
+  h.jangkar={par:n.kepala||n,p:[0,(n.kepala?.18:sp.top*.6)*(sp.j.s||1)+.02,0],s:sp.j.s||1};
+  if(nama==="Kura-kura")h.jangkar.p=[0,.36,0];if(nama==="Orang utan")h.jangkar.p=[0,.18,0];if(nama==="Burung cenderawasih")h.jangkar.p=[0,.1,0];
+  var sa={};try{sa=JSON.parse(bacaAtur("aksesori"))||{}}catch(e){}if(sa[idx])pasangAks(h,sa[idx]);
+  klik.push({n:n,r:h.r,off:h.off,h:h,fn:function(){
+    bunyi(h.suara);w.bicara=kini+3.8;
+    if(!tenang){var pw=posDunia(n,h.top*.55);kilauDi(pw[0],pw[1],pw[2],true);tw(700,function(k){n.loncat=Math.sin(k*Math.PI)*.4},lin)}
+    ucap3(n,h.top,ucapBerikut(h),h.nama+" · usulan mahasiswa",4200)}});
+  if(!diam&&!tenang){n.s=[.01,.01,.01];n.p[1]=1.2;tw(900,function(k){var s=Math.min(1,k*1.25);n.s=[s,s,s];n.p[1]=1.2*(1-k)*(1-k)+Math.abs(Math.sin(k*Math.PI*2))*.15*(1-k)}).then(function(){n.s=[1,1,1];n.p[1]=0;var pw=posDunia(n,.2);kilauDi(pw[0],pw[1],pw[2])})}
+  minta();return h;
+}
+function terimaTamu(peta,diam){ // hewan dengan usulan terbanyak datang lebih dulu
+  if(!peta||!siap)return;
+  var baru=Object.keys(peta).filter(function(k){return SPESIES[k]&&!TAMU[k]&&peta[k]>0}).sort(function(a,b){return peta[b]-peta[a]||a.localeCompare(b)}),datang=[];
+  baru.forEach(function(k){if(tambahTamu(k,diam))datang.push(k)});
+  if(datang.length&&!diam)roti("Hewan baru datang ke taman: "+datang.map(function(k){return k.toLowerCase()}).join(", ")+". Terima kasih atas usulnya!");
+}
+
 /* ---------- Aksesori: dipasang di kepala, ikut bergerak bersama kepalanya ---------- */
-var AKS=[{id:"",nama:"Tanpa"},{id:"toga",nama:"Topi toga"},{id:"pesta",nama:"Topi pesta"},{id:"pita",nama:"Pita"},{id:"mahkota",nama:"Mahkota bunga"},{id:"caping",nama:"Caping"}];
-var UCAP_AKS={"":"Lega, kepalaku ringan lagi.",toga:"Pakai toga! Doakan aku cepat wisuda, ya.",pesta:"Hore, ada pesta di taman!",pita:"Cantik, kan? Pitanya serasi.",mahkota:"Mahkota bunga, segar sekali.",caping:"Siap berkebun! Capingnya pas."};
+var AKS=[{id:"",nama:"Tanpa"},{id:"toga",nama:"Topi toga"},{id:"pita",nama:"Pita"},{id:"mahkota",nama:"Mahkota bunga"},{id:"caping",nama:"Caping"},{id:"emas",nama:"Mahkota emas"},{id:"baret",nama:"Baret"},{id:"peci",nama:"Peci"},{id:"rajut",nama:"Topi rajut"},{id:"koki",nama:"Topi koki"},{id:"matahari",nama:"Bunga matahari"}];
+var UCAP_AKS={"":"Lega, kepalaku ringan lagi.",toga:"Pakai toga! Doakan aku cepat wisuda, ya.",pita:"Cantik, kan? Pitanya serasi.",mahkota:"Mahkota bunga, segar sekali.",caping:"Siap berkebun! Capingnya pas.",emas:"Lihat, aku jadi raja taman hari ini!",baret:"Baret ini bikin aku terlihat seperti seniman.",peci:"Rapi dan gagah dengan peci.",rajut:"Hangat sekali topi rajut ini.",koki:"Siap memasak! Mau dibuatkan apa?",matahari:"Bunga matahari, selalu menghadap cahaya."};
 function buatAks(id){
   var a=N(),hit=H("#22262b");
   if(id==="toga"){B(a,G.tabung,hit,[0,.05,0],[.17,.1,.17]);B(a,G.kotak,hit,[0,.11,0],[.46,.035,.46],[0,.785,0]);B(a,G.bola,W_.kuning,[0,.135,0],[.03,.02,.03]);
     B(a,G.kotak,W_.kuning,[.17,.06,.0],[.015,.11,.015]);B(a,G.bola,W_.kuning,[.17,-.01,0],[.032,.05,.032])}
-  else if(id==="pesta"){B(a,G.kerucut,H("#f27aa6"),[0,.18,0],[.15,.36,.15]);B(a,G.tabung,W_.kuning,[0,.09,0],[.12,.03,.12]);B(a,G.tabung,H("#7fb7ff"),[0,.2,0],[.075,.03,.075]);B(a,G.bola,W_.putih,[0,.37,0],[.05,.05,.05])}
+  else if(id==="emas"){var em=H("#f2c14e");B(a,G.tabung,em,[0,.05,0],[.17,.09,.17]);for(var q=0;q<5;q++){var qa=q/5*6.283;B(a,G.kerucut,em,[Math.cos(qa)*.15,.13,Math.sin(qa)*.15],[.045,.09,.045])}B(a,G.bola,H("#d9483b"),[0,.06,.17],[.035,.035,.02]).em=.2}
+  else if(id==="baret"){B(a,G.bola,H("#8e2b3a"),[.02,.04,0],[.21,.06,.2],[0,0,-.15]);B(a,G.bola,H("#8e2b3a"),[0,.1,0],[.025,.03,.025])}
+  else if(id==="peci"){B(a,G.tabung,H("#22262b"),[0,.05,0],[.17,.1,.15]);B(a,G.tabung,H("#3a3f46"),[0,.005,0],[.172,.012,.152])}
+  else if(id==="rajut"){var rj=H("#3f8f8a");B(a,G.bola,rj,[0,.02,0],[.19,.13,.19]);B(a,G.tabung,H("#5fb0aa"),[0,0,0],[.195,.05,.195]);B(a,G.bola,W_.putih,[0,.16,0],[.055,.055,.055])}
+  else if(id==="koki"){B(a,G.tabung,W_.putih,[0,.07,0],[.13,.14,.13]);B(a,G.bola,W_.putih,[0,.17,0],[.19,.1,.19])}
+  else if(id==="matahari"){var mt=N(null,null,[.13,.05,.04],null,[0,0,-.3]);add(a,mt);for(var q2=0;q2<10;q2++){var qb=q2/10*6.283;B(mt,G.bola,H("#f7c531"),[Math.cos(qb)*.075,Math.sin(qb)*.075,0],[.04,.022,.012],[0,0,qb])}B(mt,G.bola,H("#6b4a2c"),[0,0,.01],[.045,.045,.02])}
   else if(id==="pita"){var m=H("#e8485a");B(a,G.kerucut,m,[.03,.03,0],[.07,.13,.05],[0,0,-1.57]);B(a,G.kerucut,m,[.21,.03,0],[.07,.13,.05],[0,0,1.57]);B(a,G.bola,H("#c93348"),[.12,.03,0],[.04,.04,.04]);a.r=[0,0,-.25]}
   else if(id==="mahkota"){for(var i=0;i<6;i++){var s=i/6*6.283,x=Math.cos(s)*.18,z=Math.sin(s)*.16;B(a,G.bola,i%2?W_.putih:H("#ff9fb8"),[x,.03,z],[.055,.04,.055]);B(a,G.bola,W_.kuning,[x,.06,z],[.022,.02,.022]);
     if(i%2)B(a,G.bola,W_.hijau,[Math.cos(s+.5)*.2,.02,Math.sin(s+.5)*.18],[.05,.015,.03],[0,-s,0])}}
@@ -1925,7 +2106,7 @@ function buatAks(id){
   return a;
 }
 function pasangAks(h,id){
-  if(!h.jangkar)return;if(h.aksN){lepas(h.aksN);h.aksN=null}h.aks=id||"";if(!id)return;
+  if(!h.jangkar)return;if(h.aksN){lepas(h.aksN);h.aksN=null}if(!AKS.some(function(a){return a.id===id}))id="";h.aks=id||"";if(!id)return;
   var J=h.jangkar,a=buatAks(id),r=a.r;a.p=J.p.slice();a.s=[J.s,J.s,J.s];a.r=r;add(J.par,a);h.aksN=a;minta();
 }
 var aksTerakhir=null;
@@ -2075,7 +2256,7 @@ function masukKebun(){
   if(panggung.getBoundingClientRect().top<-10||panggung.getBoundingClientRect().bottom>innerHeight+10)panggung.scrollIntoView({block:"start",behavior:tenang?"auto":"smooth"});
   camT=KB.x;tw(1300,function(k){cam.y=A.y+(T.y-A.y)*k;cam.z=A.z+(T.z-A.z)*k;cam.ty=A.ty+(T.ty-A.ty)*k;cam.tz=A.tz+(T.tz-A.tz)*k});
   $("btnKebun").setAttribute("aria-pressed","true");$("btnKebun").textContent="Kembali ke taman";
-  kebunPilih=-1;kebunKabar=bibitAda()?"":"Atsir: “Ayo isi pesan, supaya saya bisa beli bibit pohon yang kamu inginkan!”";kebunKunci="";kebunSegarkan();minta();
+  kebunPilih=-1;kebunKabar="";kebunKunci="";kebunSegarkan();minta();
 }
 function keluarKebun(tanpaKamera){
   if(!kebunOn)return;kebunOn=false;kebunPilih=-1;
@@ -2106,19 +2287,19 @@ function kebunAksi(apa,i,j){
 }
 function kebunHud(){
   var now=Date.now(),bb=bibitAda(),i=kebunPilih,p=i>=0?KEBUN.petak[i]:null,st=i>=0?statusPetak(p,now):"";
-  $("khBibit").textContent=bb+" bibit";
+  $("khBibit").textContent=bb+" bibit";$("khBibit").setAttribute("aria-label",bb+" bibit tersedia");
   var w=$("khPetak");
   if(w.children.length!==KBP.length){w.innerHTML="";KBP.forEach(function(_,k){var b=document.createElement("button");b.type="button";b.addEventListener("click",function(){pilihPetak(k)});w.appendChild(b)})}
   [].forEach.call(w.children,function(b,k){var q=KEBUN.petak[k],s=statusPetak(q,now);b.className="st-"+s;b.textContent=k+1;b.setAttribute("aria-pressed",String(k===i));
     b.setAttribute("aria-label","Petak "+(k+1)+": "+(q?NAMA_J[q.j]+", "+(q.mati?"mati":TAHAP[q.tahap])+", "+LABEL_ST[s]:"kosong"))});
   // keterangan petak terpilih
   var teks="";
-  if(i<0)teks="Ketuk salah satu petak di kebun, atau nomor petak di atas.";
-  else if(!p)teks="Petak "+(i+1)+" masih kosong."+(bb?" Pilih bibit yang mau ditanam:":"");
+  if(i<0)teks=bb?"Ketuk salah satu petak di kebun, atau nomor petak di atas.":"Bibit habis. Setiap pesan baru di taman menjadi satu bibit.";
+  else if(!p)teks="Petak "+(i+1)+" masih kosong."+(bb?" Pilih bibit yang mau ditanam:":" Bibitnya belum ada.");
   else if(p.mati)teks="Petak "+(i+1)+" · "+NAMA_J[p.j]+" sudah mati karena terlalu lama kering. Cabut supaya petaknya bisa ditanami lagi.";
   else{
     var air=airLevel(p,now),sisa=Math.max(0,Math.ceil(TAHAP_DT[p.tahap]-p.prog));
-    teks="Petak "+(i+1)+" · "+NAMA_J[p.j]+", "+TAHAP[p.tahap]+" · air "+Math.round(air*100)+"%. ";
+    teks="Petak "+(i+1)+" · "+NAMA_J[p.j]+", "+TAHAP[p.tahap]+". ";
     if(st==="layu")teks+="Layu karena kering. Siram segera, atau mati bila dibiarkan 12 jam.";
     else if(st==="pupuk")teks+="Butuh pupuk sebelum tumbuh lagi. Pupuk paling bagus diberikan pagi atau sore.";
     else if(st==="panen")teks+="Buahnya sudah matang. Panen untuk dapat 1 bibit tambahan.";
@@ -2126,15 +2307,19 @@ function kebunHud(){
     else teks+="Buah berikutnya muncul dalam sekitar "+(sisa>90?Math.ceil(sisa/60)+" menit":sisa+" detik")+" bila airnya cukup.";
   }
   $("khStatus").textContent=(kebunKabar?kebunKabar+" ":"")+teks;
+  $("khAjak").hidden=bb>0;
+  var ab=$("khAir"),tampakAir=!!p&&!p.mati;ab.hidden=!tampakAir;
+  if(tampakAir){var av=airLevel(p,now);$("khAirI").style.width=Math.round(av*100)+"%";$("khAirT").textContent=Math.round(av*100)+"%";ab.classList.toggle("kering",av<=0)}
   // tombol aksi: hanya dibuat ulang bila pilihannya berubah, supaya fokus papan ketik tidak hilang
   var kunci=[i,st,bb,kebunYakin,p&&p.tahap].join("|");if(kunci===kebunKunci)return;kebunKunci=kunci;
-  var ak=$("khAksi");ak.innerHTML="";
+  var ak=$("khAksi");ak.innerHTML="";ak.className="khAksi";
   function tb(t,fn,kelas,mati){var b=document.createElement("button");b.type="button";b.className=kelas||"kecil";b.textContent=t;b.disabled=!!mati;b.addEventListener("click",fn);ak.appendChild(b);return b}
   if(i<0)return;
   if(!p){
-    if(!bb){var aj=document.createElement("p");aj.className="khAjak";aj.textContent="Atsir: “Ayo isi pesan, supaya saya bisa beli bibit pohon yang kamu inginkan!”";ak.appendChild(aj);
-      tb("Tulis pesan",function(){$("btnTulis").click()},"utama");return}
-    Object.keys(HARGA).forEach(function(j){var b=tb(NAMA_J[j]+" · "+HARGA[j],function(){kebunAksi("tanam",i,j)},"kecil benih",HARGA[j]>bb);b.style.setProperty("--w",JENIS[j].c1);b.setAttribute("aria-label","Tanam "+NAMA_J[j]+", harga "+HARGA[j]+" bibit")});
+    if(!bb)return;
+    ak.className="khAksi benihGrid";
+    Object.keys(HARGA).forEach(function(j){var b=tb(NAMA_J[j],function(){kebunAksi("tanam",i,j)},"kecil benih",HARGA[j]>bb);var sm=document.createElement("small");sm.textContent=HARGA[j]+" bibit";b.appendChild(sm);
+      b.style.setProperty("--w",JENIS[j].c1);b.setAttribute("aria-label","Tanam "+NAMA_J[j]+", harga "+HARGA[j]+" bibit")});
     return;
   }
   if(!p.mati){tb("Siram",function(){kebunAksi("siram",i)},"utama");
@@ -2422,6 +2607,8 @@ $("mainTutup").addEventListener("click",function(){$("dlgMain").close()});
 $("dlgMain").addEventListener("click",function(e){if(e.target===$("dlgMain"))$("dlgMain").close()});
 sebMulai();barMulai();brMulai();
 $("btnProfil").addEventListener("click",function(){$("dlgProfil").showModal()});
+(function(){var s=$("fAks");AKS.forEach(function(a){if(!a.id)return;var o=document.createElement("option");o.textContent=a.nama;s.insertBefore(o,s.lastElementChild)});
+  [["fHewan","fHewanLain"],["fAks","fAksLain"]].forEach(function(q){$(q[0]).addEventListener("change",function(){var lain=$(q[0]).value==="__lain";$(q[1]).hidden=!lain;if(lain)$(q[1]).focus()})})})();
 
 /* ---------- Voting kelas: satu nama satu suara, hasil per kelas A sampai D ---------- */
 var VOTING=[],KELAS_V=["A","B","C","D"],votingSiap=false,votingT=0,SUARAKU={},ALAT="";
@@ -2735,7 +2922,7 @@ $("formTulis").addEventListener("submit",function(e){
   kirim(m,keTaman).then(function(h){
     tb.disabled=false;tombolAkhir();
     if(!h||!h.ok){$("fSalahKirim").textContent=(h&&h.sebab)||"Pesan belum terkirim. Coba lagi.";$("fSalahKirim").hidden=false;return}
-    dlgTulis.close();$("formTulis").reset();$("hitungan").textContent="0 / 500";pilihMk=null;
+    dlgTulis.close();$("formTulis").reset();$("fHewanLain").hidden=true;$("fAksLain").hidden=true;$("hitungan").textContent="0 / 500";pilihMk=null;
     panggung.scrollIntoView({block:"nearest",behavior:tenang?"auto":"smooth"});
     antar(m,keTaman);
   });
@@ -2743,7 +2930,7 @@ $("formTulis").addEventListener("submit",function(e){
 function kirim(m,keTaman,ke){ // mode hidup: simpan ke Google Sheet lewat Apps Script
   if(!HIDUP)return Promise.resolve({ok:true});
   var ctl=window.AbortController?new AbortController():null,t=setTimeout(function(){if(ctl)ctl.abort()},30000);
-  var isi={semester:SEMESTER_ID,p:m.p,kelas:m.kelas||"",ket:m.ket||"",dari:m.dari,teks:m.teks,tampil:keTaman?"taman":"email",usul:$("fHewan").value,situs:$("fSitus").value};
+  var isi={semester:SEMESTER_ID,p:m.p,kelas:m.kelas||"",ket:m.ket||"",dari:m.dari,teks:m.teks,tampil:keTaman?"taman":"email",usul:$("fHewan").value==="__lain"?$("fHewanLain").value.trim():$("fHewan").value,usulAks:$("fAks").value==="__lain"?$("fAksLain").value.trim():$("fAks").value,situs:$("fSitus").value};
   return fetch(URL_SKRIP,{method:"POST",headers:{"Content-Type":"text/plain;charset=utf-8"},body:JSON.stringify(isi),signal:ctl?ctl.signal:undefined})
     .then(function(r){return r.json()})
     .catch(function(){return {ok:false,sebab:"Tidak tersambung. Periksa internetmu, lalu coba lagi."}})
@@ -2768,6 +2955,7 @@ function terima(h,animasi){ // pesan baru dari Sheet; yang sudah ada dilewati
       if(animasi&&!tenang){var t=titikCabang(p,p.n-1);kilauDi(p.x3+t.e[0],t.e[1],-1+t.e[2])}
     }else{if(!p.tanam){p.tanam=true;ditanam.push(p)}p.n=(p.n||0)+1}
   });
+  if(h.hewan)terimaTamu(h.hewan,!animasi);
   if(baru||ubah){gambarDaftar();minta()}
   return baru;
 }
@@ -2988,6 +3176,7 @@ function jdDaftar(){
 $("btnJam").addEventListener("click",function(){$("dlgJam").showModal();jdDaftar()});
 $("btnKebun").addEventListener("click",function(){if(kebunOn)keluarKebun();else masukKebun()});
 $("khTutup").addEventListener("click",function(){keluarKebun()});
+$("khTulis").addEventListener("click",function(){$("btnTulis").click()});
 document.addEventListener("keydown",function(e){if(e.key==="Escape"&&kebunOn&&!document.querySelector("dialog[open]"))keluarKebun()});
 $("btnAks").addEventListener("click",function(){gambarAks();aksTerakhir=null;$("dlgAks").showModal()});
 $("aksTutup").addEventListener("click",function(){$("dlgAks").close()});
@@ -3052,7 +3241,7 @@ if(!siap){kanvas.hidden=true;$("gagal").hidden=false;$("alatTaman").hidden=true}
 ["bd","sk","st"].forEach(function(id){var p=mk(id);if(siap)tanam(p,false);else{p.tanam=true;ditanam.push(p);p.n=PESAN.filter(function(m){return m.p===id}).length}});
 if(siap)PESAN.forEach(function(m){buatDaun(m,false)});
 gambarDaftar();aturWaktu(awal);jdSegarkan();jdT=setInterval(jdSegarkan,15000);
-if(HIDUP){$("capContoh").hidden=true;muat()}
+if(HIDUP){$("capContoh").hidden=true;muat()}else terimaTamu({"Bebek":3,"Panda":2,"Kura-kura":1},true);
 if(!HIDUP||!siap)setTimeout(tutupPembuka,700);setTimeout(tutupPembuka,7000);
 (function(){var a=bacaAtur("teks");if(a==="besar")aturTeks(a);a=bacaAtur("kontras");if(a==="tinggi")aturKontras(a);
   a=bacaAtur("gerak");if(a==="tenang"||(tenang&&a!=="hidup"))aturGerak("tenang");
