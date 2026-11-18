@@ -1477,7 +1477,7 @@ function cabangPolos(par,col,a,b,r){ // ranting dari titik a ke titik b, pangkal
 }
 var klik=[], sibuk=false, kini=0;
 var PERCH=[-4.3,1.36,2.3];
-var atsir,dedi,burung,awan=[],kunang=[],kupu=[],daunL=[],pejalan=[];
+var WARUNG=null,terasDedi=null,dediJaga=false,dediH=null,dediAsal=null,atsir,dedi,burung,awan=[],kunang=[],kupu=[],daunL=[],pejalan=[];
 function slotX(i){return 1.6+i*7.4}
 function bangunDunia(){
   var t,i;
@@ -1502,6 +1502,18 @@ function bangunDunia(){
   atsir=buatAtsir();atsir.p=[-2.7,0,2.4];atsir.r=[0,.25,0];atsir.s=[1.2,1.2,1.2];atsir.tetap=true;atsir.disapa=0;add(adegan,atsir);
   dedi=buatDedi();dedi.p=[-8.3,.24,.9];dedi.r=[0,.35,0];dedi.s=[1.1,1.1,1.1];dedi.tetap=true;dedi.disapa=0;add(adegan,dedi);
   pakai(atsir,bajuHariIni());pakai(dedi,bajuHariIni());
+  // pojok teras Pak Dedi: tampak saat beliau sedang menjaga warung
+  terasDedi=N(null,null,[-8.45,.24,1.0],null,[0,.35,0]);terasDedi.vis=false;add(adegan,terasDedi);
+  (function(t){var kb=H("#9a6a3a"),kg=H("#7a4f2a");
+    B(t,G.kotak,kb,[0,.42,0],[1.15,.07,.42]);B(t,G.kotak,kb,[0,.74,-.19],[1.15,.32,.05]);
+    [[-.5,-.16],[.5,-.16],[-.5,.16],[.5,.16]].forEach(function(q){B(t,G.kotak,kg,[q[0],.2,q[1]],[.06,.4,.06])});
+    B(t,G.kotak,H("#8e9fb8"),[-.25,.475,.02],[.38,.04,.3]);B(t,G.kotak,H("#d9483b"),[-.25,.503,.02],[.36,.02,.28],[0,.2,0]); // buku dan sampulnya
+    B(t,G.tabung,kg,[.95,.25,.05],[.05,.5,.05]);B(t,G.tabung,H("#b07a4a"),[.95,.52,.05],[.3,.04,.3]); // meja kecil
+    B(t,G.bola,H("#f4f1ea"),[.88,.62,0],[.11,.09,.11]);B(t,G.kerucut,H("#f4f1ea"),[.76,.64,0],[.025,.09,.025],[0,0,1.1]);B(t,G.bola,H("#4f9d5b"),[.88,.71,0],[.03,.02,.03]); // teko
+    B(t,G.tabung,H("#f4f1ea"),[1.05,.58,.12],[.045,.08,.045]);B(t,G.cakram,H("#8b4a22"),[1.05,.62,.12],[.04,1,.04]); // gelas teh
+    B(t,G.tabung,H("#c9573d"),[-.85,.17,.1],[.17,.34,.17]);[[0,.5,0,.22],[.1,.62,.05,.15],[-.08,.6,-.05,.16]].forEach(function(q){B(t,G.bola,W_.tajuk1||H("#6fb36a"),[-.85+q[0],q[1],.1+q[2]],[q[3],q[3]*.9,q[3]])}); // pot bunga
+  })(terasDedi);
+  klik.push({n:terasDedi,r:.8,off:.5,fn:function(){bunyi("daun");ucap3(terasDedi,1.2,acak1(["Pak Dedi sedang menjaga Warung Mas Al. Tehnya masih hangat.","Kursi Pak Dedi. Bukunya ditinggal sebentar, nanti dibaca lagi.","Pak Dedi ada di warung sebelah kiri. Mampir, yuk!"]),"Teras rumah",3800)}});
   burung=buatJalak();burung.p=PERCH.slice();burung.r=[0,.6,0];burung.s=[1.9,1.9,1.9];add(adegan,burung);
   var H_=[
    {n:atsir,r:1.45,off:1.45,top:3.0,nama:"Atsir Al Atsari, S.Pd.",ucap:["Terima kasih sudah mampir ke tamanku!","Ayo isi pesan, supaya saya bisa beli bibit pohon yang kamu inginkan!","Setiap pesanmu jadi satu ranting di pohon mata kuliahnya.","Kebun bibit di sebelah kiri jangan lupa disiram, ya.","Usaha tidak selalu sama dengan hasil. Tetap berusaha, berdoa, lalu bertawakal.","Kalau ada materi yang belum paham, tanya saja. Tidak ada pertanyaan yang bodoh.","Pesan pilihan nanti tumbuh jadi buah, lho.","Sudah coba game Braille di Pojok main?","Koin daun dari game bisa ditukar di Warung Mas Al dekat kebun. Mas Al itu panggilan saya waktu sekolah, lho."],
@@ -1922,7 +1934,7 @@ function hidup(t,dt){
   pejalan.forEach(function(n){langkah(n,dt,t)});
   var b=1+Math.sin(t*1.7)*.012;atsir.s=[1.2,1.2*b,1.2];atsir.r[2]=Math.sin(t*.8)*.012;atsir.p[1]=atsir.loncat||0;
   atsir.lambai.r[2]=-.45+Math.sin(t*2.6)*.26+Math.sin(t*5.2)*.04;
-  b=1+Math.sin(t*1.4+1)*.012;dedi.s=[1.1,1.1*b,1.1];dedi.r[0]=Math.sin(t*.5)*.02;dedi.p[1]=.24+(dedi.loncat||0);
+  b=1+Math.sin(t*1.4+1)*.012;dedi.s=[1.1,1.1*b,1.1];dedi.r[0]=Math.sin(t*.5)*.02;dedi.p[1]=(dediJaga?0:.24)+(dedi.loncat||0);
   if(!terbangOn){burung.p[1]=PERCH[1]+Math.abs(Math.sin(t*1.3))*.02;burung.r=[0,.6+Math.sin(t*.45)*.4,0]}
   burung.sayap.forEach(function(s){var a=terbangOn?(meluncur?s.k*.3:s.k*(Math.sin(t*20)*.85+.1)):-s.k*1.25;s.r[2]+=(a-s.r[2])*Math.min(1,dt*30)});
   awan.forEach(function(c,j){c.p[0]+=dt*.22*(1+j%3*.3);c.p[1]=c.y0+Math.sin(t*.2+j)*.15;if(c.p[0]>cam.cx+75)c.p[0]-=150});
@@ -2302,18 +2314,19 @@ function bangunKebun(){
     n.tan=null;n.kunci="";n.tandaY=.8;KBP.push(n);
   }
   // warung kecil Atsir
-  var wr=N(null,null,[x1+1.9,0,z1+.9],null,[0,-.35,0]),kw=H("#8a5a36"),aw1=H("#d9483b"),aw2=W_.putih;add(g,wr);
+  WARUNG={x:x1+1.85,z:KB.z-.2,ry:-.25};
+  var wr=N(null,null,[WARUNG.x,0,WARUNG.z],null,[0,WARUNG.ry,0]),kw=H("#8a5a36"),aw1=H("#d9483b"),aw2=W_.putih;add(g,wr);
   B(wr,G.kotak,kw,[0,.42,0],[1.7,.84,.62]);B(wr,G.kotak,H("#a8713f"),[0,.86,.02],[1.82,.06,.72]);
-  [[-.82,-.28],[.82,-.28],[-.82,.3],[.82,.3]].forEach(function(q){B(wr,G.tabung,H("#6f4524"),[q[0],1.05,q[1]],[.045,2.1,.045])});
-  for(var a5=0;a5<6;a5++)B(wr,G.kotak,a5%2?aw2:aw1,[-.75+a5*.3,2.02,.12],[.3,.05,1.02],[.32,0,0]);
+  [[-.82,-.28],[.82,-.28],[-.82,.3],[.82,.3]].forEach(function(q){B(wr,G.tabung,H("#6f4524"),[q[0],1.3,q[1]],[.045,2.6,.045])});
+  for(var a5=0;a5<6;a5++)B(wr,G.kotak,a5%2?aw2:aw1,[-.75+a5*.3,2.52,.12],[.3,.05,1.02],[.32,0,0]);
   [[-.5,"#f2c94c"],[-.15,"#d9b45a"],[.25,"#6fb36a"],[.55,"#d9483b"]].forEach(function(q,k){B(wr,k<2?G.bola:G.bola,H(q[1]),[q[0],.99,.1],k<2?[.13,.12,.11]:[.08,.08,.08])});
   // tiang tambahan dan palang, papan cat tergantung tali, bendera kecil di tepi tenda
-  [-.82,.82].forEach(function(q){B(wr,G.tabung,H("#6f4524"),[q,2.5,.3],[.04,.9,.04]);B(wr,G.bola,H("#f2c14e"),[q,2.97,.3],[.07,.07,.07])});
-  B(wr,G.tabung,H("#6f4524"),[0,2.9,.3],[.035,1.7,.035],[0,0,1.5708]);
-  [-.55,.55].forEach(function(q){B(wr,G.tabung,H("#d8c49a"),[q,2.83,.3],[.012,.16,.012])});
-  var pw=N(null,null,[0,2.55,.31]),PW={};add(wr,pw);
+  [-.82,.82].forEach(function(q){B(wr,G.tabung,H("#6f4524"),[q,3.0,.3],[.04,.9,.04]);B(wr,G.bola,H("#f2c14e"),[q,3.47,.3],[.07,.07,.07])});
+  B(wr,G.tabung,H("#6f4524"),[0,3.4,.3],[.035,1.7,.035],[0,0,1.5708]);
+  [-.55,.55].forEach(function(q){B(wr,G.tabung,H("#d8c49a"),[q,3.33,.3],[.012,.16,.012])});
+  var pw=N(null,null,[0,3.05,.31]),PW={};add(wr,pw);
   B(pw,G.kotak,H("#b8432f"),[0,0,-.03],[1.62,.58,.05]);B(pw,G.petak,[1,1,1],[0,0,.0],[1.6,.56,1]).tex=PW;teksturWarung(PW);
-  var BW=["#d9483b","#f2c14e","#4f9d5b","#5bb4f0","#f6a8c4"];for(var bf=0;bf<9;bf++)B(wr,G.kerucut,H(BW[bf%5]),[-.8+bf*.2,1.83,.64],[.08,.14,.012],[3.1416,0,0]);
+  var BW=["#d9483b","#f2c14e","#4f9d5b","#5bb4f0","#f6a8c4"];for(var bf=0;bf<9;bf++)B(wr,G.kerucut,H(BW[bf%5]),[-.8+bf*.2,2.33,.64],[.08,.14,.012],[3.1416,0,0]);
   klik.push({n:wr,r:1.3,off:1.1,fn:function(){bunyi("sapa");bukaToko()}});
   var pusat=N(null,null,[KB.x,.3,KB.z]);add(g,pusat);
   klik.push({n:pusat,r:3.2,off:0,fn:function(){if(!kebunOn)masukKebun()}});
@@ -2466,6 +2479,20 @@ function kebunHud(){
   tb(kebunYakin===i?"Ya, cabut":"Cabut",function(){kebunAksi("cabut",i)});
 }
 
+/* ---------- Sekali-sekali Pak Dedi yang menjaga warung ---------- */
+var UCAP_DEDI_JAGA=["Mas Al sedang mengajar, jadi saya yang jaga warung dulu.","Silakan pilih. Harganya sama, tidak saya naikkan.","Pupuknya jangan lupa. Menanam itu seperti belajar, perlu dirawat.","Koinnya dari game, ya? Bagus, sambil belajar."];
+function aturJaga(paksa){
+  if(!dedi||!WARUNG)return;var d=new Date(),j=typeof paksa==="boolean"?paksa:(d.getDate()*7+d.getHours())%4===0;
+  if(!dediH)HUNI.forEach(function(h){if(h.n===dedi)dediH=h});
+  if(j===dediJaga)return;dediJaga=j;
+  if(!dediAsal)dediAsal={p:dedi.p.slice(),r:dedi.r.slice(),ucap:dediH?dediH.ucap:null};
+  if(terasDedi)terasDedi.vis=j;
+  if(j){var s=Math.sin(WARUNG.ry),c=Math.cos(WARUNG.ry);dedi.p=[WARUNG.x-.62*s,0,WARUNG.z-.62*c];dedi.r=[0,WARUNG.ry,0];if(dediH){dediH.ucap=UCAP_DEDI_JAGA;dediH.ke=0}}
+  else{dedi.p=dediAsal.p.slice();dedi.r=dediAsal.r.slice();if(dediH){dediH.ucap=dediAsal.ucap;dediH.ke=0}}
+  minta();
+}
+setInterval(function(){if(siap)aturJaga()},60000);
+
 /* ================= Koin daun, misi harian, dan warung ================= */
 var HADIAH={pesan:25,panen:6,misi:10,semuaMisi:15,saku:5};
 var HARGA_TOKO={bibit1:8,bibit5:35,pupuk1:6,pupuk5:25,kaleng:40};
@@ -2526,6 +2553,7 @@ var rakKini="kebun";
 function bukaToko(rak,sapa){
   segarHari();if(rak)rakKini=rak;tekan("[data-rak]","data-rak",rakKini);
   $("tkKabar").textContent="";
+  if(dediJaga&&!sapa){var b0=document.createElement("b");$("tkAtsir").innerHTML="";b0.textContent="Pak Dedi, jaga warung hari ini";$("tkAtsir").appendChild(b0);$("tkAtsir").appendChild(document.createTextNode("“"+acak1(UCAP_DEDI_JAGA)+"”"));tokoGambar();if(!$("dlgToko").open)$("dlgToko").showModal();return}
   var A=["“Mau tukar koin dengan apa hari ini?”","“Koin daun didapat dari game di Pojok main, dari kebun, dari misi, dan dari menulis pesan.”","“Hewan yang kamu beli tinggal di tamanmu, di perangkat ini.”","“Pupuk dipakai saat tanaman jadi semak. Simpan beberapa karung, ya.”"];
   $("tkAtsir").innerHTML="";var b=document.createElement("b");b.textContent="Mas Al";$("tkAtsir").appendChild(b);$("tkAtsir").appendChild(document.createTextNode(sapa||A[Math.floor(Math.random()*A.length)]));
   tokoGambar();if(!$("dlgToko").open)$("dlgToko").showModal();
@@ -2582,7 +2610,7 @@ $("dlgToko").addEventListener("click",function(e){if(e.target===$("dlgToko"))$("
 [].forEach.call(document.querySelectorAll("[data-rak]"),function(b){b.addEventListener("click",function(){rakKini=b.getAttribute("data-rak");tekan("[data-rak]","data-rak",rakKini);$("tkKabar").textContent="";tokoGambar()})});
 $("khBeli").addEventListener("click",function(){bukaToko("kebun")});
 $("mainWarung").addEventListener("click",function(){$("dlgMain").close();bukaToko()});
-segarHari();koinTampil();
+segarHari();koinTampil();if(siap)aturJaga();
 
 /* ================= Daftar pesan ================= */
 
