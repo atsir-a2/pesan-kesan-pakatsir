@@ -463,6 +463,8 @@ a.kecil{display:inline-grid;place-items:center;text-decoration:none;color:var(--
 .khAjak p{margin:0;font-size:.88rem;line-height:1.4}
 .khAjak p b{display:block;font-size:.72rem;letter-spacing:.04em;text-transform:uppercase;color:var(--aksen)}
 .khAjak .utama{padding:9px 16px;font-size:.95rem}
+.khAjakT{display:flex;gap:8px;flex-wrap:wrap}
+.khPupuk{background:color-mix(in srgb,#f2c94c 28%,var(--kertas));color:#6b5310}
 .khPetak{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:5px}
 .khPetak button{height:36px;min-width:0;border-radius:10px;border:2px solid var(--garis);background:var(--kertas);font-weight:700;font-size:.8rem;cursor:pointer;position:relative;padding:0}
 .khPetak button::after{content:"";position:absolute;right:3px;top:3px;width:7px;height:7px;border-radius:50%;background:var(--garis)}
@@ -493,12 +495,69 @@ a.kecil{display:inline-grid;place-items:center;text-decoration:none;color:var(--
   .khAksi:not(.benihGrid) button{flex:1 1 0}
   .khAjak{grid-template-columns:1fr}
   .khAjak .utama{justify-self:start}
+  .khAtas svg{display:none}
+  .khAtas b{font-size:1.02rem}
 }
 .aksIsi{display:grid;gap:12px;width:100%}
+.tokoBtn{display:inline-flex;align-items:center;gap:5px;padding-left:8px!important}
+.tokoBtn svg{width:22px;height:22px;flex:none}
+.tokoBtn.dapat{animation:koinDenyut calc(.9s*var(--t)) cubic-bezier(.34,1.7,.5,1)}
+@keyframes koinDenyut{30%{transform:scale(1.18)}60%{transform:scale(.96)}}
+.koinTerbang{position:absolute;z-index:6;pointer-events:none;font-weight:800;color:#7a5a12;background:#fff3c4;border-radius:99px;padding:2px 9px;font-size:.85rem;box-shadow:0 2px 0 rgba(0,0,0,.12);animation:koinNaik calc(1.8s*var(--t)) ease-out forwards}
+@keyframes koinNaik{0%{opacity:0;transform:translateY(6px)}20%{opacity:1}100%{opacity:0;transform:translateY(-34px)}}
+.koinDapat{display:inline-flex;align-items:center;gap:4px;margin-left:6px;background:#fff3c4;color:#7a5a12;border-radius:99px;padding:1px 9px 1px 4px;font-size:.85rem;white-space:nowrap;vertical-align:middle}
+.koinDapat svg{width:18px;height:18px}
+.mainKoin{margin:0;font-size:.85rem;font-weight:700;color:var(--tinta2);display:flex;align-items:center;gap:6px;flex-wrap:wrap}
+.mainKoin svg{width:20px;height:20px}
+.tkDompet{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;width:100%;background:#fff3c4;color:#4a3a10;border-radius:18px;padding:10px 14px}
+.tkKoin{display:flex;align-items:center;gap:8px}
+.tkKoin svg{width:34px;height:34px}
+.tkKoin b{font-family:var(--display);font-size:1.7rem;line-height:1}
+.tkKoin span{font-weight:700;font-size:.85rem}
+.tkStok{font-weight:700;font-size:.85rem}
+.tkAtsir{margin:0;font-size:.92rem;line-height:1.45}
+.tkAtsir b{display:block;font-size:.72rem;letter-spacing:.04em;text-transform:uppercase;color:var(--aksen)}
+.tkMisi{width:100%;background:var(--kertas);border:2px solid var(--garis);border-radius:16px;padding:8px 12px}
+.tkMisi summary{cursor:pointer;font-weight:700}
+.tkMisi summary span{font-weight:600;color:var(--tinta2);margin-left:4px}
+.tkMisi ol{list-style:none;margin:8px 0 2px;padding:0;display:grid;gap:6px}
+.tkMisi li{display:grid;grid-template-columns:22px 1fr auto;gap:8px;align-items:center;font-size:.88rem}
+.tkMisi li i{width:20px;height:20px;border-radius:50%;border:2px solid var(--garis);display:grid;place-items:center;font-style:normal;font-size:.75rem;font-weight:800;color:#fff}
+.tkMisi li.beres i{background:#4f9d5b;border-color:#4f9d5b}
+.tkMisi li.beres span{text-decoration:line-through;color:var(--tinta2)}
+.tkMisi li small{font-weight:700;color:#7a5a12;white-space:nowrap}
+.mainIsi>.tkTab{flex-wrap:wrap;border-radius:20px;width:auto;max-width:100%}
+.tkRak{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;width:100%}
+.tkBarang{display:grid;gap:6px;align-content:space-between;background:var(--kertas);border:2px solid var(--garis);border-radius:16px;padding:10px 12px;min-width:0}
+.tkBarang b{font-size:.95rem;line-height:1.25}
+.tkBarang p{margin:0;font-size:.8rem;line-height:1.4;color:var(--tinta2)}
+.tkBarang .kecil{justify-self:start;padding:6px 12px;font-size:.84rem;display:inline-flex;align-items:center;gap:5px}
+.tkBarang .kecil svg{width:16px;height:16px}
+.tkBarang .tkPunya{font-size:.8rem;font-weight:700;color:#4f9d5b}
+.tkBarang .tkUk{font-size:.7rem;font-weight:700;text-transform:uppercase;letter-spacing:.04em;color:var(--tinta2)}
+.tkBarang.dimiliki{border-style:dashed;opacity:.85}
+.tkCara{grid-column:1/-1;margin:0;padding-left:20px;display:grid;gap:6px;font-size:.9rem;line-height:1.45}
+@media (max-width:620px){.tkRak{grid-template-columns:repeat(2,minmax(0,1fr))}.tkBarang{padding:9px 10px}}
+.rpPetak{display:grid;grid-template-columns:repeat(4,58px);gap:5px;padding:8px;background:#b07a4a;border-radius:16px;box-shadow:inset 0 -5px 0 #8d5f37}
+.rpPetak button{width:58px;height:58px;border:0;border-radius:10px;background:#7a4f2e;cursor:pointer;display:grid;place-items:center;position:relative;padding:0}
+.rpPetak button:nth-child(4n+2){margin-right:5px}
+.rpPetak button:nth-child(n+5):nth-child(-n+8){margin-bottom:5px}
+.rpPetak button.tetap::after{content:"";position:absolute;right:5px;bottom:5px;width:6px;height:6px;border-radius:50%;background:#f5e3c3}
+.rpPetak button.salah{box-shadow:0 0 0 3px #f2c94c}
+.rpPetak.goyang button:not(.tetap){animation:goyang calc(.5s*var(--t)) ease-in-out infinite}
+.rpPetak.menang button{background:#5d8f45}
+.buahI{--w:#d9483b;position:relative;width:34px;height:34px;border-radius:50%;background:radial-gradient(circle at 35% 32%,color-mix(in srgb,#fff 40%,var(--w)) 0 22%,var(--w) 60%);display:grid;place-items:center;font-weight:800;font-size:.85rem;color:rgba(0,0,0,.55)}
+.buahI::after{content:"";position:absolute;top:-6px;left:50%;width:12px;height:8px;background:#6fb36a;border-radius:0 80% 0 80%}
+.rpBibit{display:flex;flex-wrap:wrap;gap:8px}
+.rpBibit button{display:flex;align-items:center;gap:6px;border:2px solid var(--garis);border-radius:99px;background:var(--kertas);padding:4px 12px 4px 5px;font-weight:700;cursor:pointer;min-height:44px}
+.rpBibit .buahI{width:28px;height:28px;font-size:.75rem}
+.rpBibit button[aria-pressed="true"]{border-color:var(--tajuk1);background:color-mix(in srgb,var(--tajuk1) 16%,var(--kertas));box-shadow:inset 0 0 0 1.5px var(--tajuk1)}
+@media (max-width:380px){.rpPetak{grid-template-columns:repeat(4,52px)}.rpPetak button{width:52px;height:52px}}
 .aksBaris{display:grid;gap:6px}
 .aksBaris b{font-size:.95rem}
 .pilih.aksPilih{flex-wrap:wrap;border-radius:18px;width:auto}
 .pilih.aksPilih button{font-size:.8rem;padding:6px 10px}
+.pilih.aksPilih button.terkunci{color:var(--tinta2);background:repeating-linear-gradient(135deg,transparent 0 6px,color-mix(in srgb,var(--garis) 40%,transparent) 6px 8px)}
 /* ---------- Voting ---------- */
 .votingIsi{display:grid;gap:16px;width:100%}
 .vkartu{display:grid;gap:12px;background:var(--kertas);border:2px solid var(--garis);border-radius:20px;padding:14px;box-shadow:0 4px 0 var(--garis)}
@@ -596,6 +655,7 @@ a.kecil{display:inline-grid;place-items:center;text-decoration:none;color:var(--
 <symbol id="h-gajah" viewBox="0 0 80 64"><g clip-path="url(#tepi)"><ellipse cx="15" cy="40" rx="14" ry="19" fill="#8fa1af"/><ellipse cx="65" cy="40" rx="14" ry="19" fill="#8fa1af"/><ellipse cx="14" cy="41" rx="8" ry="12" fill="#e9c3c8"/><ellipse cx="66" cy="41" rx="8" ry="12" fill="#e9c3c8"/><ellipse cx="40" cy="41" rx="23" ry="23" fill="#a9bac6"/><g fill="#f08aa5"><circle cx="51" cy="17" r="3.4"/><circle cx="57" cy="21" r="3.4"/><circle cx="55" cy="27" r="3.4"/><circle cx="48" cy="27" r="3.4"/><circle cx="46" cy="21" r="3.4"/></g><circle cx="51.5" cy="22.5" r="3" fill="#f3c63f"/></g><path d="M40 44V60" stroke="#a9bac6" stroke-width="12" stroke-linecap="round"/><path d="M36 52h8M36 57h8" stroke="#8fa1af" stroke-width="1.5" stroke-linecap="round"/></symbol>
 <symbol id="h-jalak" viewBox="0 0 80 64"><g clip-path="url(#tepi)"><path d="M38 24C40 10 50 3 60 5 54 9 51 16 49 26Z" fill="#fff" stroke="#cfd6dc" stroke-width="1.5"/><ellipse cx="40" cy="43" rx="21" ry="21" fill="#fff" stroke="#cfd6dc" stroke-width="1.5"/><path d="M34 42H46L40 53Z" fill="#e8b93a"/></g><ellipse cx="23" cy="57" rx="8" ry="5" fill="#eef2f4" stroke="#cfd6dc" stroke-width="1.5"/><ellipse cx="57" cy="57" rx="8" ry="5" fill="#eef2f4" stroke="#cfd6dc" stroke-width="1.5"/><ellipse cx="17" cy="57" rx="3.5" ry="4" fill="#1f1f1f"/><ellipse cx="63" cy="57" rx="3.5" ry="4" fill="#1f1f1f"/></symbol>
 <symbol id="h-jagung" viewBox="0 0 80 64"><ellipse cx="40" cy="28" rx="13" ry="24" fill="#f3c63f"/><path d="M33 12v32M40 6v40M47 12v32M28 20h24M27 30h26M29 40h22" stroke="#d9a520" stroke-width="1.5" stroke-linecap="round"/><path d="M40 62C22 58 19 40 25 30 29 45 35 54 40 62ZM40 62C58 58 61 40 55 30 51 45 45 54 40 62Z" fill="#6fb36a"/></symbol>
+<symbol id="h-koin" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10.5" fill="#f2c14e" stroke="#c9922a" stroke-width="2"/><path d="M12 17.5V9.5M12 9.5C9 9.5 7.6 7.6 8 5.5 10.6 5.4 12.2 7.2 12 9.5ZM12 12.5C14.6 12.6 16.3 10.8 16.1 8.6 13.6 8.4 11.9 10.2 12 12.5Z" fill="#7a9a3a" stroke="#5f7d2a" stroke-width="1.2" stroke-linejoin="round"/></symbol>
 <symbol id="h-tunas" viewBox="0 0 48 48"><ellipse cx="24" cy="43" rx="15" ry="4" fill="#c79a63"/><path d="M24 43V24" stroke="#4f9d5b" stroke-width="4" stroke-linecap="round"/><path d="M24 27C13 27 7 19 8 10 18 9 25 17 24 27Z" fill="#6fb36a"/><path d="M24 23C24 13 31 6 40 7 41 16 34 24 24 23Z" fill="#8fca93"/></symbol>
 </defs></svg>
 <a class="lewati" href="#daftar">Lewati ke daftar pesan</a>
@@ -622,16 +682,17 @@ a.kecil{display:inline-grid;place-items:center;text-decoration:none;color:var(--
   <div class="alatTaman" id="alatTaman">
     <button type="button" id="btnKebun" aria-pressed="false">Kebun bibit</button>
     <button type="button" id="btnAks">Aksesori</button>
+    <button type="button" id="btnToko" class="tokoBtn" aria-label="Warung"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#h-koin"/></svg><span id="koinJml">0</span></button>
   </div>
   <div class="kebunHud" id="kebunHud" hidden role="region" aria-label="Kebun bibit">
     <div class="khAtas">
       <svg viewBox="0 0 48 48" aria-hidden="true"><use href="#h-tunas"/></svg>
-      <b>Kebun Bibit</b><span class="khBibit" id="khBibit"></span>
+      <b>Kebun Bibit</b><span class="khBibit" id="khBibit"></span><span class="khBibit khPupuk" id="khPupuk"></span>
       <button class="tutupx" id="khTutup" type="button" aria-label="Kembali ke taman">×</button>
     </div>
     <div class="khAjak" id="khAjak" hidden>
       <p><b>Atsir</b>“Ayo isi pesan, supaya saya bisa beli bibit pohon yang kamu inginkan!”</p>
-      <button class="utama" id="khTulis" type="button">Tulis pesan</button>
+      <div class="khAjakT"><button class="utama" id="khTulis" type="button">Tulis pesan</button><button class="kecil" id="khBeli" type="button">Beli di warung</button></div>
     </div>
     <div class="khPetak" id="khPetak" role="group" aria-label="Pilih petak"></div>
     <div class="khKartu">
@@ -765,13 +826,15 @@ a.kecil{display:inline-grid;place-items:center;text-decoration:none;color:var(--
 </section>
 <dialog id="dlgMain" class="mainDlg" aria-labelledby="mainJudul">
  <div class="mainIsi">
-  <div class="dlg-kepala"><div><p class="langkahke">Pojok main · asah logika</p><h2 id="mainJudul">Petak Umpet Semak</h2></div><button class="tutupx" id="mainTutup" type="button" aria-label="Tutup">×</button></div>
+  <div class="dlg-kepala"><div><p class="langkahke">Pojok main · asah logika, kumpulkan koin</p><h2 id="mainJudul">Petak Umpet Semak</h2></div><button class="tutupx" id="mainTutup" type="button" aria-label="Tutup">×</button></div>
   <div class="pilih" role="group" aria-label="Pilih game">
     <button type="button" data-main="semak" aria-pressed="true">Petak umpet</button>
     <button type="button" data-main="seberang" aria-pressed="false">Rakit</button>
     <button type="button" data-main="baris" aria-pressed="false">Barisan</button>
     <button type="button" data-main="braille" aria-pressed="false">Braille</button>
+    <button type="button" data-main="rapi" aria-pressed="false">Tanam rapi</button>
   </div>
+  <p class="mainKoin" id="mainKoin"></p>
   <div class="gim" data-panel="semak">
     <p class="gimAturan" id="gAturan"></p>
     <div class="grup"><span id="lblGim">Tingkat</span>
@@ -814,7 +877,21 @@ a.kecil{display:inline-grid;place-items:center;text-decoration:none;color:var(--
     <div class="aksi"><button class="kecil" id="rUlang" type="button">Ulangi level ini</button><button class="utama" id="rNaik" type="button" hidden>Level berikutnya</button></div>
     <p class="gimKabar" id="rKabar" role="status"></p>
   </div>
-  <button class="utama" id="mainLanjut" type="button" hidden>Lanjut ke game berikutnya</button>
+  <div class="gim" data-panel="rapi" hidden>
+    <p class="gimAturan">Mbah Gading ingin kebunnya rapi. Isi tiap petak kosong dengan satu bibit sehingga <b>tiap baris, tiap kolom, dan tiap kotak 2×2</b> berisi apel, jeruk, mangga, dan sakura, masing-masing satu.</p>
+    <div class="grup"><span id="lblRapi">Tingkat</span>
+      <div class="pilih" role="group" aria-labelledby="lblRapi">
+        <button type="button" data-rapi="mudah" aria-pressed="true">Mudah</button>
+        <button type="button" data-rapi="sulit" aria-pressed="false">Sulit</button>
+      </div>
+    </div>
+    <div class="rpPetak" id="rpPetak" role="grid" aria-label="Kebun 4 kali 4"></div>
+    <p class="gimLabel">Pilih bibit di bawah, lalu ketuk petak kosong. Ketuk lagi untuk mencabutnya. Petak bertanda titik sudah ditanam Mbah Gading.</p>
+    <div class="rpBibit" id="rpBibit" role="group" aria-label="Pilih bibit"></div>
+    <div class="aksi"><button class="utama" id="rpPeriksa" type="button" disabled>Periksa kebun</button><button class="kecil" id="rpUlang" type="button">Kebun baru</button></div>
+    <p class="gimKabar" id="rpKabar" role="status"></p>
+  </div>
+  <div class="aksi"><button class="utama" id="mainLanjut" type="button" hidden>Lanjut ke game berikutnya</button><button class="kecil" id="mainWarung" type="button" hidden>Belanja di warung</button></div>
  </div>
 </dialog>
 <dialog id="dlgAks" class="mainDlg" aria-labelledby="aksJudul">
@@ -823,6 +900,25 @@ a.kecil{display:inline-grid;place-items:center;text-decoration:none;color:var(--
   <p class="gimAturan">Pilih aksesori untuk tiap hewan. Pilihanmu tersimpan di perangkat ini. Hewan juga bisa dipindahkan: tekan hewannya, lalu geser ke tempat lain.</p>
   <div class="aksIsi" id="aksIsi"></div>
   <button class="kecil" id="aksKembali" type="button">Kembalikan semua hewan ke tempat asal</button>
+ </div>
+</dialog>
+<dialog id="dlgToko" class="mainDlg" aria-labelledby="tokoJudul">
+ <div class="mainIsi">
+  <div class="dlg-kepala"><div><p class="langkahke">Tukar koin daun</p><h2 id="tokoJudul">Warung Mas Al</h2></div><button class="tutupx" id="tokoTutup" type="button" aria-label="Tutup">×</button></div>
+  <div class="tkDompet">
+    <div class="tkKoin"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#h-koin"/></svg><b id="tkKoin">0</b><span>koin daun</span></div>
+    <span class="tkStok" id="tkStok"></span>
+  </div>
+  <p class="tkAtsir" id="tkAtsir"></p>
+  <details class="tkMisi" id="tkMisiD" open><summary>Misi hari ini <span id="tkMisiN"></span></summary><ol id="tkMisi"></ol></details>
+  <div class="pilih tkTab" role="group" aria-label="Rak warung">
+    <button type="button" data-rak="kebun" aria-pressed="true">Kebun</button>
+    <button type="button" data-rak="hewan" aria-pressed="false">Hewan</button>
+    <button type="button" data-rak="aks" aria-pressed="false">Aksesori</button>
+    <button type="button" data-rak="cara" aria-pressed="false">Info koin</button>
+  </div>
+  <div class="tkRak" id="tkRak"></div>
+  <p class="gimKabar" id="tkKabar" role="status" aria-live="polite"></p>
  </div>
 </dialog>
 <dialog id="dlgJam" class="mainDlg" aria-labelledby="jamJudul">
@@ -1408,7 +1504,7 @@ function bangunDunia(){
   pakai(atsir,bajuHariIni());pakai(dedi,bajuHariIni());
   burung=buatJalak();burung.p=PERCH.slice();burung.r=[0,.6,0];burung.s=[1.9,1.9,1.9];add(adegan,burung);
   var H_=[
-   {n:atsir,r:1.45,off:1.45,top:3.0,nama:"Atsir Al Atsari, S.Pd.",ucap:["Terima kasih sudah mampir ke tamanku!","Ayo isi pesan, supaya saya bisa beli bibit pohon yang kamu inginkan!","Setiap pesanmu jadi satu ranting di pohon mata kuliahnya.","Kebun bibit di sebelah kiri jangan lupa disiram, ya.","Usaha tidak selalu sama dengan hasil. Tetap berusaha, berdoa, lalu bertawakal.","Kalau ada materi yang belum paham, tanya saja. Tidak ada pertanyaan yang bodoh.","Pesan pilihan nanti tumbuh jadi buah, lho.","Sudah coba game Braille di Pojok main?"],
+   {n:atsir,r:1.45,off:1.45,top:3.0,nama:"Atsir Al Atsari, S.Pd.",ucap:["Terima kasih sudah mampir ke tamanku!","Ayo isi pesan, supaya saya bisa beli bibit pohon yang kamu inginkan!","Setiap pesanmu jadi satu ranting di pohon mata kuliahnya.","Kebun bibit di sebelah kiri jangan lupa disiram, ya.","Usaha tidak selalu sama dengan hasil. Tetap berusaha, berdoa, lalu bertawakal.","Kalau ada materi yang belum paham, tanya saja. Tidak ada pertanyaan yang bodoh.","Pesan pilihan nanti tumbuh jadi buah, lho.","Sudah coba game Braille di Pojok main?","Koin daun dari game bisa ditukar di Warung Mas Al dekat kebun. Mas Al itu panggilan saya waktu sekolah, lho."],
      ucapW:{pagi:["Selamat pagi! Tamannya masih segar, nih.","Pagi-pagi begini enak menyiram kebun bibit."],siang:["Siang-siang begini enaknya berteduh di bawah pohon.","Sudah makan siang? Belajar lebih semangat kalau perut kenyang."],sore:["Sore yang hangat. Kuliah hari ini sudah selesai?","Sore begini cocok untuk memberi pupuk di kebun."],malam:["Sudah malam. Jangan begadang terlalu larut, ya.","Malam-malam masih belajar? Semangat, tapi istirahat juga penting."],hujan:["Wah, hujan! Pohonnya senang disiram langit.","Hujan begini, kebun bibit tidak perlu disiram dulu."]}},
    {n:dedi,r:1.1,off:1.1,top:2.25,nama:"Dedi Mulia, S.Pi., S.Pd., M.Pd.",ucap:["Silakan, tamannya milik Atsir. Saya menemani saja.","Duduk dulu, di teras ini adem.","Bacalah pelan-pelan, banyak pesan yang bagus.","Belajar itu seperti menanam. Hasilnya kelihatan belakangan.","Tetap semangat, ya."],
      ucapW:{malam:["Sudah malam, saya juga mau istirahat."],hujan:["Hujan begini enaknya minum teh hangat di teras."]}},
@@ -1559,6 +1655,28 @@ function teksturPapan(p){ // nama mata kuliah digambar di papan kayu
   while(lebar()>440&&uk>22)uk-=2;
   x.textAlign="center";x.textBaseline="middle";
   baris.forEach(function(b,j){var yy=88+(j-(baris.length-1)/2)*uk*1.02+4;x.fillStyle="rgba(60,35,15,.65)";x.fillText(b,258,yy+3);x.fillStyle="#fff8e6";x.fillText(b,256,yy)});
+  if(!p.tex)p.tex=gl.createTexture();
+  gl.bindTexture(gl.TEXTURE_2D,p.tex);gl.pixelStorei(gl.UNPACK_FLIP_Y_WEBGL,true);
+  gl.texImage2D(gl.TEXTURE_2D,0,gl.RGBA,gl.RGBA,gl.UNSIGNED_BYTE,c);
+  gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_MIN_FILTER,gl.LINEAR);gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_MAG_FILTER,gl.LINEAR);
+  gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_WRAP_S,gl.CLAMP_TO_EDGE);gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_WRAP_T,gl.CLAMP_TO_EDGE);
+}
+function teksturWarung(p){ // papan cat warung: krem, bingkai merah, koin di kiri
+  var c=p.kv||(p.kv=document.createElement("canvas"));c.width=640;c.height=224;
+  var x=c.getContext("2d"),i,fam="'Baloo 2','Trebuchet MS',system-ui,sans-serif";
+  x.fillStyle="#b8432f";x.fillRect(0,0,640,224);
+  function bulat(a,b,w,t,r){x.beginPath();x.moveTo(a+r,b);x.arcTo(a+w,b,a+w,b+t,r);x.arcTo(a+w,b+t,a,b+t,r);x.arcTo(a,b+t,a,b,r);x.arcTo(a,b,a+w,b,r);x.closePath()}
+  bulat(14,14,612,196,26);x.fillStyle="#fff4dc";x.fill();
+  x.save();bulat(14,14,612,196,26);x.clip();x.fillStyle="rgba(242,193,78,.18)";for(i=-4;i<20;i++){x.beginPath();x.moveTo(i*44,224);x.lineTo(i*44+22,224);x.lineTo(i*44+22+224,0);x.lineTo(i*44+224,0);x.fill()}x.restore();
+  x.setLineDash([10,9]);x.strokeStyle="#e0a33a";x.lineWidth=4;bulat(28,28,584,168,18);x.stroke();x.setLineDash([]);
+  // koin daun
+  x.fillStyle="#f2c14e";x.strokeStyle="#c9922a";x.lineWidth=7;x.beginPath();x.arc(112,112,58,0,7);x.fill();x.stroke();
+  x.fillStyle="#6f9a3a";x.beginPath();x.moveTo(112,150);x.lineTo(112,104);x.stroke;x.fillRect(108,100,8,52);
+  x.beginPath();x.ellipse(94,98,22,11,-.6,0,7);x.fill();x.beginPath();x.ellipse(132,90,24,12,.55,0,7);x.fill();
+  // tulisan
+  x.textAlign="left";x.textBaseline="alphabetic";var uk=76;x.font="800 "+uk+"px "+fam;while(x.measureText("Warung Mas Al").width>420&&uk>30){uk-=2;x.font="800 "+uk+"px "+fam}
+  x.fillStyle="rgba(122,46,31,.25)";x.fillText("Warung Mas Al",193,123);x.fillStyle="#8e2b1f";x.fillText("Warung Mas Al",190,120);
+  x.font="700 30px "+fam;x.fillStyle="#9a6a3a";x.fillText("tukar koin daun di sini",192,166);
   if(!p.tex)p.tex=gl.createTexture();
   gl.bindTexture(gl.TEXTURE_2D,p.tex);gl.pixelStorei(gl.UNPACK_FLIP_Y_WEBGL,true);
   gl.texImage2D(gl.TEXTURE_2D,0,gl.RGBA,gl.RGBA,gl.UNSIGNED_BYTE,c);
@@ -1947,7 +2065,7 @@ function lepasSeret(){
   n.diangkat=false;n.jatuh=tenang?0:kini;if(tenang){n.p[1]=0;n.r[0]=n.r[2]=0;n.w.mode="diam";n.w.sampai=kini+2}
   var x=n.seretT[0],z=n.seretT[1];wilayahHewan(n,x,z);
   var ps={};try{ps=JSON.parse(bacaAtur("hewan"))||{}}catch(e){}ps[h.idx]=[Math.round(x*100)/100,Math.round(z*100)/100];simpanAtur("hewan",JSON.stringify(ps));
-  if(h.taruh)ucap3(n,h.top,h.taruh,h.nama,3000);
+  if(h.taruh)ucap3(n,h.top,h.taruh,h.nama,3000);catat("geser");
   if(!tenang)setTimeout(function(){var pw=posDunia(n,.1);kilauDi(pw[0],pw[1],pw[2],true)},380);
   minta();
 }
@@ -2059,11 +2177,11 @@ var SPESIES={
  "Rusa":{nm:"Timor, rusa timor",bunyi:"kelinci",buat:function(){return hewan4({w:"#a86f3d",w2:"#f1dcc0",tanduk:"rusa",telinga:"runcing",moncong:1,ekor:"bola",we:"#ffffff",s:.95,kaki:.46,kakiT:.7,leher:.16})},top:1.75,ucap:["Terima kasih sudah mengusulkan aku.","Tandukku tumbuh lagi setiap tahun.","Aku suka padang rumput yang luas.","Melompat tinggi, seperti cita-citamu."],angkat:"Hati-hati dengan tandukku!",taruh:"Rumputnya segar di sini.",j:{s:.85}},
  "Sapi":{nm:"Belang, sapi perah",bunyi:"gajah",buat:function(){return hewan4({w:"#f4f1ea",bercak:"#2b2b2b",tanduk:"sapi",telinga:"bulat",moncong:1.2,wm:"#e8b4a8",ekor:"tipis",kuku:"#3a3330",s:1.2,kaki:.34})},top:1.55,ucap:["Mooo! Terima kasih sudah mengusulkan aku.","Susu segar, siapa mau?","Aku santai, mengunyah sambil berpikir.","Mooo! Jangan lupa minum susu."],angkat:"Mooo! Kok aku melayang?",taruh:"Mooo, rumput baru.",j:{s:1.05}}
 };
-var TEMPAT_TAMU=[[1.6,1.9],[8.2,2.0],[14.8,1.9],[-3.4,6.1],[3.2,6.3],[10.2,6.4],[17.2,6.2],[21.6,2.1]],TAMU={},tamuN=0;
-function tambahTamu(nama,diam){
+var TEMPAT_TAMU=[[1.6,1.9],[8.2,2.0],[14.8,1.9],[-3.4,6.1],[3.2,6.3],[10.2,6.4],[17.2,6.2],[21.6,2.1],[-1.2,3.7],[5.2,4.0],[11.8,4.1],[19.0,4.2],[24.6,5.8],[-6.4,6.6],[6.8,6.9],[13.8,7.0]],TAMU={},tamuN=0,TAMU_USUL=8;
+function tambahTamu(nama,diam,beli){
   var sp=SPESIES[nama];if(!sp||TAMU[nama]||tamuN>=TEMPAT_TAMU.length||!siap)return null;
   var n=sp.buat(),tp=TEMPAT_TAMU[tamuN++],x=tp[0],z=tp[1],J=sp.jalan||{v:.5,f:7,amp:.04,goy:.05},idx="t:"+nama;
-  var h={n:n,p:[x,0,z],ry:Math.random()*2-1,r:sp.r||(.55+(sp.j.s||1)*.25),off:sp.top*.5,top:sp.top,nama:sp.nm,ucap:sp.ucap,angkat:sp.angkat,taruh:sp.taruh,suara:sp.bunyi,idx:idx};
+  var h={n:n,p:[x,0,z],ry:Math.random()*2-1,r:sp.r||(.55+(sp.j.s||1)*.25),off:sp.top*.5,top:sp.top,nama:sp.nm,ucap:beli?["Terima kasih sudah membawaku ke taman ini!"].concat(sp.ucap.slice(1)):sp.ucap,angkat:sp.angkat,taruh:sp.taruh,suara:sp.bunyi,idx:idx,beli:!!beli};
   var ps=null;try{ps=(JSON.parse(bacaAtur("hewan"))||{})[idx]}catch(e){}
   if(ps&&isFinite(ps[0])&&isFinite(ps[1])){x=ps[0];z=ps[1]}
   n.p=[x,0,z];n.r=[0,h.ry,0];n.fase=tamuN*1.7;add(adegan,n);
@@ -2075,14 +2193,15 @@ function tambahTamu(nama,diam){
   klik.push({n:n,r:h.r,off:h.off,h:h,fn:function(){
     bunyi(h.suara);w.bicara=kini+3.8;
     if(!tenang){var pw=posDunia(n,h.top*.55);kilauDi(pw[0],pw[1],pw[2],true);tw(700,function(k){n.loncat=Math.sin(k*Math.PI)*.4},lin)}
-    ucap3(n,h.top,ucapBerikut(h),h.nama+" · usulan mahasiswa",4200)}});
+    ucap3(n,h.top,ucapBerikut(h),h.nama+(h.beli?" · penghuni baru":" · usulan mahasiswa"),4200);catat("sapa")}});
   if(!diam&&!tenang){n.s=[.01,.01,.01];n.p[1]=1.2;tw(900,function(k){var s=Math.min(1,k*1.25);n.s=[s,s,s];n.p[1]=1.2*(1-k)*(1-k)+Math.abs(Math.sin(k*Math.PI*2))*.15*(1-k)}).then(function(){n.s=[1,1,1];n.p[1]=0;var pw=posDunia(n,.2);kilauDi(pw[0],pw[1],pw[2])})}
   minta();return h;
 }
 function terimaTamu(peta,diam){ // hewan dengan usulan terbanyak datang lebih dulu
   if(!peta||!siap)return;
   var baru=Object.keys(peta).filter(function(k){return SPESIES[k]&&!TAMU[k]&&peta[k]>0}).sort(function(a,b){return peta[b]-peta[a]||a.localeCompare(b)}),datang=[];
-  baru.forEach(function(k){if(tambahTamu(k,diam))datang.push(k)});
+  var usul=Object.keys(TAMU).filter(function(k){return !TAMU[k].beli}).length;
+  baru.forEach(function(k){if(usul<TAMU_USUL&&tambahTamu(k,diam)){datang.push(k);usul++}});
   if(datang.length&&!diam)roti("Hewan baru datang ke taman: "+datang.map(function(k){return k.toLowerCase()}).join(", ")+". Terima kasih atas usulnya!");
 }
 
@@ -2116,8 +2235,11 @@ function gambarAks(){
     if(!h.jangkar)return;
     var r=document.createElement("div"),j=document.createElement("b"),p=document.createElement("div");r.className="aksBaris";j.textContent=h.nama;
     p.className="pilih aksPilih";p.setAttribute("role","group");p.setAttribute("aria-label","Aksesori untuk "+h.nama);
-    AKS.forEach(function(a){var b=document.createElement("button");b.type="button";b.textContent=a.nama;b.setAttribute("aria-pressed",String((h.aks||"")===a.id));
-      b.addEventListener("click",function(){pasangAks(h,a.id);var s={};try{s=JSON.parse(bacaAtur("aksesori"))||{}}catch(e){}s[h.idx]=a.id;simpanAtur("aksesori",JSON.stringify(s));aksTerakhir=h;bunyi("kilau");gambarAks()});
+    AKS.forEach(function(a){var b=document.createElement("button"),kunci=!aksPunya(a.id)&&(h.aks||"")!==a.id;b.type="button";b.textContent=a.nama;b.setAttribute("aria-pressed",String((h.aks||"")===a.id));
+      if(kunci){b.className="terkunci";b.setAttribute("aria-label",a.nama+", belum dimiliki, "+HARGA_AKS[a.id]+" koin di warung")}
+      b.addEventListener("click",function(){
+        if(kunci){$("dlgAks").close();bukaToko("aks","“"+a.nama+" bisa dibeli di sini, "+HARGA_AKS[a.id]+" koin.”");return}
+        pasangAks(h,a.id);var s={};try{s=JSON.parse(bacaAtur("aksesori"))||{}}catch(e){}s[h.idx]=a.id;simpanAtur("aksesori",JSON.stringify(s));aksTerakhir=h;bunyi("kilau");if(a.id)catat("aks");gambarAks()});
       p.appendChild(b)});
     r.appendChild(j);r.appendChild(p);w.appendChild(r);
   });
@@ -2179,6 +2301,20 @@ function bangunKebun(){
     n.karung=B(n,G.bola,H("#f2c94c"),[-.3,.8,.32],[.11,.1,.11]);n.karung.em=.4;n.karung.vis=false;
     n.tan=null;n.kunci="";n.tandaY=.8;KBP.push(n);
   }
+  // warung kecil Atsir
+  var wr=N(null,null,[x1+1.9,0,z1+.9],null,[0,-.35,0]),kw=H("#8a5a36"),aw1=H("#d9483b"),aw2=W_.putih;add(g,wr);
+  B(wr,G.kotak,kw,[0,.42,0],[1.7,.84,.62]);B(wr,G.kotak,H("#a8713f"),[0,.86,.02],[1.82,.06,.72]);
+  [[-.82,-.28],[.82,-.28],[-.82,.3],[.82,.3]].forEach(function(q){B(wr,G.tabung,H("#6f4524"),[q[0],1.05,q[1]],[.045,2.1,.045])});
+  for(var a5=0;a5<6;a5++)B(wr,G.kotak,a5%2?aw2:aw1,[-.75+a5*.3,2.02,.12],[.3,.05,1.02],[.32,0,0]);
+  [[-.5,"#f2c94c"],[-.15,"#d9b45a"],[.25,"#6fb36a"],[.55,"#d9483b"]].forEach(function(q,k){B(wr,k<2?G.bola:G.bola,H(q[1]),[q[0],.99,.1],k<2?[.13,.12,.11]:[.08,.08,.08])});
+  // tiang tambahan dan palang, papan cat tergantung tali, bendera kecil di tepi tenda
+  [-.82,.82].forEach(function(q){B(wr,G.tabung,H("#6f4524"),[q,2.5,.3],[.04,.9,.04]);B(wr,G.bola,H("#f2c14e"),[q,2.97,.3],[.07,.07,.07])});
+  B(wr,G.tabung,H("#6f4524"),[0,2.9,.3],[.035,1.7,.035],[0,0,1.5708]);
+  [-.55,.55].forEach(function(q){B(wr,G.tabung,H("#d8c49a"),[q,2.83,.3],[.012,.16,.012])});
+  var pw=N(null,null,[0,2.55,.31]),PW={};add(wr,pw);
+  B(pw,G.kotak,H("#b8432f"),[0,0,-.03],[1.62,.58,.05]);B(pw,G.petak,[1,1,1],[0,0,.0],[1.6,.56,1]).tex=PW;teksturWarung(PW);
+  var BW=["#d9483b","#f2c14e","#4f9d5b","#5bb4f0","#f6a8c4"];for(var bf=0;bf<9;bf++)B(wr,G.kerucut,H(BW[bf%5]),[-.8+bf*.2,1.83,.64],[.08,.14,.012],[3.1416,0,0]);
+  klik.push({n:wr,r:1.3,off:1.1,fn:function(){bunyi("sapa");bukaToko()}});
   var pusat=N(null,null,[KB.x,.3,KB.z]);add(g,pusat);
   klik.push({n:pusat,r:3.2,off:0,fn:function(){if(!kebunOn)masukKebun()}});
   kebunSegarkan(true);
@@ -2195,12 +2331,13 @@ function buatTanaman(p){
     if(p.buah){var wb=H(WARNA_BUAH[p.j]);t.buahN=true;[[.3,1.08,.34],[-.36,1.2,.24],[.05,1.0,.48],[.4,1.36,-.02],[-.16,1.48,.32],[.18,1.55,.12]].forEach(function(q){B(t,G.bola,wb,q,[.085,.085,.085]).em=.15})}}
   t.daun=L;return t;
 }
-function airLevel(p,now){return Math.max(0,Math.min(1,1-(now-p.airAt)/AIR_MS))}
+function airMs(){return DOMPET&&DOMPET.kaleng?AIR_MS*2:AIR_MS}
+function airLevel(p,now){return Math.max(0,Math.min(1,1-(now-p.airAt)/airMs()))}
 function kebunMaju(now){ // pertumbuhan dihitung dari waktu basah, termasuk selama halaman ditutup
   var ubah=false;
   KEBUN.petak.forEach(function(p){
     if(!p||p.mati)return;
-    var dulu=p.cek||now,habis=p.airAt+AIR_MS,basah=Math.max(0,Math.min(now,habis)-dulu)/1000;p.cek=now;
+    var dulu=p.cek||now,habis=p.airAt+airMs(),basah=Math.max(0,Math.min(now,habis)-dulu)/1000;p.cek=now;
     if(now-habis>MATI_MS){p.mati=true;ubah=true;return}
     if(basah>0&&!(p.tahap===2&&!p.pupuk)&&!(p.tahap===4&&p.buah)){
       p.prog+=basah;
@@ -2270,15 +2407,16 @@ function kebunAksi(apa,i,j){
   var p=KEBUN.petak[i],now=Date.now();kebunMaju(now);
   if(apa==="tanam"){
     if(p||bibitAda()<HARGA[j])return;KEBUN.pakai+=HARGA[j];
-    KEBUN.petak[i]={j:j,tahap:0,prog:0,airAt:now,pupuk:false,cek:now};kebunKabar="Bibit "+NAMA_J[j].toLowerCase()+" ditanam di petak "+(i+1)+" dan langsung disiram.";bunyi("tanam");
+    KEBUN.petak[i]={j:j,tahap:0,prog:0,airAt:now,pupuk:false,cek:now};kebunKabar="Bibit "+NAMA_J[j].toLowerCase()+" ditanam di petak "+(i+1)+" dan langsung disiram.";bunyi("tanam");catat("tanam");
   } else if(apa==="siram"){
-    if(!p||p.mati)return;p.airAt=now;p.cek=now;kebunKabar="Byur! Petak "+(i+1)+" sudah disiram. Airnya cukup sekitar lima menit.";bunyi("kilau");
+    if(!p||p.mati)return;p.airAt=now;p.cek=now;kebunKabar="Byur! Petak "+(i+1)+" sudah disiram. Airnya cukup sekitar "+(DOMPET.kaleng?"sepuluh":"lima")+" menit.";bunyi("kilau");catat("siram");
   } else if(apa==="pupuk"){
     if(!p||p.mati||p.tahap!==2||p.pupuk)return;
     if(waktu!=="pagi"&&waktu!=="sore"){kebunKabar="Bu Petok: “Petok! Pupuk paling bagus diberikan pagi atau sore. Sekarang masih "+waktu+". Coba lagi nanti, atau intip jam negara yang sedang pagi.”";kebunKunci="";kebunSegarkan();return}
-    p.pupuk=true;kebunKabar="Pupuk sudah ditabur di petak "+(i+1)+". Semaknya siap tumbuh jadi pohon.";bunyi("kilau");
+    if(DOMPET.pupuk<1){kebunKabar="Karung pupuknya kosong. Beli pupuk di warung, atau menangkan game Tanam Rapi untuk dapat satu karung.";kebunKunci="";kebunSegarkan();return}
+    DOMPET.pupuk--;simpanDompet();p.pupuk=true;kebunKabar="Pupuk sudah ditabur di petak "+(i+1)+". Semaknya siap tumbuh jadi pohon. Sisa pupuk "+DOMPET.pupuk+" karung.";bunyi("kilau");catat("pupuk");
   } else if(apa==="panen"){
-    if(!p||!p.buah)return;p.buah=false;p.prog=0;KEBUN.bonus+=1;kebunKabar="Panen "+NAMA_J[p.j].toLowerCase()+"! Kamu dapat 1 bibit tambahan.";bunyi("denting");if(!tenang)hujanDaun();
+    if(!p||!p.buah)return;p.buah=false;p.prog=0;KEBUN.bonus+=1;kebunKabar="Panen "+NAMA_J[p.j].toLowerCase()+"! Kamu dapat 1 bibit tambahan dan "+HADIAH.panen+" koin.";bunyi("denting");if(!tenang)hujanDaun();tambahKoin(HADIAH.panen);catat("panen");
   } else if(apa==="cabut"){
     if(!p)return;if(kebunYakin!==i&&!p.mati){kebunYakin=i;kebunKabar="Yakin mencabut "+NAMA_J[p.j].toLowerCase()+" di petak "+(i+1)+"? Bibitnya tidak kembali.";kebunKunci="";kebunSegarkan();return}
     KEBUN.petak[i]=null;kebunKabar="Petak "+(i+1)+" sudah dikosongkan.";bunyi("daun");
@@ -2287,22 +2425,22 @@ function kebunAksi(apa,i,j){
 }
 function kebunHud(){
   var now=Date.now(),bb=bibitAda(),i=kebunPilih,p=i>=0?KEBUN.petak[i]:null,st=i>=0?statusPetak(p,now):"";
-  $("khBibit").textContent=bb+" bibit";$("khBibit").setAttribute("aria-label",bb+" bibit tersedia");
+  $("khBibit").textContent=bb+" bibit";$("khBibit").setAttribute("aria-label",bb+" bibit tersedia");$("khPupuk").textContent=DOMPET.pupuk+" pupuk";$("khPupuk").setAttribute("aria-label",DOMPET.pupuk+" karung pupuk");
   var w=$("khPetak");
   if(w.children.length!==KBP.length){w.innerHTML="";KBP.forEach(function(_,k){var b=document.createElement("button");b.type="button";b.addEventListener("click",function(){pilihPetak(k)});w.appendChild(b)})}
   [].forEach.call(w.children,function(b,k){var q=KEBUN.petak[k],s=statusPetak(q,now);b.className="st-"+s;b.textContent=k+1;b.setAttribute("aria-pressed",String(k===i));
     b.setAttribute("aria-label","Petak "+(k+1)+": "+(q?NAMA_J[q.j]+", "+(q.mati?"mati":TAHAP[q.tahap])+", "+LABEL_ST[s]:"kosong"))});
   // keterangan petak terpilih
   var teks="";
-  if(i<0)teks=bb?"Ketuk salah satu petak di kebun, atau nomor petak di atas.":"Bibit habis. Setiap pesan baru di taman menjadi satu bibit.";
+  if(i<0)teks=bb?"Ketuk salah satu petak di kebun, atau nomor petak di atas.":"Bibit habis. Setiap pesan baru di taman menjadi satu bibit, dan bibit juga dijual di warung.";
   else if(!p)teks="Petak "+(i+1)+" masih kosong."+(bb?" Pilih bibit yang mau ditanam:":" Bibitnya belum ada.");
   else if(p.mati)teks="Petak "+(i+1)+" · "+NAMA_J[p.j]+" sudah mati karena terlalu lama kering. Cabut supaya petaknya bisa ditanami lagi.";
   else{
     var air=airLevel(p,now),sisa=Math.max(0,Math.ceil(TAHAP_DT[p.tahap]-p.prog));
     teks="Petak "+(i+1)+" · "+NAMA_J[p.j]+", "+TAHAP[p.tahap]+". ";
     if(st==="layu")teks+="Layu karena kering. Siram segera, atau mati bila dibiarkan 12 jam.";
-    else if(st==="pupuk")teks+="Butuh pupuk sebelum tumbuh lagi. Pupuk paling bagus diberikan pagi atau sore.";
-    else if(st==="panen")teks+="Buahnya sudah matang. Panen untuk dapat 1 bibit tambahan.";
+    else if(st==="pupuk")teks+="Butuh pupuk sebelum tumbuh lagi. Pupuk paling bagus diberikan pagi atau sore."+(DOMPET.pupuk?"":" Pupukmu habis, beli di warung.");
+    else if(st==="panen")teks+="Buahnya sudah matang. Panen untuk dapat 1 bibit tambahan dan "+HADIAH.panen+" koin.";
     else if(p.tahap<4)teks+="Tumbuh menjadi "+TAHAP[p.tahap+1]+" dalam sekitar "+(sisa>90?Math.ceil(sisa/60)+" menit":sisa+" detik")+" bila airnya cukup.";
     else teks+="Buah berikutnya muncul dalam sekitar "+(sisa>90?Math.ceil(sisa/60)+" menit":sisa+" detik")+" bila airnya cukup.";
   }
@@ -2311,7 +2449,7 @@ function kebunHud(){
   var ab=$("khAir"),tampakAir=!!p&&!p.mati;ab.hidden=!tampakAir;
   if(tampakAir){var av=airLevel(p,now);$("khAirI").style.width=Math.round(av*100)+"%";$("khAirT").textContent=Math.round(av*100)+"%";ab.classList.toggle("kering",av<=0)}
   // tombol aksi: hanya dibuat ulang bila pilihannya berubah, supaya fokus papan ketik tidak hilang
-  var kunci=[i,st,bb,kebunYakin,p&&p.tahap].join("|");if(kunci===kebunKunci)return;kebunKunci=kunci;
+  var kunci=[i,st,bb,kebunYakin,p&&p.tahap,DOMPET.pupuk>0].join("|");if(kunci===kebunKunci)return;kebunKunci=kunci;
   var ak=$("khAksi");ak.innerHTML="";ak.className="khAksi";
   function tb(t,fn,kelas,mati){var b=document.createElement("button");b.type="button";b.className=kelas||"kecil";b.textContent=t;b.disabled=!!mati;b.addEventListener("click",fn);ak.appendChild(b);return b}
   if(i<0)return;
@@ -2323,10 +2461,128 @@ function kebunHud(){
     return;
   }
   if(!p.mati){tb("Siram",function(){kebunAksi("siram",i)},"utama");
-    if(p.tahap===2&&!p.pupuk)tb("Beri pupuk",function(){kebunAksi("pupuk",i)});
+    if(p.tahap===2&&!p.pupuk){if(DOMPET.pupuk)tb("Beri pupuk",function(){kebunAksi("pupuk",i)});else tb("Beli pupuk",function(){bukaToko("kebun","“Pupuknya ada di rak kebun, satu karung "+HARGA_TOKO.pupuk1+" koin.”")})}
     if(p.buah)tb("Panen",function(){kebunAksi("panen",i)},"utama");}
   tb(kebunYakin===i?"Ya, cabut":"Cabut",function(){kebunAksi("cabut",i)});
 }
+
+/* ================= Koin daun, misi harian, dan warung ================= */
+var HADIAH={pesan:25,panen:6,misi:10,semuaMisi:15,saku:5};
+var HARGA_TOKO={bibit1:8,bibit5:35,pupuk1:6,pupuk5:25,kaleng:40};
+var HARGA_H={"Bebek":30,"Kancil":35,"Kura-kura":35,"Pinguin":40,"Kucing anggora":40,"Anjing":45,"Kambing":45,"Rusa":55,"Burung cenderawasih":60,"Panda":70,"Kuda":70,"Sapi":70,"Orang utan":80,"Harimau sumatra":90,"Badak jawa":90,"Komodo":90};
+var HARGA_AKS={emas:30,baret:15,peci:15,rajut:15,koki:20,matahari:25},AKS_GRATIS=["","toga","pita","mahkota","caping"],BELI_MAKS=8;
+var MISI_POOL={
+ game:[["menang:semak","Menangkan Petak Umpet",1],["menang:seberang","Tuntaskan game Rakit",1],["menang:baris","Tuntaskan game Barisan",1],["menang:braille","Selesaikan satu level Braille",1],["menang:rapi","Tuntaskan game Tanam Rapi",1]],
+ kebun:[["siram","Siram tanaman 3 kali",3],["tanam","Tanam 1 bibit",1],["pupuk","Beri pupuk 1 kali",1]],
+ taman:[["sapa","Sapa 5 penghuni taman",5],["geser","Pindahkan 1 hewan",1],["aks","Pasang 1 aksesori",1]]};
+var DOMPET={koin:15,pupuk:2,kaleng:false,hewan:[],aks:[],hari:"",misi:[],prog:{},menang:{},bonusMisi:false};
+(function(){try{var s=JSON.parse(bacaAtur("dompet"));if(s&&typeof s==="object")for(var k in DOMPET)if(k in s)DOMPET[k]=s[k]}catch(e){}
+  DOMPET.koin=Math.max(0,DOMPET.koin|0);DOMPET.pupuk=Math.max(0,DOMPET.pupuk|0);
+  if(!Array.isArray(DOMPET.hewan))DOMPET.hewan=[];DOMPET.hewan=DOMPET.hewan.filter(function(k){return SPESIES[k]});
+  if(!Array.isArray(DOMPET.aks))DOMPET.aks=[]})();
+function simpanDompet(){simpanAtur("dompet",JSON.stringify(DOMPET))}
+function aksPunya(id){return AKS_GRATIS.indexOf(id)>=0||DOMPET.aks.indexOf(id)>=0}
+function hariIni(){var d=new Date();return d.getFullYear()+"-"+(d.getMonth()+1)+"-"+d.getDate()}
+function koinSvg(){return svgPakai("koin")}
+function koinTampil(){
+  $("koinJml").textContent=DOMPET.koin;$("btnToko").setAttribute("aria-label","Warung, "+DOMPET.koin+" koin daun");
+  var mk=$("mainKoin");if(mk){mk.innerHTML="";mk.appendChild(koinSvg());mk.appendChild(document.createTextNode(DOMPET.koin+" koin daun · misi hari ini "+misiBeres()+"/"+DOMPET.misi.length))}
+  if($("dlgToko").open)tokoGambar();
+}
+function tambahKoin(n,diam){
+  if(!n)return;DOMPET.koin=Math.max(0,DOMPET.koin+n);simpanDompet();koinTampil();
+  if(n>0&&!diam){var b=$("btnToko");b.classList.remove("dapat");void b.offsetWidth;if(!tenang)b.classList.add("dapat");
+    var f=document.createElement("span");f.className="koinTerbang";f.textContent="+"+n;f.setAttribute("aria-hidden","true");
+    f.style.left=(b.offsetLeft+b.offsetWidth-18)+"px";f.style.top=(b.offsetTop-6)+"px";$("alatTaman").appendChild(f);setTimeout(function(){f.remove()},2200);
+    setTimeout(function(){bunyi("koin")},150)}
+}
+function chipKoin(n,lain){var s=document.createElement("span");s.className="koinDapat";s.appendChild(koinSvg());s.appendChild(document.createTextNode("+"+n+" koin"+(lain?" · "+lain:"")));return s}
+function hadiahGame(id,dasar,el,lain){ // tiga kemenangan pertama tiap game per hari dapat koin penuh, sesudahnya sedikit
+  segarHari();var c=DOMPET.menang[id]||0,n=c<3?dasar:Math.max(2,Math.round(dasar/4));DOMPET.menang[id]=c+1;
+  tambahKoin(n);catat("menang:"+id);
+  if(el){el.appendChild(chipKoin(n,lain));if(c===2)el.appendChild(document.createTextNode(" Kemenangan berikutnya hari ini dapat koin lebih sedikit. Coba game lain, yuk!"))}
+  $("mainWarung").hidden=false;return n;
+}
+function segarHari(){
+  var t=hariIni();if(DOMPET.hari===t)return false;
+  var pertama=!DOMPET.hari;DOMPET.hari=t;DOMPET.menang={};DOMPET.prog={};DOMPET.bonusMisi=false;
+  DOMPET.misi=["game","kebun","taman"].map(function(g){var a=MISI_POOL[g];return a[Math.floor(Math.random()*a.length)][0]});
+  if(!pertama){DOMPET.koin+=HADIAH.saku;setTimeout(function(){roti("Uang saku hari ini dari Mas Al: "+HADIAH.saku+" koin daun. Misi baru sudah menunggu di warung.")},2500)}
+  simpanDompet();return true;
+}
+function misiInfo(id){var r=null;Object.keys(MISI_POOL).forEach(function(g){MISI_POOL[g].forEach(function(m){if(m[0]===id)r=m})});return r}
+function misiBeres(){return DOMPET.misi.filter(function(id){var m=misiInfo(id);return m&&(DOMPET.prog[id]||0)>=m[2]}).length}
+function catat(ev){
+  segarHari();if(DOMPET.misi.indexOf(ev)<0){return}
+  var m=misiInfo(ev),lama=DOMPET.prog[ev]||0;if(!m||lama>=m[2])return;
+  DOMPET.prog[ev]=lama+1;simpanDompet();
+  if(lama+1>=m[2]){
+    var semua=misiBeres()===DOMPET.misi.length&&!DOMPET.bonusMisi,n=HADIAH.misi+(semua?HADIAH.semuaMisi:0);if(semua)DOMPET.bonusMisi=true;
+    tambahKoin(n);roti(semua?"Semua misi hari ini beres! Kamu dapat "+n+" koin daun.":"Misi beres: "+m[1].toLowerCase()+". Kamu dapat "+n+" koin daun.");
+  }
+  koinTampil();
+}
+var rakKini="kebun";
+function bukaToko(rak,sapa){
+  segarHari();if(rak)rakKini=rak;tekan("[data-rak]","data-rak",rakKini);
+  $("tkKabar").textContent="";
+  var A=["“Mau tukar koin dengan apa hari ini?”","“Koin daun didapat dari game di Pojok main, dari kebun, dari misi, dan dari menulis pesan.”","“Hewan yang kamu beli tinggal di tamanmu, di perangkat ini.”","“Pupuk dipakai saat tanaman jadi semak. Simpan beberapa karung, ya.”"];
+  $("tkAtsir").innerHTML="";var b=document.createElement("b");b.textContent="Mas Al";$("tkAtsir").appendChild(b);$("tkAtsir").appendChild(document.createTextNode(sapa||A[Math.floor(Math.random()*A.length)]));
+  tokoGambar();if(!$("dlgToko").open)$("dlgToko").showModal();
+}
+function beli(harga,fn,kabar){
+  if(DOMPET.koin<harga){$("tkKabar").textContent="Koinmu kurang "+(harga-DOMPET.koin)+". Main game di Pojok main atau selesaikan misi dulu, ya.";bunyi("daun");return}
+  DOMPET.koin-=harga;fn();simpanDompet();bunyi("kilau");$("tkKabar").textContent=kabar;koinTampil();if(kebunOn){kebunKunci="";kebunSegarkan()}
+}
+function tokoGambar(){
+  $("tkKoin").textContent=DOMPET.koin;$("tkStok").textContent=bibitAda()+" bibit · "+DOMPET.pupuk+" pupuk"+(DOMPET.kaleng?" · kaleng besar":"");
+  var ol=$("tkMisi");ol.innerHTML="";
+  DOMPET.misi.forEach(function(id){var m=misiInfo(id);if(!m)return;var v=Math.min(m[2],DOMPET.prog[id]||0),li=document.createElement("li"),i=document.createElement("i"),s=document.createElement("span"),k=document.createElement("small");
+    li.className=v>=m[2]?"beres":"";i.textContent=v>=m[2]?"✓":"";s.textContent=m[1]+(m[2]>1?" ("+v+"/"+m[2]+")":"");k.textContent="+"+HADIAH.misi;
+    li.setAttribute("aria-label",m[1]+", "+(v>=m[2]?"beres":v+" dari "+m[2])+", hadiah "+HADIAH.misi+" koin");li.appendChild(i);li.appendChild(s);li.appendChild(k);ol.appendChild(li)});
+  var li2=document.createElement("li");li2.className=DOMPET.bonusMisi?"beres":"";li2.innerHTML="<i>"+(DOMPET.bonusMisi?"✓":"")+"</i><span>Bonus semua misi beres</span><small>+"+HADIAH.semuaMisi+"</small>";ol.appendChild(li2);
+  $("tkMisiN").textContent=misiBeres()+"/"+DOMPET.misi.length;
+  var w=$("tkRak");w.innerHTML="";
+  function kartu(judul,ket,harga,fn,punya,uk){
+    var d=document.createElement("div"),b=document.createElement("b"),p=document.createElement("p");d.className="tkBarang"+(punya?" dimiliki":"");
+    if(uk){var u=document.createElement("span");u.className="tkUk";u.textContent=uk;d.appendChild(u)}
+    b.textContent=judul;p.textContent=ket;d.appendChild(b);d.appendChild(p);
+    if(punya){var s=document.createElement("span");s.className="tkPunya";s.textContent=punya;d.appendChild(s)}
+    else{var t=document.createElement("button");t.type="button";t.className="kecil";t.appendChild(koinSvg());t.appendChild(document.createTextNode("Beli · "+harga));t.setAttribute("aria-label","Beli "+judul+", "+harga+" koin");
+      if(DOMPET.koin<harga)t.setAttribute("aria-disabled","true");t.addEventListener("click",fn);d.appendChild(t)}
+    w.appendChild(d);
+  }
+  if(rakKini==="kebun"){
+    kartu("1 bibit","Bibit untuk ditanam di kebun.",HARGA_TOKO.bibit1,function(){beli(HARGA_TOKO.bibit1,function(){KEBUN.bonus+=1;simpanKebun()},"Satu bibit masuk ke kantongmu.")});
+    kartu("5 bibit","Lebih hemat untuk mengisi banyak petak.",HARGA_TOKO.bibit5,function(){beli(HARGA_TOKO.bibit5,function(){KEBUN.bonus+=5;simpanKebun()},"Lima bibit masuk ke kantongmu.")});
+    kartu("1 karung pupuk","Semak butuh pupuk sebelum tumbuh jadi pohon.",HARGA_TOKO.pupuk1,function(){beli(HARGA_TOKO.pupuk1,function(){DOMPET.pupuk+=1},"Satu karung pupuk disimpan di gudang.")});
+    kartu("5 karung pupuk","Persediaan pupuk untuk beberapa semak.",HARGA_TOKO.pupuk5,function(){beli(HARGA_TOKO.pupuk5,function(){DOMPET.pupuk+=5},"Lima karung pupuk disimpan di gudang.")});
+    kartu("Kaleng siram besar","Sekali siram, air bertahan sepuluh menit, bukan lima.",HARGA_TOKO.kaleng,function(){beli(HARGA_TOKO.kaleng,function(){DOMPET.kaleng=true},"Kaleng siram besar siap dipakai. Air di kebun kini bertahan dua kali lebih lama.")},DOMPET.kaleng?"Sudah dimiliki":"");
+  } else if(rakKini==="hewan"){
+    var nBeli=DOMPET.hewan.length;
+    Object.keys(HARGA_H).sort(function(a,b){return HARGA_H[a]-HARGA_H[b]||a.localeCompare(b)}).forEach(function(k){
+      var sp=SPESIES[k],ada=TAMU[k],uk=HARGA_H[k]<=40?"kecil":HARGA_H[k]<=60?"sedang":"besar";
+      var punya=ada?(ada.beli?"Sudah tinggal di tamanmu":"Sudah datang, usulan mahasiswa"):nBeli>=BELI_MAKS?"Taman penuh ("+BELI_MAKS+" hewan)":"";
+      kartu(k,sp.nm,HARGA_H[k],function(){beli(HARGA_H[k],function(){DOMPET.hewan.push(k);var th=tambahTamu(k,false,true);
+        if(th){$("dlgToko").close();if(kebunOn)keluarKebun(true);camT=batas(th.n.p[0]);setTimeout(function(){ucap3(th.n,th.top,th.ucap[0],th.nama+" · penghuni baru",4200)},tenang?50:1300)}},k+" datang ke tamanmu!")},punya,uk);
+    });
+  } else if(rakKini==="aks"){
+    AKS.forEach(function(a){if(!a.id)return;var gratis=AKS_GRATIS.indexOf(a.id)>=0;
+      kartu(a.nama,UCAP_AKS[a.id],HARGA_AKS[a.id],function(){beli(HARGA_AKS[a.id],function(){DOMPET.aks.push(a.id)},a.nama+" sudah jadi milikmu. Pasang lewat tombol Aksesori di taman.")},gratis?"Gratis untuk semua":aksPunya(a.id)?"Sudah dimiliki":"")});
+  } else {
+    var ul=document.createElement("ul");ul.className="tkCara";
+    [["Menulis pesan di taman","+"+HADIAH.pesan+" koin tiap pesan"],["Menang Petak Umpet, Rakit, Barisan, atau Tanam Rapi","10 sampai 16 koin"],["Menyelesaikan satu level Braille","6 sampai 12 koin, sesuai daun yang didapat"],["Memanen pohon di kebun","+"+HADIAH.panen+" koin dan 1 bibit"],["Misi harian","+"+HADIAH.misi+" koin tiap misi, bonus +"+HADIAH.semuaMisi+" bila ketiganya beres"],["Datang lagi besok","+"+HADIAH.saku+" koin uang saku"],["Menang Tanam Rapi","juga dapat 1 karung pupuk"]].forEach(function(r){var li=document.createElement("li"),b=document.createElement("b");b.textContent=r[0];li.appendChild(b);li.appendChild(document.createTextNode(": "+r[1]+"."));ul.appendChild(li)});
+    var li=document.createElement("li");li.textContent="Tiap game memberi koin penuh untuk tiga kemenangan pertama setiap hari. Sesudahnya tetap dapat, tapi sedikit. Koin, kebun, dan hewan tersimpan di perangkat ini.";ul.appendChild(li);
+    w.appendChild(ul);
+  }
+}
+$("btnToko").addEventListener("click",function(){bukaToko()});
+$("tokoTutup").addEventListener("click",function(){$("dlgToko").close()});
+$("dlgToko").addEventListener("click",function(e){if(e.target===$("dlgToko"))$("dlgToko").close()});
+[].forEach.call(document.querySelectorAll("[data-rak]"),function(b){b.addEventListener("click",function(){rakKini=b.getAttribute("data-rak");tekan("[data-rak]","data-rak",rakKini);$("tkKabar").textContent="";tokoGambar()})});
+$("khBeli").addEventListener("click",function(){bukaToko("kebun")});
+$("mainWarung").addEventListener("click",function(){$("dlgMain").close();bukaToko()});
+segarHari();koinTampil();
 
 /* ================= Daftar pesan ================= */
 
@@ -2400,6 +2656,7 @@ function gimIntip(){
     if(benar===GIM.n){
       GIM.selesai=true;gimGambar();$("gSemak").classList.add("menang");mainMenang();
       $("gKabar").textContent="Ketemu semua dalam "+GIM.ke+" kali mengintip! "+(GIM.ke<=GIM.n?"Logikamu tajam sekali.":GIM.ke<=GIM.n+3?"Runut dan sabar, bagus!":"Akhirnya ketemu. Coba lagi dengan intipan lebih sedikit?");
+      hadiahGame("semak",(GIM.n===4?10:14)+(GIM.ke<=GIM.n+1?2:0),$("gKabar"));
     } else {
       gimGambar();
       $("gKabar").textContent=benar+" dari "+GIM.n+" hewan sudah di semak yang benar. "+(benar===0?"Belum ada yang pas, dan itu juga petunjuk: semua harus pindah.":"Yang mana, ya? Coba tukar dua hewan dan lihat angkanya berubah atau tidak.");
@@ -2413,11 +2670,11 @@ $("gUlang").addEventListener("click",gimMulai);
 gimMulai();
 
 /* ---------- Pojok main: jendela, pilihan game, dan lanjut ke game berikutnya ---------- */
-var MAIN=["semak","seberang","baris","braille"],MAINJ={semak:"Petak Umpet Semak",seberang:"Seberangkan Penghuni Taman",baris:"Lanjutkan Barisan",braille:"Surat Braille"},mainKini="semak";
+var MAIN=["semak","seberang","baris","braille","rapi"],MAINJ={semak:"Petak Umpet Semak",seberang:"Seberangkan Penghuni Taman",baris:"Lanjutkan Barisan",braille:"Surat Braille",rapi:"Tanam Rapi"},mainKini="semak";
 function mainPilih(id){
   mainKini=id;tekan("[data-main]","data-main",id);
   [].forEach.call(document.querySelectorAll("[data-panel]"),function(p){p.hidden=p.getAttribute("data-panel")!==id});
-  $("mainJudul").textContent=MAINJ[id];$("mainLanjut").hidden=true;
+  $("mainJudul").textContent=MAINJ[id];$("mainLanjut").hidden=true;$("mainWarung").hidden=true;
 }
 function mainMenang(){var nx=MAIN[(MAIN.indexOf(mainKini)+1)%MAIN.length];$("mainLanjut").textContent="Lanjut: "+MAINJ[nx];$("mainLanjut").hidden=false;bunyi("denting");hujanDaun()}
 function acakSusun(a){a=a.slice();for(var i=a.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1)),t=a[i];a[i]=a[j];a[j]=t}return a}
@@ -2451,6 +2708,7 @@ function sebCek(){
   if(SB.muat||SB.pos.kucing!==1||SB.pos.ayam!==1||SB.pos.jagung!==1)return;
   SB.usai=true;sebGambar();mainMenang();
   $("sKabar").textContent="Semua sampai dengan selamat dalam "+SB.n+" penyeberangan! "+(SB.n<=7?"Itu jumlah paling sedikit yang mungkin.":"Bisa lebih hemat? Paling sedikit 7 penyeberangan.");
+  hadiahGame("seberang",SB.n<=7?14:10,$("sKabar"));
 }
 function sebJalan(){
   if(SB.sibuk||SB.usai)return;
@@ -2491,7 +2749,7 @@ function barJawab(h){
   setTimeout(function(){
     if(h!==BR.jawab){BR.salah++;BR.sibuk=false;barGambar(false);$("bKabar").textContent="Belum pas. Baca lagi barisannya dari depan dan cari bagian yang berulang.";return}
     barGambar(true);BR.babak++;
-    if(BR.babak>=POLA.length){$("bKabar").textContent="Semua barisan selesai! "+(BR.salah?"Salah tebak "+BR.salah+" kali. Coba lagi tanpa salah?":"Tanpa salah sekali pun. Matamu jeli!");mainMenang();return}
+    if(BR.babak>=POLA.length){$("bKabar").textContent="Semua barisan selesai! "+(BR.salah?"Salah tebak "+BR.salah+" kali. Coba lagi tanpa salah?":"Tanpa salah sekali pun. Matamu jeli!");mainMenang();hadiahGame("baris",BR.salah?12:16,$("bKabar"));return}
     $("bKabar").textContent="Tepat! Itu "+GH[BR.jawab].nama+". Barisan berikutnya sedikit lebih sulit.";bunyi("kilau");
     setTimeout(barBabak,tenang?900:900+1300*tempo);
   },tenang?0:400+1300*tempo);
@@ -2592,20 +2850,75 @@ function brJawab(benar){
     RB.daun[RB.level]=Math.max(RB.daun[RB.level]||0,daun);RB.terbuka=Math.min(LVL.length,Math.max(RB.terbuka,RB.level+2));
     simpanAtur("braille",JSON.stringify({terbuka:RB.terbuka,daun:RB.daun}));
     brLevelGambar();brGambar();
-    var k=$("rKabar");k.textContent="Level "+(RB.level+1)+" selesai"+(RB.salah?" dengan "+RB.salah+" kali salah.":" tanpa salah!")+" Nilaimu:";k.appendChild(daunNilai(daun));
+    var k=$("rKabar");k.textContent="Level "+(RB.level+1)+" selesai"+(RB.salah?" dengan "+RB.salah+" kali salah.":" tanpa salah!")+" Nilaimu:";k.appendChild(daunNilai(daun));hadiahGame("braille",3+daun*3,k);
     if(RB.level<LVL.length-1){$("rNaik").hidden=false;$("rNaik").textContent="Level "+(RB.level+2)+": "+LVL[RB.level+1].nama;hujanDaun();bunyi("denting")}
     else{k.appendChild(document.createTextNode(" Semua level Braille tuntas. Hebat!"));mainMenang()}
   },tenang?0:400+1300*tempo);
 }
 $("rUlang").addEventListener("click",function(){brMulai()});
 $("rNaik").addEventListener("click",function(){brMulai(Math.min(LVL.length-1,RB.level+1))});
-var MULAI={semak:gimMulai,seberang:sebMulai,baris:barMulai,braille:brMulai};
+/* Game 5: Tanam Rapi (sudoku kebun 4x4) */
+var RPJ=[{j:"apel",nm:"Apel",w:"#d9483b",h:"A"},{j:"jeruk",nm:"Jeruk",w:"#f39a2b",h:"J"},{j:"mangga",nm:"Mangga",w:"#f2c14e",h:"M"},{j:"sakura",nm:"Sakura",w:"#f6a8c4",h:"S"}];
+var RP={sol:[],isi:[],tetap:[],pilih:0,sibuk:false,usai:false,tingkat:"mudah",salah:0};
+function rpBuah(k){var s=document.createElement("span");s.className="buahI";s.style.setProperty("--w",RPJ[k].w);s.textContent=RPJ[k].h;s.setAttribute("aria-hidden","true");return s}
+function rpHitung(a,maks){ // jumlah penyelesaian, berhenti di maks
+  var i=a.indexOf(-1);if(i<0)return 1;var r=Math.floor(i/4),c=i%4,n=0;
+  for(var v=0;v<4&&n<maks;v++){if(!rpBoleh(a,r,c,v))continue;a[i]=v;n+=rpHitung(a,maks-n);a[i]=-1}
+  return n;
+}
+function rpBoleh(a,r,c,v){for(var k=0;k<4;k++){if(a[r*4+k]===v||a[k*4+c]===v)return false}var r0=r-r%2,c0=c-c%2;for(var y=r0;y<r0+2;y++)for(var x=c0;x<c0+2;x++)if(a[y*4+x]===v)return false;return true}
+function rpMulai(){
+  var b=[[0,1,2,3],[2,3,0,1],[1,0,3,2],[3,2,1,0]],pm=acakSusun([0,1,2,3]),i,t;
+  var bar=acakSusun([0,1]).map(function(x){return acakSusun([x*2,x*2+1])}),kol=acakSusun([0,1]).map(function(x){return acakSusun([x*2,x*2+1])});
+  bar=bar[0].concat(bar[1]);kol=kol[0].concat(kol[1]);
+  var s=[];for(var r=0;r<4;r++)for(var c=0;c<4;c++)s.push(pm[b[bar[r]][kol[c]]]);
+  if(Math.random()<.5){t=s.slice();for(r=0;r<4;r++)for(c=0;c<4;c++)s[r*4+c]=t[c*4+r]}
+  var isi=s.slice(),target=RP.tingkat==="mudah"?8:5;
+  acakSusun([0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15]).forEach(function(k){
+    if(isi.filter(function(x){return x>=0}).length<=target)return;
+    var v=isi[k];isi[k]=-1;if(rpHitung(isi.slice(),2)!==1)isi[k]=v});
+  RP.sol=s;RP.tetap=isi.map(function(x){return x>=0});RP.isi=isi;RP.sibuk=false;RP.usai=false;RP.salah=0;
+  $("rpPetak").className="rpPetak";$("mainLanjut").hidden=true;
+  $("rpKabar").textContent="Mbah Gading: “Pelan-pelan saja. Mulai dari baris yang hampir penuh.”";
+  rpGambar();
+}
+function rpGambar(salah){
+  var w=$("rpPetak"),b=$("rpBibit");w.innerHTML="";b.innerHTML="";
+  RP.isi.forEach(function(v,k){var t=document.createElement("button"),r=Math.floor(k/4)+1,c=k%4+1;t.type="button";t.setAttribute("role","gridcell");
+    if(v>=0)t.appendChild(rpBuah(v));if(RP.tetap[k])t.className="tetap";if(salah&&salah.indexOf(k)>=0)t.classList.add("salah");
+    t.setAttribute("aria-label","Baris "+r+", kolom "+c+": "+(v>=0?RPJ[v].nm:"kosong")+(RP.tetap[k]?", sudah ditanam Mbah Gading":""));
+    t.disabled=RP.tetap[k]||RP.sibuk||RP.usai;
+    t.addEventListener("click",function(){RP.isi[k]=RP.isi[k]===RP.pilih?-1:RP.pilih;bunyi(RP.isi[k]<0?"daun":"tanam");rpGambar();var nb=$("rpPetak").children[k];if(nb)nb.focus()});
+    w.appendChild(t)});
+  RPJ.forEach(function(o,k){var t=document.createElement("button");t.type="button";t.appendChild(rpBuah(k));t.appendChild(document.createTextNode(o.nm));t.setAttribute("aria-pressed",String(RP.pilih===k));t.disabled=RP.sibuk||RP.usai;
+    t.addEventListener("click",function(){RP.pilih=k;bunyi("kilau");rpGambar()});b.appendChild(t)});
+  $("rpPeriksa").disabled=RP.isi.indexOf(-1)>=0||RP.sibuk||RP.usai;
+}
+function rpPeriksa(){
+  if(RP.sibuk||RP.usai||RP.isi.indexOf(-1)>=0)return;RP.sibuk=true;rpGambar();$("rpPetak").classList.add("goyang");
+  $("rpKabar").textContent="Mbah Gading berjalan pelan menyusuri petak…"; // jeda ketegangan sebelum hasil
+  setTimeout(function(){
+    RP.sibuk=false;$("rpPetak").classList.remove("goyang");
+    var a=RP.isi,mas=null,sel=[],r,c,k,v,nmK=["kiri atas","kanan atas","kiri bawah","kanan bawah"];
+    function cek(daftar,nama){if(mas)return;for(v=0;v<4;v++){var ada=daftar.filter(function(i){return a[i]===v});if(ada.length>1){mas=nama+" punya "+ada.length+" "+RPJ[v].nm.toLowerCase()+".";sel=ada;return}}}
+    for(r=0;r<4;r++)cek([0,1,2,3].map(function(x){return r*4+x}),"Baris "+(r+1));
+    for(c=0;c<4;c++)cek([0,1,2,3].map(function(y){return y*4+c}),"Kolom "+(c+1));
+    for(k=0;k<4;k++){var r0=Math.floor(k/2)*2,c0=k%2*2;cek([r0*4+c0,r0*4+c0+1,(r0+1)*4+c0,(r0+1)*4+c0+1],"Kotak "+nmK[k])}
+    if(mas){RP.salah++;rpGambar(sel);$("rpKabar").textContent="Belum rapi. "+mas+" Petak yang bertabrakan diberi garis kuning.";return}
+    RP.usai=true;rpGambar();$("rpPetak").classList.add("menang");mainMenang();DOMPET.pupuk+=1;simpanDompet();
+    var kb=$("rpKabar");kb.textContent="Kebunnya rapi sekali! "+(RP.salah?"Diperiksa "+(RP.salah+1)+" kali.":"Langsung benar pada pemeriksaan pertama.");
+    hadiahGame("rapi",(RP.tingkat==="sulit"?14:10)+(RP.salah?0:2),kb,"1 karung pupuk");
+  },tenang?0:400+1500*tempo);
+}
+$("rpPeriksa").addEventListener("click",rpPeriksa);$("rpUlang").addEventListener("click",rpMulai);
+[].forEach.call(document.querySelectorAll("[data-rapi]"),function(b){b.addEventListener("click",function(){RP.tingkat=b.getAttribute("data-rapi");tekan("[data-rapi]","data-rapi",RP.tingkat);rpMulai()})});
+var MULAI={semak:gimMulai,seberang:sebMulai,baris:barMulai,braille:brMulai,rapi:rpMulai};
 [].forEach.call(document.querySelectorAll("[data-main]"),function(b){b.addEventListener("click",function(){mainPilih(b.getAttribute("data-main"))})});
 $("mainLanjut").addEventListener("click",function(){var nx=MAIN[(MAIN.indexOf(mainKini)+1)%MAIN.length];mainPilih(nx);MULAI[nx]()});
-$("btnMain").addEventListener("click",function(){$("dlgMain").showModal()});
+$("btnMain").addEventListener("click",function(){koinTampil();$("dlgMain").showModal()});
 $("mainTutup").addEventListener("click",function(){$("dlgMain").close()});
 $("dlgMain").addEventListener("click",function(e){if(e.target===$("dlgMain"))$("dlgMain").close()});
-sebMulai();barMulai();brMulai();
+sebMulai();barMulai();brMulai();rpMulai();
 $("btnProfil").addEventListener("click",function(){$("dlgProfil").showModal()});
 (function(){var s=$("fAks");AKS.forEach(function(a){if(!a.id)return;var o=document.createElement("option");o.textContent=a.nama;s.insertBefore(o,s.lastElementChild)});
   [["fHewan","fHewanLain"],["fAks","fAksLain"]].forEach(function(q){$(q[0]).addEventListener("change",function(){var lain=$(q[0]).value==="__lain";$(q[1]).hidden=!lain;if(lain)$(q[1]).focus()})})})();
@@ -2924,7 +3237,7 @@ $("formTulis").addEventListener("submit",function(e){
     if(!h||!h.ok){$("fSalahKirim").textContent=(h&&h.sebab)||"Pesan belum terkirim. Coba lagi.";$("fSalahKirim").hidden=false;return}
     dlgTulis.close();$("formTulis").reset();$("fHewanLain").hidden=true;$("fAksLain").hidden=true;$("hitungan").textContent="0 / 500";pilihMk=null;
     panggung.scrollIntoView({block:"nearest",behavior:tenang?"auto":"smooth"});
-    antar(m,keTaman);
+    antar(m,keTaman);tambahKoin(HADIAH.pesan);catat("pesan");setTimeout(function(){roti("Terima kasih! Kamu dapat "+HADIAH.pesan+" koin daun. Tukarkan di Warung Mas Al dekat kebun.")},tenang?200:4500);
   });
 });
 function kirim(m,keTaman,ke){ // mode hidup: simpan ke Google Sheet lewat Apps Script
@@ -3069,6 +3382,7 @@ function bunyi(apa,lama){
   else if(apa==="denting"){nada({f:[880,880],d:.6,vol:.07,jenis:"triangle"});nada({t:.08,f:[1320,1320],d:.6,vol:.05,jenis:"triangle"})}
   else if(apa==="kilau")[523,659,784,1047].forEach(function(f,j){nada({t:j*.09,f:[f,f],d:.5,vol:.07,jenis:"triangle"})});
   else if(apa==="tanam")nada({f:[120,70],d:.35,vol:.2});
+  else if(apa==="koin"){nada({f:[1318,1318],d:.12,vol:.06,jenis:"square",bp:2600,q:1});nada({t:.09,f:[1760,1760],d:.35,vol:.06,jenis:"square",bp:3200,q:1})}
   else if(apa==="desir")desis({d:Math.max(.3,lama||1),vol:.05,f0:500,fm:1500,f1:600,q:.9});
 }
 function mulaiAmbien(){ // angin pelan sepanjang waktu, jangkrik di malam hari
@@ -3241,6 +3555,7 @@ if(!siap){kanvas.hidden=true;$("gagal").hidden=false;$("alatTaman").hidden=true}
 ["bd","sk","st"].forEach(function(id){var p=mk(id);if(siap)tanam(p,false);else{p.tanam=true;ditanam.push(p);p.n=PESAN.filter(function(m){return m.p===id}).length}});
 if(siap)PESAN.forEach(function(m){buatDaun(m,false)});
 gambarDaftar();aturWaktu(awal);jdSegarkan();jdT=setInterval(jdSegarkan,15000);
+if(siap)DOMPET.hewan.forEach(function(k){tambahTamu(k,true,true)});
 if(HIDUP){$("capContoh").hidden=true;muat()}else terimaTamu({"Bebek":3,"Panda":2,"Kura-kura":1},true);
 if(!HIDUP||!siap)setTimeout(tutupPembuka,700);setTimeout(tutupPembuka,7000);
 (function(){var a=bacaAtur("teks");if(a==="besar")aturTeks(a);a=bacaAtur("kontras");if(a==="tinggi")aturKontras(a);
